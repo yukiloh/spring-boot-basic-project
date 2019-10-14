@@ -1,0 +1,7 @@
+spring:
+  thymeleaf:
+#    关闭缓存
+    cache: false
+    mode: HTML
+#    使用过往HTML5模式；正常的html5对语法较为严格，必须存在结束标签;已弃用
+#    mode: LEGACYHTML5

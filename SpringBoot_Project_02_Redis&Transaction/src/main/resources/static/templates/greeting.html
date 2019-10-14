@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<!--类似于jsp页面;如果${param}没有获取到会自动跳红-->
+
+<p>你可以在地址添加?name=你想要的名字</p>
+<p>insert any word after /greeting?name=,like 'World' </p>
+
+<p th:text="'Hello, ' + ${name} + '!'" />
+
+<a th:href="@{'https://www.'+#{test.url}+'.com'}">baidu</a>
+<span th:text="@{'https://www.'+#{test.url}+'.com'}"></span>
+
+
+</body>
+</html>

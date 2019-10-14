@@ -1,0 +1,46 @@
+#关于yml的配置:
+#类似于properties,分割键值对使用:和空格;层级关系使用缩进区分
+#关于多个不同类型的配置文件,会按照下方的加载顺序全部载入.但:先载入的会被后载入的覆盖!
+#<include>**/application*.yml</include>
+#<include>**/application*.yaml</include>
+#<include>**/application*.properties</include>
+
+server:
+  port: 8080
+
+#=======================================================================================================================
+#此配置包会自动注入spring容器,因此Controller类可以通过@Value调用配置文件中的数据
+name: goudan
+
+#配置字符串集合的示例
+city:
+  - city1
+  - city2
+
+#配置对象数据的示例(map等)
+area:
+  name: area1
+  location: location
+
+#=======================================================================================================================
+#数据库配置信息
+spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/ssm?serverTimezone=UTC
+#    username: root
+#    password: 111111
+  datasource:
+    url: jdbc:mariadb://192.168.1.90:3306/springbootProject
+    hikari:
+      username: root
+      password: zou9RYdAGW2MKoBY
+      driver-class-name: org.mariadb.jdbc.Driver
+
+#配置mybatis信息
+#加载映射文件Mapper.xml
+#mybatis:
+#  mapper-locations: classpath:*Mapper.xml
+  #pojo别名扫描
+#  type-aliases-package: boot.domain
+

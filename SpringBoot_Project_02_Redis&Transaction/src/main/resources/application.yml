@@ -1,0 +1,42 @@
+spring:
+  mvc:
+    view:
+#     spring默认访问/resources/static/ 下的页面！！！
+#    （尽量保持在static下不要改动；thymeleaf则默认为/resource/templates下）
+      prefix: /templates/
+      suffix: .html
+
+
+
+#    告知spring静态资源路径，只有在此路径下才会被认作是静态资源(有坑)
+#    static-path-pattern: /resources/**
+
+#  resources:
+#    用于查找静态资源文件，下为springboot默认配置；列表性，会依次查找；实际是target目录下的文件
+#    static-locations: classpath:/static,classpath:/public,classpath:/resources,classpath:/META-INF/resources
+#  结论：
+#  spring.mvc.static-path-pattern用于阐述HTTP请求地址
+#  spring.resources.static-locations则用于描述静态资源的存放位置
+
+
+# redis配置
+  redis:
+    host: 192.168.1.90
+    port: 32775
+    password: XqQjF&80gXZANz
+##   springboot中开启哨兵(sentinel)模式,只需要在配置文件中增加参数即可
+##   当判断master宕机后,会从各slave中选出一台充当master
+#    sentinel:
+##     主服务器的名称
+#      master: sentinelName
+##     各节点的ip地址,ipAddress:port,...
+#      nodes:
+
+# 数据库配置
+#   使用的是mariaDB
+  datasource:
+    url: jdbc:mariadb://192.168.1.90:3306/springbootProject
+    hikari:
+      username: root
+      password: zou9RYdAGW2MKoBY
+      driver-class-name: org.mariadb.jdbc.Driver

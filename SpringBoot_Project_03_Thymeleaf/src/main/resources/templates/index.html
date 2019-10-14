@@ -1,0 +1,113 @@
+<!DOCTYPE html >
+<html lang = "en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset = "UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--thymeleaf的3个常用表达式-->
+
+<!--${...}：thymeleaf中的 标准变量表达式 ，用于访问容器(tomcat)中上下文的环境变量 }-->
+<!--/*@thymesVar id="msg" type="com.example.demo.controller.MainController"*/-->
+<div th:text="${msg}">msg</div>
+
+
+<!--*{...}： 选择变量表达式,通过th:object绑定的属性来获取值;所以th:object为数据绑定 }-->
+<!--/*@thymesVar id="user" type=""*/-->
+<div th:object="${user}">
+    <!--*{}获取的都是${user}中的值}-->
+    name:<span th:text="*{name}">name</span><br>
+    age:<span th:text="*{age}">age</span>
+</div>
+
+
+<!--@{...}：URL表达式,用于url的标签中 }-->
+<a th:href="@{https://www.bing.com}">Bing1</a>
+<!--也可以和${}进行拼接}-->
+<a th:href="@{'https://'+${url}}">Bing2</a>
+<!--通过'/...'添加相对路径,指向当前域名下的页面-->
+<a th:href="@{'/test/'+${testOrder}}">test page</a>
+
+
+<!--===============================================-->
+<!--thymeleaf的常用语句-->
+<!--th:each 遍历-->
+<!--user表示接收的数据;
+    stat表示循环体的信息,默认使用stat作为后缀
+        包括:index当前迭代对象下标(从0开始) count当前迭代对象个数(从1) size被迭代对象大小 even/odd是否为奇偶()返回布尔值  等等-->
+<p th:each="user,stat:${userList}">
+    序号:<span th:text="${stat.count}"></span>
+    姓名:<span th:text="${user.name}"></span>
+    年龄:<span th:text="${user.age}"></span>
+    <!-- th:if的语法; == 与 eq 相同-->
+    <span th:if="${user.gender == '1'}">性别:男</span>
+    <span th:if="${user.gender eq '0'}">性别:女</span>
+    <!-- th:unless,与if相反-->
+    <span th:unless="${user.gender == '1'}">不为男</span>
+    <span th:unless="${user.gender == '0'}">不为女</span>
+    <!-- th:switch 与th:cast一同使用-->
+    <span th:switch="${user.gender}">
+        <span th:case="'1'">man</span>
+        <span th:case="'0'">female</span>
+        <span th:case="*">unknown</span>
+    </span><br>
+
+    <!-- th:inline 内联表达式,inline的值有三种,text JavaScript none-->
+    <!-- inline = text  -->
+    <span>内联表达式</span>
+    <span th:inline="text">[[${msg}]]</span><br>
+    <span >[[${msg}]]</span><br>                    <!--当没有=text,中括号也会激活th:inline-->
+    <span th:inline="none">[[${msg}]]</span><br>    <!--使用=none来取消inline中括号的语法-->
+
+
+    <br>
+</p>
+
+
+<!--内联脚本-->
+<script th:inline="javascript">
+    var user = [[${msg}]]       /*通过thymeleaf从后台取出msg的值*/
+    alert(user)
+</script>
+
+<!--======================================================-->
+<!--关于thymeleaf中的常识问题)-->
+<div>
+    <p th:text="1001"></p>      <!--数字字面量-->
+    <p th:text="'1001'"></p>    <!--文本字面量-->
+    <p th:text="true"></p>      <!--布尔字面量-->
+    <p th:text="null"></p>      <!--null字面量-->
+</div>
+
+
+<!--字符串拼接-->
+<div >字符串拼接
+    <p th:text="'使用+进行拼接:'+${msg}+'!'"></p>
+    <p th:text="|使用进行拼接${msg}!|"></p>   <!--忽视报错-->
+</div>
+
+
+<!--三元表达式-->
+<div>
+    三元表达式: <span th:text="${user.name}"></span><span th:text="${user.gender == 1} ?'是男的':'不是男的'"></span>
+</div>
+
+<!--获取request对象,#request-->     <!--request与session的区别,页面跳转后request消失,session可以保存多次-->
+<div>
+    <span th:text="${#request.getAttribute('testRequest')}"></span>
+</div>
+<!--获取session对象,#session-->
+<div>
+    <span th:text="${#session.getAttribute('testRequest')}"></span>
+</div>
+
+
+<!--一些功能对象,提供一些内置的功能方法,比如日期转换-->
+<span th:text="${#dates.format(date,'yyyy-MM-dd')}"></span>
+</body>
+
+
+
+
+</html>

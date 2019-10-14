@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="SpringBoot_Project_04_Shiro" />
+        <module name="SpringBoot_Project_01_QuickStart" />
+        <module name="SpringBoot_Project_03_Thymeleaf" />
+        <module name="SpringBoot_Project_02_Redis&amp;Transaction" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="SpringBoot_Project_03_Transaction" target="1.8" />
+      <module name="springboot_quickstart_byidea" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="SpringBoot_Project_01_QuickStart" options="-parameters" />
+      <module name="SpringBoot_Project_02_Redis&amp;Transaction" options="-parameters" />
+      <module name="SpringBoot_Project_03_Thymeleaf" options="-parameters" />
+      <module name="SpringBoot_Project_03_Transaction" options="-parameters" />
+      <module name="SpringBoot_Project_04_Shiro" options="-parameters" />
+      <module name="springboot_quickstart_byidea" options="-parameters" />
+    </option>
+  </component>
+</project>
