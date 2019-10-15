@@ -19,7 +19,7 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean getShiroFilterFactoryBean(DefaultWebSecurityManager defaultWebSecurityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 
-        /*设置安全管理器*/
+        /*为bean工厂设置安全管理器*/
         shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
 
         /*  shiro内置的过滤器,实现权限相关拦截：
@@ -31,7 +31,7 @@ public class ShiroConfig {
         /*创建shiro定义过滤器的map*/
         Map<String, String> filterChainDefinitionMap = new HashMap<>();
 
-        /*perms过滤器*/
+        /*perms过滤器*/    /*意为：访问/../..路径，需要perms[...]的权限*/
         filterChainDefinitionMap.put("/user/update","perms[user:update]");      /*过滤器的匹配按照代码顺序,小范围的代码应该置于大范围的前面,否则会造成只匹配大范围*/
 
         /*添加需要过滤器的 路径&过滤器类型(↓为authc过滤器)*/

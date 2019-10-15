@@ -21,7 +21,7 @@ public class UserRealm extends AuthorizingRealm {
         /*创建授权信息*/
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
-        /*为指定资源添加授权字符串,此处字符串需要与ShiroConfig中的[...]一致*/
+        /*为指定资源添加授权字符串,此处字符串需要与ShiroConfig中的[...]一致*/   /*通常是从数据库中获取授权字符串，进行foreach匹配*/
         info.addStringPermission("user:update");
         return info;
     }
