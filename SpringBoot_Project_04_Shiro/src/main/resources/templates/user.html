@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset = "UTF-8">
+    <title>操作用户</title>
+</head>
+<body>
+
+<div th:text="${userName}+',你好'" style="color: chocolate"></div>
+<hr>
+<div><a href="/login">登陆</a></div>
+
+<div>添加用户:<a href="/user/add">添加用户</a></div>
+<div>更新用户:<a href="/user/update">更新用户</a></div>
+<div><a href="/user/forgetPassword">忘记密码</a></div>
+
+
+</body>
+</html>

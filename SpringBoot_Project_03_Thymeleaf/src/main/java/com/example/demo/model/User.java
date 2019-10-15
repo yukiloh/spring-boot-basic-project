@@ -1,4 +1,4 @@
-package com.example.demo.controller.model;
+package com.example.demo.model;
 
 public class User {
     private String name;
