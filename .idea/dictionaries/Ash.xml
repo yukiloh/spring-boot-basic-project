@@ -2,6 +2,7 @@
   <dictionary name="Ash">
     <words>
       <w>authc</w>
+      <w>authz</w>
       <w>shiro</w>
     </words>
   </dictionary>

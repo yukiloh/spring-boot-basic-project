@@ -4,14 +4,13 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpServletRequest;
-import java.security.Security;
 
 
 @Controller
@@ -23,21 +22,32 @@ public class MainController {
         return "/user";
     }
 
+
+    @RequiresPermissions({"perm:add"})
     @GetMapping("/user/add")
     public String addUser() {
-
         return "/user/add";
     }
 
+    @RequiresPermissions({"perm:update"})
     @GetMapping("/user/update")
     public String updateUser() {
-
         return "/user/update";
     }
 
+    @RequiresPermissions({"perm:update","perm:add"})
+    @GetMapping("/user/bothPerm")
+    public String bothPerm() {
+        return "/user/bothPerm";
+    }
+
+    @RequiresRoles("role:admin")
+    @GetMapping("/user/admin")
+    public String forRoleAdmin() {
+        return "/user/admin";
+    }
     @GetMapping("/user/forgetPassword")
     public String forgetPassword() {
-
         return "/user/forgetPassword";
     }
 
@@ -47,9 +57,9 @@ public class MainController {
         return "/login";
     }
 
+
     @GetMapping("/toLogin")
     public String toLogin(String username,String password,Model model) {
-        System.out.println(username + password);
         /*subject可以理解为"对象",抽象概念,会与系统进行交互*/
         Subject subject = SecurityUtils.getSubject();
 
