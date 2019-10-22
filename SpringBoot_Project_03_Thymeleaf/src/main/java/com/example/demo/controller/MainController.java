@@ -58,4 +58,10 @@ public class MainController {
     public String context03(){
         return "success!";
     }
+
+
+    @GetMapping("/login")
+    public String context04(){
+        return "login";
+    }
 }

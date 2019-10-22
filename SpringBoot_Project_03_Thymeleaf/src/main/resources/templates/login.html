@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>登陆</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+
+    <!-- Custom styles for this template -->
+    <!--    <link href="navbar.css" rel="stylesheet">-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <link rel = "stylesheet" href = "../static/css/MyCss.css">
+
+
+</head>
+
+<body>
+<div th:if="${answer != null}">
+    <!--这是答案-->
+    <p hidden id="correct_answer" th:text="${answer}"></p>
+</div>
+
+<p hidden id="question" >问题问题</p>
+
+
+
+<div class="container-fluid mainCss">
+    <div class="row">
+        <div class="col-md-push-4 col-md-4" >
+            <h3>后期完善页面效果</h3><hr>
+            <div class="container-fluid">
+            <div class="center-block">
+                <h4>用户登陆</h4>
+                <form action="/login.do" method="post">
+                    <table border="0">
+                        <tr>
+                            <td style="text-align:center"><font size="3" >用户名</font></td>
+                            <td>&nbsp;&nbsp;</td>
+                            <td ><input type="text" class="form-control" name="username"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center" > <font size="3" >密码</font></td>
+                            <td>&nbsp;&nbsp;</td>
+                            <td ><input type="password" class="form-control " name="password"></td>
+                        </tr><br>
+                        <tr>
+                            <td style="text-align:center" >
+                                <button type="button" class="btn btn-danger" id="show_question">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>查看问题
+                                </button>
+                            </td>
+                            <td>&nbsp;&nbsp;</td>
+                            <td >
+                                <input id="input" class="form-control leftMove"value="">
+                            </td>
+                            <td >
+                                <span id="hint" style="color: darkred"></span>
+                            </td>
+                        </tr>
+
+
+<!--                        <tr th:if="${question != null}">-->
+<!--                            <td><p id="question" th:text="${question}"></p></td>-->
+<!--                            <td><input id="input" value=""></td>-->
+<!--                            <td><span id="hint" style="color: darkred"></span></td>-->
+<!--                        </tr>-->
+                    </table>
+                    <br>
+                    <div th:if="${answer != null}"><button type="submit" class="btn btn-info" id= "submit" disabled>提交</button></div>
+                    <div th:if="${answer == null}"><button type="submit" class="btn btn-info"  id="submit2">提交</button></div>
+
+                </form>
+                <span th:text="${msg}" style="color: darkred"></span>
+            </div><br>
+            <div>
+                <!--通过读取messages.prop中的uri实现github user认证-->
+                <a th:href="'https://github.com/login/oauth/authorize?client_id=Iv1.2299807260a02e0e&redirect_uri='+#{github.redirectUri}+'&scope=user&state=1'">GitHub账号登陆</a><br>
+            </div><br>
+            <div>
+                <a href="/special">使用test01账号登陆</a>
+            </div>
+            <br>
+            <br>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    $(function () {
+        $("#input").focusout(function () {
+            $(function () {
+                var answer = $("#input").val();
+                var correct_answer = $("#correct_answer").html();
+                // alert(correct_answer);           /*验证获取到correct_answer(从p标签)*/
+                var result = answer == correct_answer ? true : false;
+                if (result == true) {
+                    // alert(result == true ? '答对啦!':'再来一次');
+                    $("#hint").html("回答正确");
+                    $("#submit").removeAttr("disabled");
+                }else {
+                    $("#hint").html("&nbsp你是猪吧¿");
+                    // alert("你是猪吧")
+                }
+
+            });
+        })
+    })
+
+    $(function () {
+        $("#show_question").click(function () {
+            var question = $("#question").html();
+            alert(question)
+        })
+
+    })
+</script>
+
+</body>
+</html>
+
