@@ -104,7 +104,12 @@
 
 
 <!--一些功能对象,提供一些内置的功能方法,比如日期转换-->
-<span th:text="${#dates.format(date,'yyyy-MM-dd')}"></span>
+<span id="date" th:text="${#dates.format(date,'yyyy-MM-dd')}"></span>
+
+<hr>
+<span th:each="number : ${#numbers.sequence(1,max)}">
+    <span th:text="${number}"></span>
+</span>
 </body>
 
 

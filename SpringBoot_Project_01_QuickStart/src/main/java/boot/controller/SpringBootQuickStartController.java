@@ -17,7 +17,7 @@ import java.util.Map;
 /*控制器Controller*/   /*必须和boot在同一文件夹*/
 @RestController     /*包含了@Controller*/
 @ConfigurationProperties(prefix = "area")   /*用于匹配properties中的前缀*/
-public class SpringBootQuickStartController {
+public class    SpringBootQuickStartController {
 
     /*演示application.yml提供数据*/   /*优点:获取方便;缺点:获取多个属性时繁琐,必须每次都写@Value*/
     @Value("${name}")

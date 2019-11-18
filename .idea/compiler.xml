@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="SpringBoot_Project_04_Shiro" />
         <module name="SpringBoot_Project_01_QuickStart" />
+        <module name="SpringBoot_Project_05_AdminLET" />
         <module name="SpringBoot_Project_03_Thymeleaf" />
         <module name="SpringBoot_Project_02_Redis&amp;Transaction" />
       </profile>
@@ -24,6 +25,7 @@
       <module name="SpringBoot_Project_03_Thymeleaf" options="-parameters" />
       <module name="SpringBoot_Project_03_Transaction" options="-parameters" />
       <module name="SpringBoot_Project_04_Shiro" options="-parameters" />
+      <module name="SpringBoot_Project_05_AdminLET" options="-parameters" />
       <module name="springboot_quickstart_byidea" options="-parameters" />
     </option>
   </component>

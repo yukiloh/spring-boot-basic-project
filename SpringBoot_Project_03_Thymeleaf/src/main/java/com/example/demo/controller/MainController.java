@@ -35,6 +35,7 @@ public class MainController {
         model.addAttribute("url","www.bing.com");
         model.addAttribute("testOrder","1");
         model.addAttribute("date",new Date());
+        model.addAttribute("max",null);
 
         /*单次页面访问*/
         request.setAttribute("testRequest","here is test text!");

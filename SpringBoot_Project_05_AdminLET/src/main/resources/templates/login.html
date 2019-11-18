@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device width,user scalable-no,initial scale=1.0,maximum-scale=l.0,minimum scale=l.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>登录</title>
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574077987965&di=a8f73529842e806e26f1e430289420a5&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F48%2F06%2F95574411cc2434a.jpg">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/static/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="/static/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/static/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <style>
+        .self-background{
+            -ms-flex-align: center;
+            align-items: center;
+            background-image: url("https://cn.bing.com/th?id=OHR.Nebelmond_EN-CN3312251312_1920x1080.jpg");
+            display: -ms-flexbox;
+            display: flex;
+            height: 100vh;
+            margin-top: 10%;
+            -ms-flex-pack: center;
+            justify-content: center;
+
+        }
+    </style>
+</head>
+<body class="hold-transition self-background" >
+<div class="login-box">
+
+    <!-- /.login-logo -->
+    <div class="card">
+        <div class="card-body login-card-body rounded-circle">
+            <div class="login-logo">
+                <a href="#"><b style="color: #1b1e21">登录页面</b></a>
+            </div>
+            <p class="login-box-msg " style="display: none" >注册</p>
+
+            <form action="/index" method="post">
+                <div class="input-group mb-3">
+                    <input type="email" class="form-control" placeholder="账号">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control" placeholder="密码">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <div class="icheck-primary">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">
+                                <p style="color: #7e7979">记住我</p>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary btn-block">登录</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+
+
+            <!-- /.social-auth-links -->
+
+            <p class="mb-1">
+                <a href="#">忘记密码</a>
+            </p>
+
+        </div>
+        <!-- /.login-card-body -->
+    </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="/static/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/static/js/adminlte.min.js"></script>
+
+</body>
+
+
+
+
+</html>
