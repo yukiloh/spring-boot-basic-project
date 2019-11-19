@@ -11,9 +11,9 @@
 <th:block th:insert="~{includes/sidebar::sidebar}" />
 -->
 <th:block th:fragment="sidebar">
-    <aside class="main-sidebar sidebar-dark-success elevation-4">
+    <aside class="main-sidebar sidebar-dark-info elevation-4">
         <!-- Brand Logo -->
-        <a href="#" class="brand-link">
+        <a href="/index" class="brand-link">
             <img src="/static/img/AdminLTELogo.png"
                  alt="AdminLTE Logo"
                  class="brand-image img-circle elevation-3"
@@ -38,11 +38,12 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                    <li class="nav-item has-treeview ">
+                    <!--menu-open:默认打开-->
+                    <li class="nav-item has-treeview menu-open">
                         <a href="#" class="nav-link active">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <i class="nav-icon fas fa-user"></i>
                             <p>
-                                    个人页面
+                                    管理员
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -50,31 +51,42 @@
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="far fa-circle nav-icon active"></i>
-                                    <p>个人页面 v1</p>
+                                    <p>管理员信息</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Dashboard v2</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Dashboard v3</p>
+                                    <p>占位</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
+                            <i class="nav-icon fas fa-book"></i>
                             <p>
-                                Widgets
-                                <span class="right badge badge-danger">New</span>
+                                文章列表
+                                <!--当有新消息时-->
+<!--                                <span class="right badge badge-danger">New</span>-->
+                                <i class="right fas fa-angle-left"></i>
+
                             </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon active"></i>
+                                    <p>查看文章</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>占位</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </nav>
@@ -85,11 +97,6 @@
     </aside>
 
 
-<!--    &lt;!&ndash; Control Sidebar &ndash;&gt;-->
-<!--    <aside class="control-sidebar control-sidebar-dark">-->
-<!--        &lt;!&ndash; Control sidebar content goes here &ndash;&gt;-->
-<!--    </aside>-->
-<!--    &lt;!&ndash; /.control-sidebar &ndash;&gt;-->
 
 </th:block>
 

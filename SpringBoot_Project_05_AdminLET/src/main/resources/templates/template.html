@@ -1,0 +1,56 @@
+<!--后台页面的模板文件-->
+
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang = "en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <th:block th:insert="~{includes/head::head}" />
+
+
+    <title>template</title>
+
+
+</head>
+<body class="hold-transition sidebar-mini">
+
+<div class="wrapper">
+
+    <!-- Navbar -->
+    <th:block th:insert="~{includes/navbar::navbar}" />
+    <!-- Navbar End -->
+
+
+    <!-- Main Sidebar Container -->
+    <th:block th:insert="~{includes/sidebar::sidebar}" />
+    <!-- Main Sidebar Container End -->
+
+
+    <!--自定义内容-->
+    <!-- Content Wrapper. Contains page content -->
+
+    <!-- /.content-wrapper -->
+    <!--自定义内容 End-->
+
+
+    <!-- Footer Copyright -->
+    <th:block th:insert="~{includes/footer::footer}" />
+    <!-- Footer Copyright End -->
+
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+</div>
+<!-- ./wrapper -->
+
+    <!-- Script -->
+    <th:block th:insert="~{includes/script::script}" />
+
+</body>
+</html>

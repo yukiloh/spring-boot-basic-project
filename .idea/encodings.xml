@@ -2,6 +2,7 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/SpringBoot_Project_01_QuickStart" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringBoot_Project_02_Redis&amp;Transaction" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/SpringBoot_Project_02_RedisAndTransaction" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/SpringBoot_Project_03_Thymeleaf" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/SpringBoot_Project_04_Shiro" charset="UTF-8" />
