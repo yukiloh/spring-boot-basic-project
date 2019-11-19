@@ -1,16 +1,21 @@
 package com.example.demo.controller;
 
+//import com.example.demo.mapper.IVerificationQuestionMapper;
+import com.example.demo.mapper.IVerificationQuestionMapper;
+import com.example.demo.model.VerificationQuestion;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.Random;
 
 
 @Controller
@@ -51,14 +56,22 @@ public class MainController {
         return "/user/forgetPassword";
     }
 
+
+    @Autowired
+    private IVerificationQuestionMapper verificationQuestionMapper;
     @GetMapping("/login")
-    public String login() {
+    public String login(Model model) {
+        Integer integer = verificationQuestionMapper.countVerificationQuestion();
+        int id = new Random().nextInt(integer + 1);
+        VerificationQuestion question = verificationQuestionMapper.findVerificationQuestionById(id);
+        model.addAttribute("question",question.getQuestion());
+        model.addAttribute("answer",question.getAnswer());
 
         return "/login";
     }
 
 
-    @GetMapping("/toLogin")
+    @GetMapping("/toLogin")     /*/login.do*/
     public String toLogin(String username,String password,Model model) {
         /*subject可以理解为"对象",抽象概念,会与系统进行交互*/
         Subject subject = SecurityUtils.getSubject();
@@ -89,7 +102,9 @@ public class MainController {
 
     @GetMapping("/unauthorized")
     public String unauthorized() {
-
         return "/unauthorized";
     }
+
+
+
 }

@@ -2,11 +2,14 @@ package boot.controller;
 
 import boot.dao.IUserDao;
 import boot.domain.User;
+import boot.service.ITestService;
+import boot.service.impl.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -76,5 +79,13 @@ public class    SpringBootQuickStartController {
     public List<User> quickQuery(){
         System.out.println("hello spring boot");
         return userDao.findAll();
+    }
+
+    @Autowired
+    private TestService testService;
+
+    @GetMapping("/test")
+    public String testService(String msg){
+        return testService.TestDoSomething(msg);
     }
 }

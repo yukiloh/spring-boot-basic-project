@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang = "en">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang = "en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,18 +9,7 @@
 
     <title>登录</title>
 
-
-    <link rel="shortcut icon" type="image/x-icon" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574077987965&di=a8f73529842e806e26f1e430289420a5&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F48%2F06%2F95574411cc2434a.jpg">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="/static/plugins/fontawesome-free/css/all.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="/static/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="/static/css/adminlte.min.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <th:block th:insert="~{includes/head::head}" />
 
     <style>
         .self-background{
@@ -95,12 +84,8 @@
 </div>
 <!-- /.login-box -->
 
-<!-- jQuery -->
-<script src="/static/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/static/js/adminlte.min.js"></script>
+
+<th:block th:insert="~{includes/script::script}" />
 
 </body>
 

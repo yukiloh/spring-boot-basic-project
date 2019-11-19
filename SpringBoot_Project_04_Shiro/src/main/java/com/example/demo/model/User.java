@@ -1,7 +1,5 @@
 package com.example.demo.model;
 
-import org.springframework.stereotype.Repository;
-
 public class User {
     private int uid;
     private String userName;

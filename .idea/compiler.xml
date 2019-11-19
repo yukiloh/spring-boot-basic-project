@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="SpringBoot_Project_04_Shiro" />
-        <module name="SpringBoot_Project_01_QuickStart" />
-        <module name="SpringBoot_Project_05_AdminLET" />
         <module name="SpringBoot_Project_03_Thymeleaf" />
+        <module name="SpringBoot_Project_05_AdminLET" />
         <module name="SpringBoot_Project_02_Redis&amp;Transaction" />
+        <module name="SpringBoot_Project_01_QuickStart" />
+        <module name="SpringBoot_Project_04_Shiro" />
+        <module name="SpringBoot_Project_02_RedisAndTransaction" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -22,6 +23,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="SpringBoot_Project_01_QuickStart" options="-parameters" />
       <module name="SpringBoot_Project_02_Redis&amp;Transaction" options="-parameters" />
+      <module name="SpringBoot_Project_02_RedisAndTransaction" options="-parameters" />
       <module name="SpringBoot_Project_03_Thymeleaf" options="-parameters" />
       <module name="SpringBoot_Project_03_Transaction" options="-parameters" />
       <module name="SpringBoot_Project_04_Shiro" options="-parameters" />

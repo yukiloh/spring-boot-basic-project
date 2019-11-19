@@ -1,18 +1,14 @@
 package com.example.demo.shiro;
 
-import com.example.demo.mapper.IUserMapper;
+import com.example.demo.mapper.ILocalUserMapper;
 import com.example.demo.model.User;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
-import org.apache.shiro.authz.Permission;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 /*自定义realm，在其中重写AuthorizationInfo授权信息 和 AuthenticationInfo认证信息
 * shiro的2个核心即是认证与授权*/
@@ -45,7 +41,7 @@ public class UserRealm extends AuthorizingRealm {
     }
 
     @Autowired
-    private IUserMapper userMapper;
+    private ILocalUserMapper userMapper;
     /*认证authc*/
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {

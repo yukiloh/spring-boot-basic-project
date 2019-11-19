@@ -6851,7 +6851,7 @@ function injectCSS(platform, css) {
 		platform._style = style;
 		css = '/* Chart.js */\n' + css;
 		style.setAttribute('type', 'text/css');
-		document.getElementsByTagName('head')[0].appendChild(style);
+		document.getElementsByTagName('templates.includes.head')[0].appendChild(style);
 	}
 
 	style.appendChild(document.createTextNode(css));

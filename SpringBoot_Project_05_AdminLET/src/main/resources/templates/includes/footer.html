@@ -1,0 +1,26 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang = "en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset = "UTF-8">
+    <title>footer</title>
+</head>
+<body>
+
+<!--
+插入语句
+<th:block th:insert="~{includes/footer::footer}" />
+-->
+<th:block th:fragment="footer">
+    <footer class="main-footer no-print">
+        <div class="float-right d-none d-sm-block">
+            <b>Version</b> 0.0.1SNAPSHOT
+        </div>
+        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+        reserved.
+    </footer>
+
+
+</th:block>
+
+</body>
+</html>

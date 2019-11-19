@@ -3,6 +3,7 @@
 <head>
     <meta charset = "UTF-8">
     <title>用户登陆</title>
+    <script th:src="@{js/jquery-3.4.1.js}"></script>
 </head>
 <body>
 
@@ -20,11 +21,43 @@
                 <td><input type="password" name="password"></td>
                 <td>user2:111111=add</td>
             </tr>
+            <tr>
+                <td><p id="question" th:text="${question}"></p></td>
+                <td><input id="input" value=""></td>
+                <td><span id="hint" style="color: darkred"></span></td>
+            </tr>
         </table>
-        <input type="submit" value="提交">
+        <input type="submit" value="提交" id="sbmt" disabled>
 
     </form>
     <span th:text="${msg}" style="color: darkred"></span>
 </div>
+
+
+
+<p hidden id="correct_answer" th:text="${answer}"></p>
+
+
+
+
+<script>
+    $(function () {
+        $("#input").focusout(function () {
+            $(function () {
+                var answer = $("#input").val();
+                var correct_answer = $("#correct_answer").html();
+                // alert(correct_answer);           /*验证获取到correct_answer(从p标签)*/
+                var result = answer == correct_answer ? true : false;
+                if (result == true) {
+                    // alert(result == true ? '答对啦!':'再来一次');
+                    $("#hint").html("回答正确");
+                    $("#sbmt").removeAttr("disabled");
+                }else $("#hint").html("&nbsp你是猪吧¿");
+
+            });
+
+        })
+    })
+</script>
 </body>
 </html>

@@ -4705,7 +4705,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 		contains = jQuery.contains( elem.ownerDocument, elem );
 
 		// Append to fragment
-		tmp = getAll( safe.appendChild( elem ), "script" );
+		tmp = getAll( safe.appendChild( elem ), "templates.includes.script" );
 
 		// Preserve script evaluation history
 		if ( contains ) {
@@ -5961,7 +5961,7 @@ function fixCloneNodeIssues( src, dest ) {
 	}
 
 	// IE blanks contents when cloning scripts, and tries to evaluate newly-set text
-	if ( nodeName === "script" && dest.text !== src.text ) {
+	if ( nodeName === "templates.includes.script" && dest.text !== src.text ) {
 		disableScript( dest ).text = src.text;
 		restoreScript( dest );
 
@@ -6042,7 +6042,7 @@ function domManip( collection, args, callback, ignored ) {
 
 		// Require either new content or an interest in ignored elements to invoke the callback
 		if ( first || ignored ) {
-			scripts = jQuery.map( getAll( fragment, "script" ), disableScript );
+			scripts = jQuery.map( getAll( fragment, "templates.includes.script" ), disableScript );
 			hasScripts = scripts.length;
 
 			// Use the original fragment for the last item
@@ -6059,7 +6059,7 @@ function domManip( collection, args, callback, ignored ) {
 
 						// Support: Android<4.1, PhantomJS<2
 						// push.apply(_, arraylike) throws on ancient WebKit
-						jQuery.merge( scripts, getAll( node, "script" ) );
+						jQuery.merge( scripts, getAll( node, "templates.includes.script" ) );
 					}
 				}
 
@@ -6116,7 +6116,7 @@ function remove( elem, selector, keepData ) {
 
 		if ( node.parentNode ) {
 			if ( keepData && jQuery.contains( node.ownerDocument, node ) ) {
-				setGlobalEval( getAll( node, "script" ) );
+				setGlobalEval( getAll( node, "templates.includes.script" ) );
 			}
 			node.parentNode.removeChild( node );
 		}
@@ -6177,9 +6177,9 @@ jQuery.extend( {
 		}
 
 		// Preserve script evaluation history
-		destElements = getAll( clone, "script" );
+		destElements = getAll( clone, "templates.includes.script" );
 		if ( destElements.length > 0 ) {
-			setGlobalEval( destElements, !inPage && getAll( elem, "script" ) );
+			setGlobalEval( destElements, !inPage && getAll( elem, "templates.includes.script" ) );
 		}
 
 		destElements = srcElements = node = null;
@@ -9872,7 +9872,7 @@ jQuery.extend( {
 	},
 
 	getScript: function( url, callback ) {
-		return jQuery.get( url, undefined, callback, "script" );
+		return jQuery.get( url, undefined, callback, "templates.includes.script" );
 	}
 } );
 
@@ -9904,7 +9904,7 @@ jQuery._evalUrl = function( url ) {
 
 		// Make this explicit, since user can override this through ajaxSetup (#11264)
 		type: "GET",
-		dataType: "script",
+		dataType: "templates.includes.script",
 		cache: true,
 		async: false,
 		global: false,
@@ -10376,7 +10376,7 @@ jQuery.ajaxSetup( {
 } );
 
 // Handle cache's special case and global
-jQuery.ajaxPrefilter( "script", function( s ) {
+jQuery.ajaxPrefilter( "templates.includes.script", function(s ) {
 	if ( s.cache === undefined ) {
 		s.cache = false;
 	}
@@ -10387,7 +10387,7 @@ jQuery.ajaxPrefilter( "script", function( s ) {
 } );
 
 // Bind script tag hack transport
-jQuery.ajaxTransport( "script", function( s ) {
+jQuery.ajaxTransport( "templates.includes.script", function(s ) {
 
 	// This transport only deals with cross domain requests
 	if ( s.crossDomain ) {
@@ -10399,7 +10399,7 @@ jQuery.ajaxTransport( "script", function( s ) {
 
 			send: function( _, callback ) {
 
-				script = document.createElement( "script" );
+				script = document.createElement( "templates.includes.script" );
 
 				script.async = true;
 
@@ -10537,7 +10537,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 		} );
 
 		// Delegate to script
-		return "script";
+		return "templates.includes.script";
 	}
 } );
 
