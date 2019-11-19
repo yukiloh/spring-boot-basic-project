@@ -40,7 +40,7 @@
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
             <!-- 消息Messages Dropdown Menu -->
-            <li class="nav-item dropdown" id="messages">
+            <li class="nav-item dropdown" id="messages" v-cloak>
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="far fa-comments"></i>
                     <span class="badge badge-danger navbar-badge">{{messages.length}}</span>
@@ -74,7 +74,7 @@
                 </div>
             </li>
             <!-- 通知Notifications Dropdown Menu -->
-            <li class="nav-item dropdown" id="notifications">
+            <li class="nav-item dropdown" id="notifications" v-cloak>
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="far fa-bell"></i>
                     <span class="badge badge-warning navbar-badge">{{notifications[0].messages[0].total+notifications[1].responses[0].total+notifications[2].reports[0].total}}</span>

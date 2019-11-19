@@ -48,7 +48,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <div class="callout callout-info" id="message">
+                        <div class="callout callout-info" id="message" v-cloak>
                             <h5><i class="fas fa-info"></i><span>&nbsp;&nbsp;&nbsp;最近消息:</span></h5>
                             {{msg.message}}
                         </div>
@@ -61,7 +61,7 @@
                                 <div class="col-12">
                                     <h4>
                                         <i class="fas fa-user"></i> 管理员信息
-                                        <small class="float-right" id="date">{{date}}</small>
+                                        <small class="float-right" id="date" v-cloak>{{date}}</small>
                                     </h4>
                                 </div>
                                 <!-- /.col -->
@@ -71,7 +71,7 @@
                             <!-- Table row -->
                             <div class="row">
                                 <div class="col-12 table-responsive">
-                                    <table class="table table-striped" id="accounts">
+                                    <table class="table table-striped" id="accounts" v-cloak>
                                         <thead>
                                         <tr>
                                             <th>UUID</th>
@@ -82,12 +82,12 @@
                                         </tr>
                                         </thead>
                                         <tbody v-for="account in accounts" >
-                                        <tr v-for="ac in account">
-                                            <td>{{ac[0].uuid}}</td>
-                                            <td>{{ac[1].account}}</td>
-                                            <td>{{ac[2].perm}}</td>
-                                            <td>{{ac[3].info}}</td>
-                                            <td>{{ac[4].lastLoginGMT}}</td>
+                                        <tr v-for="ac in account" >
+                                            <td v-show="ac[0].uuid">{{ac[0].uuid}}</td>
+                                            <td v-show="ac[1].account">{{ac[1].account}}</td>
+                                            <td v-show="ac[2].perm">{{ac[2].perm}}</td>
+                                            <td v-show="ac[3].info">{{ac[3].info}}</td>
+                                            <td v-show="ac[4].lastLoginGMT">{{ac[4].lastLoginGMT}}</td>
                                         </tr>
                                         </tbody>
                                     </table>
