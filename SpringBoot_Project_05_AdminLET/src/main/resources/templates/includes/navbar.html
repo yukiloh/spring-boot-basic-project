@@ -43,31 +43,35 @@
             <li class="nav-item dropdown" id="messages" v-cloak>
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="far fa-comments"></i>
-                    <span class="badge badge-danger navbar-badge">{{messages.length}}</span>
+                    <span class="badge badge-danger navbar-badge" v-if="messages.length > 0 ">{{messages.length}}</span>
+                    <span class="badge badge-danger navbar-badge" v-else></span>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" >
+                    <div>{{messages.username}}</div>
                     <!--当无消息时-->
-                    <!--                    <th:block th:if="${message == 0 }">-->
-                    <!--                        <a href="#" class="dropdown-item dropdown-footer">没有消息</a>-->
-                    <!--                        <div class="dropdown-divider"></div>-->
-                    <!--                    </th:block>-->
+                    <div v-if="messages.length < 1" >
+                        <div href="#" class="dropdown-footer greyFont">没有消息</div>
+                        <div class="dropdown-divider"></div>
+                    </div>
+
+
 
                     <!-- 有消息时 Message Start -->
-                    <div v-for="message in messages">
-                        <a href="#" class="dropdown-item" >
-                            <div class="media" v-for="msg in message">
-                                <img :src="msg[3].avatar" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        {{msg[0].username}}
-                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">{{msg[1].message}}</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>{{msg[2].time}}</p>
-                                </div>
-                            </div>
-                        </a>
+                    <div v-else v-for="message in messages">
+<!--                        <a href="#" class="dropdown-item" >-->
+<!--                            <div class="media" v-for="msg in message">-->
+<!--                                <img :src="msg[3].avatar" alt="User Avatar" class="img-size-50 mr-3 img-circle">-->
+<!--                                <div class="media-body">-->
+<!--                                    <h3 class="dropdown-item-title">-->
+<!--                                        {{msg[0].username}}-->
+<!--                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>-->
+<!--                                    </h3>-->
+<!--                                    <p class="text-sm">{{msg[1].message}}</p>-->
+<!--                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>{{msg[2].time}}</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </a>-->
                         <div class="dropdown-divider"></div>
                     </div>
                     <a href="#" class="dropdown-item dropdown-footer">查看所有消息</a>

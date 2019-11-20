@@ -1,6 +1,7 @@
 package com.example.AdminLET.controller;
 
 import com.example.AdminLET.domain.Message;
+import com.example.AdminLET.domain.UserMessages;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,6 +40,23 @@ public class MainController {
         return message;
     }
 
+    @ResponseBody
+    @PostMapping({"/{uuid}/messages"})
+    public UserMessages userMessages(@PathVariable String uuid){
+        UserMessages userMessages = new UserMessages();
+
+        userMessages.setTotal(6);
+
+
+
+
+
+//        user.setUsername("Tom");
+//        user.setMessage("我是第一个");
+//        user.setTime("今天");
+//        user.setAvatar("/static/img/user1-128x128.jpg");
+        return userMessages;
+    }
 
 
     /* for test! */

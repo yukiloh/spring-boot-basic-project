@@ -50,7 +50,7 @@
                     <div class="col-12">
                         <div class="callout callout-info" id="message" v-cloak>
                             <h5><i class="fas fa-info"></i><span>&nbsp;&nbsp;&nbsp;最近消息:</span></h5>
-                            {{msg.message}}
+                            {{msg.message}}<br>
                         </div>
 
 
@@ -154,38 +154,53 @@
 
     });
 
+    // var vmMessages = new Vue({
+    //     el: "#messages",
+    //     data: {
+    //         messages: [
+    //             {
+    //                 message: [
+    //                     {username: "Tom"},
+    //                     {message: "我下面有人"},
+    //                     {time: "1小时以前"},
+    //                     {avatar: "/static/img/user1-128x128.jpg"},
+    //
+    //                 ]
+    //             },
+    //             {
+    //                 message: [
+    //                     {username: "Jerry"},
+    //                     {message: "我上面有人"},
+    //                     {time: "1小时以前"},
+    //                     {avatar: "/static/img/user8-128x128.jpg"},
+    //                 ]
+    //             },
+    //             {
+    //                 message: [
+    //                     {username: "Spark"},
+    //                     {message: "你们俩等着"},
+    //                     {time: "1小时以前"},
+    //                     {avatar: "/static/img/user6-128x128.jpg"},
+    //                 ]
+    //             },
+    //         ],
+    //     }
+    // });
+
+
     var vmMessages = new Vue({
         el: "#messages",
-        data: {
-            messages: [
-                {
-                    message: [
-                        {username: "Tom"},
-                        {message: "我下面有人"},
-                        {time: "1小时以前"},
-                        {avatar: "/static/img/user1-128x128.jpg"},
-
-                    ]
-                },
-                {
-                    message: [
-                        {username: "Jerry"},
-                        {message: "我上面有人"},
-                        {time: "1小时以前"},
-                        {avatar: "/static/img/user8-128x128.jpg"},
-                    ]
-                },
-                {
-                    message: [
-                        {username: "Spark"},
-                        {message: "你们俩等着"},
-                        {time: "1小时以前"},
-                        {avatar: "/static/img/user6-128x128.jpg"},
-                    ]
-                },
-            ],
-        }
+        data() {
+            return {
+                messages: {},
+            }
+        },
+        mounted() {
+            axios.post("http://localhost:8080/"+114514+"/messages")
+                .then(response => this.messages = response.data);
+        },
     });
+
 
     var vmNotif = new Vue({
         el: "#notifications",
