@@ -43,14 +43,13 @@
             <li class="nav-item dropdown" id="messages" v-cloak>
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="far fa-comments"></i>
-                    <span class="badge badge-danger navbar-badge" v-if="messages.length > 0 ">{{messages.length}}</span>
+                    <span class="badge badge-danger navbar-badge" v-if="messages.total > 1 ">{{messages.total}}</span>
                     <span class="badge badge-danger navbar-badge" v-else></span>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" >
-                    <div>{{messages.username}}</div>
                     <!--当无消息时-->
-                    <div v-if="messages.length < 1" >
+                    <div v-if="messages.total < 1" >
                         <div href="#" class="dropdown-footer greyFont">没有消息</div>
                         <div class="dropdown-divider"></div>
                     </div>
@@ -58,21 +57,55 @@
 
 
                     <!-- 有消息时 Message Start -->
-                    <div v-else v-for="message in messages">
-<!--                        <a href="#" class="dropdown-item" >-->
-<!--                            <div class="media" v-for="msg in message">-->
-<!--                                <img :src="msg[3].avatar" alt="User Avatar" class="img-size-50 mr-3 img-circle">-->
-<!--                                <div class="media-body">-->
-<!--                                    <h3 class="dropdown-item-title">-->
-<!--                                        {{msg[0].username}}-->
-<!--                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>-->
-<!--                                    </h3>-->
-<!--                                    <p class="text-sm">{{msg[1].message}}</p>-->
-<!--                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>{{msg[2].time}}</p>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </a>-->
-                        <div class="dropdown-divider"></div>
+                    <div v-else>
+                        <div v-if="messages.first.username != '' ">
+                            <a href="#" class="dropdown-item" >
+                                <div class="media" >
+                                    <img :src="messages.first.avatar" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                                    <div class="media-body">
+                                        <h3 class="dropdown-item-title">
+                                            {{messages}}
+                                            <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                        </h3>
+                                        <p class="text-sm">{{messages.first.message}}</p>
+                                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>{{messages.first.time}}</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                        </div>
+                        <div v-if="messages.second.username != '' ">
+                            <a href="#" class="dropdown-item" >
+                                <div class="media" >
+                                    <img :src="messages.second.avatar" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                                    <div class="media-body">
+                                        <h3 class="dropdown-item-title">
+                                            {{messages.second.username}}
+                                            <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                        </h3>
+                                        <p class="text-sm">{{messages.second.message}}</p>
+                                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>{{messages.second.time}}</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                        </div>
+                        <div v-if="messages.third.username != '' ">
+                            <a href="#" class="dropdown-item" >
+                                <div class="media" >
+                                    <img :src="messages.third.avatar" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                                    <div class="media-body">
+                                        <h3 class="dropdown-item-title">
+                                            {{messages.third.username}}
+                                            <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                        </h3>
+                                        <p class="text-sm">{{messages.third.message}}</p>
+                                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>{{messages.third.time}}</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                        </div>
                     </div>
                     <a href="#" class="dropdown-item dropdown-footer">查看所有消息</a>
                 </div>
@@ -81,24 +114,25 @@
             <li class="nav-item dropdown" id="notifications" v-cloak>
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="far fa-bell"></i>
-                    <span class="badge badge-warning navbar-badge">{{notifications[0].messages[0].total+notifications[1].responses[0].total+notifications[2].reports[0].total}}</span>
+                    <span class="badge badge-warning navbar-badge" v-if="notifications.messages.total+notifications.responses.total+notifications.reports.total > 0">{{notifications.messages.total+notifications.responses.total+notifications.reports.total}}</span>
+                    <span class="badge navbar-badge"v-else></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <span class="dropdown-item dropdown-header">{{notifications[0].messages[0].total+notifications[1].responses[0].total+notifications[2].reports[0].total}}个提醒</span>
+                    <span class="dropdown-item dropdown-header">{{notifications.messages.total+notifications.responses.total+notifications.reports.total}}个提醒</span>
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item">
-                        <i class="fas fa-envelope mr-2"></i> {{notifications[0].messages[0].total}}个新的消息
-                        <span class="float-right text-muted text-sm">0 mins</span>
+                        <i class="fas fa-envelope mr-2"></i> {{notifications.messages.total}}个新的消息
+                        <span class="float-right text-muted text-sm">{{notifications.messages.time}}</span>
                     </a>
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item">
-                        <i class="fas fa-users mr-2"></i> {{notifications[1].responses[0].total}}个新的好友回复
-                        <span class="float-right text-muted text-sm">0 hours</span>
+                        <i class="fas fa-users mr-2"></i> {{notifications.responses.total}}个新的好友回复
+                        <span class="float-right text-muted text-sm">{{notifications.responses.time}}</span>
                     </a>
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item">
-                        <i class="fas fa-file mr-2"></i>  &nbsp;&nbsp;&nbsp;{{notifications[2].reports[0].total}}个新的报告
-                        <span class="float-right text-muted text-sm">0 days</span>
+                        <i class="fas fa-file mr-2"></i>  &nbsp;&nbsp;{{notifications.reports.total}}个新的报告
+                        <span class="float-right text-muted text-sm">{{notifications.reports.time}}</span>
                     </a>
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item dropdown-footer">查看所有提示</a>

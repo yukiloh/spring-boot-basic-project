@@ -81,16 +81,17 @@
                                             <th>最后登录</th>
                                         </tr>
                                         </thead>
-                                        <tbody v-for="account in accounts" >
-                                        <tr v-for="ac in account" >
-                                            <td v-show="ac[0].uuid">{{ac[0].uuid}}</td>
-                                            <td v-show="ac[1].account">{{ac[1].account}}</td>
-                                            <td v-show="ac[2].perm">{{ac[2].perm}}</td>
-                                            <td v-show="ac[3].info">{{ac[3].info}}</td>
-                                            <td v-show="ac[4].lastLoginGMT">{{ac[4].lastLoginGMT}}</td>
+                                        <tbody v-for="account in accounts">
+                                        <tr v-for="ac in account">
+                                            <td >{{ac.uuid}}</td>
+                                            <td >{{ac.account}}</td>
+                                            <td >{{ac.perm}}</td>
+                                            <td >{{ac.info}}</td>
+                                            <td >{{ac.lastLoginGMT}}</td>
                                         </tr>
                                         </tbody>
                                     </table>
+
                                 </div>
                                 <!-- /.col -->
                             </div>
@@ -154,39 +155,6 @@
 
     });
 
-    // var vmMessages = new Vue({
-    //     el: "#messages",
-    //     data: {
-    //         messages: [
-    //             {
-    //                 message: [
-    //                     {username: "Tom"},
-    //                     {message: "我下面有人"},
-    //                     {time: "1小时以前"},
-    //                     {avatar: "/static/img/user1-128x128.jpg"},
-    //
-    //                 ]
-    //             },
-    //             {
-    //                 message: [
-    //                     {username: "Jerry"},
-    //                     {message: "我上面有人"},
-    //                     {time: "1小时以前"},
-    //                     {avatar: "/static/img/user8-128x128.jpg"},
-    //                 ]
-    //             },
-    //             {
-    //                 message: [
-    //                     {username: "Spark"},
-    //                     {message: "你们俩等着"},
-    //                     {time: "1小时以前"},
-    //                     {avatar: "/static/img/user6-128x128.jpg"},
-    //                 ]
-    //             },
-    //         ],
-    //     }
-    // });
-
 
     var vmMessages = new Vue({
         el: "#messages",
@@ -201,53 +169,54 @@
         },
     });
 
-
     var vmNotif = new Vue({
         el: "#notifications",
-        data:{
-            notifications: [
-                {
-                    messages: [
-                        {total: 1},
-                        {time: "1小时以前"},]
-                },
-                {
-                    responses: [
-                        {total: 3},
-                        {time: "2小时以前"},]
-                },
-                {
-                    reports: [
-                        {total: 2   },
-                        {time: "1天以前"},]
-                },
-
-            ],
+        data() {
+            return {
+                notifications: {},
+            }
+        },
+        mounted() {
+            axios.post("http://localhost:8080/"+114514+"/notifications")
+                .then(response => this.notifications = response.data);
         },
     });
 
     var vmAccounts = new Vue({
         el: "#accounts",
-        data:{
-            accounts:[
-                {account:[
-                        {uuid: 114514},
-                        {account: "admin@admin.com"},
-                        {perm: "admin"},
-                        {info: "管理员账号"},
-                        {lastLoginGMT: "今日"},
-                    ]},
-                {account:[
-                        {uuid: 1919},
-                        {account: "manager@manager.com"},
-                        {perm: "manager"},
-                        {info: "管理员账号"},
-                        {lastLoginGMT: "今日"},
-                    ]},
-            ]
-
+        data() {
+            return {
+                accounts: {},
+            }
+        },
+        mounted() {
+            axios.post("http://localhost:8080/accounts")
+                .then(response => this.accounts = response.data);
         },
     });
+
+    //
+    //     data:{
+    //         accounts:[
+    //             {account:[
+    //                     {uuid: 114514},
+    //                     {account: "admin@admin.com"},
+    //                     {perm: "admin"},
+    //                     {info: "管理员账号"},
+    //                     {lastLoginGMT: "今日"},
+    //                 ]},
+    //             {account:[
+    //                     {uuid: 1919},
+    //                     {account: "manager@manager.com"},
+    //                     {perm: "manager"},
+    //                     {info: "管理员账号"},
+    //                     {lastLoginGMT: "今日"},
+    //                 ]},
+    //         ]
+    //
+    //     },
+    // });
+
 </script>
 
 
