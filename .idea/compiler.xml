@@ -7,8 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="SpringBoot_Project_04_Shiro" />
-        <module name="SpringBoot_Project_05_AdminLET" />
         <module name="SpringBoot_Project_01_QuickStart" />
+        <module name="SpringBoot_Project_05_AdminLET" />
         <module name="SpringBoot_Project_03_Thymeleaf" />
         <module name="SpringBoot_Project_02_RedisAndTransaction" />
       </profile>

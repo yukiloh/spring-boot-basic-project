@@ -13,6 +13,8 @@ public class UserTable {
 
     private String perm;
 
+    private String info;
+
     @Column(name = "lastLoginGMT")
     private String lastlogingmt;
 
@@ -56,6 +58,20 @@ public class UserTable {
      */
     public void setPerm(String perm) {
         this.perm = perm;
+    }
+
+    /**
+     * @return info
+     */
+    public String getInfo() {
+        return info;
+    }
+
+    /**
+     * @param info
+     */
+    public void setInfo(String info) {
+        this.info = info;
     }
 
     /**

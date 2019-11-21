@@ -6,7 +6,7 @@ spring:
 
   # 数据库配置
   datasource:
-    url: jdbc:mariadb://192.168.1.90:3306/shiro_test
+    url: jdbc:mariadb://192.168.1.90:3306/adminLET
     hikari:
       username: root
       password: zou9RYdAGW2MKoBY

@@ -8,6 +8,7 @@
     <id column="UUID" jdbcType="VARCHAR" property="uuid" />
     <result column="account" jdbcType="VARCHAR" property="account" />
     <result column="perm" jdbcType="VARCHAR" property="perm" />
+    <result column="info" jdbcType="VARCHAR" property="info" />
     <result column="lastLoginGMT" jdbcType="VARCHAR" property="lastlogingmt" />
   </resultMap>
 </mapper>

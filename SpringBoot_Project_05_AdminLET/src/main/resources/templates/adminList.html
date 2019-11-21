@@ -36,7 +36,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">主页</a></li>
+                            <li class="breadcrumb-item"><a href="/index">主页</a></li>
                             <li class="breadcrumb-item active">管理员</li>
                         </ol>
                     </div>
@@ -49,7 +49,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="callout callout-info" id="message" v-cloak>
-                            <h5><i class="fas fa-info"></i><span>&nbsp;&nbsp;&nbsp;最近消息:</span></h5>
+                            <h5><i class="fas fa-info" ></i><span >&nbsp;&nbsp;&nbsp;最近消息:</span></h5>
                             {{msg.message}}<br>
                         </div>
 
@@ -81,13 +81,13 @@
                                             <th>最后登录</th>
                                         </tr>
                                         </thead>
-                                        <tbody v-for="account in accounts">
-                                        <tr v-for="ac in account">
+                                        <tbody ><!-- v-for不可作用在tbbody中，会导致隔行颜色差异消失-->
+                                        <tr v-for="ac in accounts">
                                             <td >{{ac.uuid}}</td>
                                             <td >{{ac.account}}</td>
                                             <td >{{ac.perm}}</td>
                                             <td >{{ac.info}}</td>
-                                            <td >{{ac.lastLoginGMT}}</td>
+                                            <td >{{ac.lastlogingmt}}</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -130,7 +130,7 @@
 <!--告知浏览器按照js来执行解释-->
 <script type="text/javascript">
 
-    var vmNavbar = new Vue({
+    var vmMain = new Vue({
         el: "#message",
         data() {
             return {
@@ -195,6 +195,18 @@
         },
     });
 
+
+    var vmSidebar = new Vue({
+        el: "#sidebar",
+        mounted() {
+            /*使用vue的选择元素的方法$refs*/
+            /*ref标签内不可使用-,例如admin-li!!!*/
+            this.$refs.adminLi.classList.add('active');
+            this.$refs.adminLi1.classList.add('active');
+            // this.$refs.adminMenu.classList.add('menu-open'); /*控制sidebar的下拉显示，效果不佳暂时禁用*/
+
+        },
+    });
 </script>
 
 

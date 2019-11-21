@@ -1,0 +1,152 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang = "en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 3 | Invoice</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <th:block th:insert="~{includes/head::head}" />
+
+</head>
+<body class="hold-transition sidebar-mini">
+<!--<iframe src="/welcome" id="iframe" name="iframe" onclick="show(this.id)" frameborder="0" style="width: 100%; heigh = 768px;"></iframe>-->
+
+<div class="wrapper" id="app">
+
+    <!-- Navbar -->
+    <th:block th:insert="~{includes/navbar::navbar}" />
+    <!-- Navbar End -->
+
+
+    <!-- Main Sidebar Container -->
+    <th:block th:insert="~{includes/sidebar::sidebar}" />
+    <!-- Main Sidebar Container End -->
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" >
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>文章列表</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/index">主页</a></li>
+                            <li class="breadcrumb-item active">文章列表</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+    </div>
+    <!-- /.content-wrapper -->
+
+
+    <!-- Footer Copyright -->
+    <th:block th:insert="~{includes/footer::footer}" />
+    <!-- Footer Copyright End -->
+
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+</div>
+<!-- ./wrapper -->
+
+<!-- Script -->
+<th:block th:insert="~{includes/script::script}" />
+
+
+
+<!--告知浏览器按照js来执行解释-->
+<script type="text/javascript">
+
+    // var vmMain = new Vue({
+    //     el: "#message",
+    //     data() {
+    //         return {
+    //             msg: {
+    //                 message: "none",
+    //             },
+    //         }
+    //     },
+    //     mounted() {
+    //         // axios.get("/static/data.json")
+    //         axios.post("http://localhost:8080/"+114514+"/msg")
+    //             .then(response => this.msg = response.data);
+    //     },
+    // });
+
+    // var vmDate = new Vue({
+    //     el: "#date",
+    //     data: {
+    //         <!--获取今日日期-->
+    //         date: new Date().getFullYear() + "/" + ("0" + (new Date().getMonth() + 1)).slice(-2) + "/" + ("0" + new Date().getDate()).slice(-2),
+    //     }
+    //
+    // });
+
+
+    var vmMessages = new Vue({
+        el: "#messages",
+        data() {
+            return {
+                messages: {},
+            }
+        },
+        mounted() {
+            axios.post("http://localhost:8080/"+114514+"/messages")
+                .then(response => this.messages = response.data);
+        },
+    });
+
+    var vmNotif = new Vue({
+        el: "#notifications",
+        data() {
+            return {
+                notifications: {},
+            }
+        },
+        mounted() {
+            axios.post("http://localhost:8080/"+114514+"/notifications")
+                .then(response => this.notifications = response.data);
+        },
+    });
+
+    // var vmAccounts = new Vue({
+    //     el: "#accounts",
+    //     data() {
+    //         return {
+    //             accounts: {},
+    //         }
+    //     },
+    //     mounted() {
+    //         axios.post("http://localhost:8080/accounts")
+    //             .then(response => this.accounts = response.data);
+    //     },
+    // });
+
+
+    var vmSidebar = new Vue({
+        el: "#sidebar",
+        mounted() {
+            /*使用vue的选择元素的方法$refs*/
+            /*ref标签内不可使用-,例如admin-li!!!*/
+            this.$refs.postLi.classList.add('active');
+            this.$refs.postLi1.classList.add('active');
+        },
+    });
+</script>
+
+
+</body>
+</html>

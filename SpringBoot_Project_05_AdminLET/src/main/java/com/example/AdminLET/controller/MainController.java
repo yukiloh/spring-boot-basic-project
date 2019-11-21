@@ -1,11 +1,14 @@
 package com.example.AdminLET.controller;
 
-import com.example.AdminLET.domain.Account;
-import com.example.AdminLET.domain.Message;
-import com.example.AdminLET.domain.UserMessages;
-import com.example.AdminLET.domain.UserNotification;
+import com.example.AdminLET.domain.*;
+import com.example.AdminLET.service.UserService;
+import com.example.AdminLET.utils.MapperUtils;
+import com.github.pagehelper.PageInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class MainController {
@@ -19,19 +22,28 @@ public class MainController {
     public String login(
             @RequestBody(required = false) String username,
             @RequestBody(required = false) String password) {
+
+        /*模拟验证用户名密码*/
         System.out.println("username:" + username);
         System.out.println("password:" + password);
+
         return "redirect:/index";
     }
 
     @GetMapping({"/index"})
     public String index() {
-        return "index";
+        return "adminList";
     }
 
+    @GetMapping({"/adminList"})
+    public String adminList() {
+        return "adminList";
+    }
 
-
-
+    @GetMapping({"/postList"})
+    public String postList() {
+        return "postList";
+    }
 
     @ResponseBody
     @PostMapping({"/{uuid}/msg"})
@@ -67,18 +79,38 @@ public class MainController {
     @ResponseBody
     @PostMapping({"/accounts"})
     public String accounts(){
-
-        /*后期需要通过数组封装*/
-        String accountList = "[" +
-                "{\"account\": {\"uuid\": 114514,\"account\": \"admin@admin.com\",\"perm\": \"admin\",\"info\": \"管理员账号\",\"lastLoginGMT\": \"今日\"}}," +
-                "{\"account\": {\"uuid\": 1919,\"account\": \"manager@manager.com\",\"perm\": \"manager\",\"info\": \"管理员账号\",\"lastLoginGMT\": \"今日\"}}" +
-                "]";
-        return accountList;
+        UserTable userTable = null;
+        PageInfo<UserTable> page = userService.page(1, 10, userTable);
+        List<UserTable> userTables = page.getList();
+//        List<UserTable> userTables = userService.selectAll(); /*已替换为使用pageHelper获取list*/
+        try {
+            String result = MapperUtils.obj2json(userTables);
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "bad answer";
     }
 
     /* for test! */
     @GetMapping({"/500"})
     public String fiveZeroZero() {
         return "/error/500";
+    }
+
+
+
+    @Autowired
+    private UserService userService;
+
+
+    @GetMapping({"/test"})
+    public String test() {
+        return "test";
+    }
+
+    @GetMapping({"/sidebar"})
+    public String sidebar() {
+        return "/sidebar";
     }
 }
