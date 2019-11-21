@@ -3,3 +3,11 @@ spring:
     cache: false
   mvc:
     static-path-pattern: /static/**
+
+  # 数据库配置
+  datasource:
+    url: jdbc:mariadb://192.168.1.90:3306/shiro_test
+    hikari:
+      username: root
+      password: zou9RYdAGW2MKoBY
+      driver-class-name: org.mariadb.jdbc.Driver
