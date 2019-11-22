@@ -22,7 +22,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/index">主页</a></li>
+                            <li class="breadcrumb-item">主页</li>
                             <li class="breadcrumb-item active">管理员</li>
                         </ol>
                     </div>
@@ -57,7 +57,7 @@
                             <!-- Table row -->
                             <div class="row">
                                 <div class="col-12 table-responsive">
-                                    <table class="table table-striped" id="accounts" v-cloak>
+                                    <table class="table table-striped" id="admins" v-cloak>
                                         <thead>
                                         <tr>
                                             <th>UUID</th>
@@ -68,12 +68,12 @@
                                         </tr>
                                         </thead>
                                         <tbody ><!-- v-for不可作用在tbbody中，会导致隔行颜色差异消失-->
-                                        <tr v-for="ac in accounts">
-                                            <td >{{ac.uuid}}</td>
-                                            <td >{{ac.account}}</td>
-                                            <td >{{ac.perm}}</td>
-                                            <td >{{ac.info}}</td>
-                                            <td >{{ac.lastlogingmt}}</td>
+                                        <tr v-for="admin in admins">
+                                            <td >{{admin.uuid}}</td>
+                                            <td >{{admin.account}}</td>
+                                            <td >{{admin.perm}}</td>
+                                            <td >{{admin.info}}</td>
+                                            <td >{{admin.lastlogingmt}}</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -125,16 +125,16 @@
 
     });
 
-    var vmAccounts = new Vue({
-        el: "#accounts",
+    var vmAdmins = new Vue({
+        el: "#admins",
         data() {
             return {
-                accounts: {},
+                admins: {},
             }
         },
         mounted() {
-            axios.post("http://localhost:8080/accounts")
-                .then(response => this.accounts = response.data);
+            axios.post("http://localhost:8080/admins")
+                .then(response => this.admins = response.data);
         },
     });
 </script>

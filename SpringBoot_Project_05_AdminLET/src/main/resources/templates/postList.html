@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 3 | Invoice</title>
+    <title>文章列表</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,10 +11,6 @@
 
 </head>
 <body class="hold-transition sidebar-mini">
-<!--<iframe src="/welcome" id="iframe" name="iframe" onclick="show(this.id)" frameborder="0" style="width: 100%; heigh = 768px;"></iframe>-->
-
-
-
 
         <!-- Content Wrapper. Contains page content -->
         <!-- Content Header (Page header) -->
@@ -26,7 +22,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/index">主页</a></li>
+                            <li class="breadcrumb-item">主页</li>
                             <li class="breadcrumb-item active">文章列表</li>
                         </ol>
                     </div>
@@ -40,7 +36,7 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Projects</h3>
+                    <h3 class="card-title">文章列表</h3>
 
                     <div class="card-tools">
 
@@ -51,8 +47,8 @@
 <!--                            <i class="fas fa-times"></i></button>-->
                     </div>
                 </div>
-                <div class="card-body p-0">
-                    <table class="table table-striped projects">
+                <div class="card-body p-0" id="posts">
+                    <table class="table table-striped projects"  >
                         <thead>
                         <tr>
                             <th style="width: 1%">
@@ -75,58 +71,30 @@
                             </th>
                         </tr>
                         </thead>
-                        <tbody>
-
+                        <tbody  v-for="post in posts" v-cloak>
                         <tr>
                             <td>
                                 #
                             </td>
                             <td>
-                                <a href="#">文章标题文章标题文章标题文章标题</a>
+                                <a href="javascript:void(0);" v-on:click="goPost(post.postGuid)">{{post.title}}</a>
                                 <br/>
-                                <small class="greyFont">2019.01.01</small>
+                                <small class="greyFont" name="datetime">{{post.timePublished}}</small>
                             </td>
-                            <td>文章作者</td>
-                            <td>100</td>
+                            <td >{{post.authors}}</td>
+                            <td>{{post.score}}</td>
 
                             <td class="project-state">
-                                <span class="badge badge-success" ref="state">Success</span>
+                                <h4><span class="badge badge-info" name="state">{{post.status}}</span></h4>
                             </td>
                             <td class="project-actions text-right">
-                                <a class="btn btn-primary btn-sm" href="#">
+                                <a class="btn btn-primary btn-sm" href="javascript:void(0);" v-on:click="goPost(post.postGuid)">
                                     <i class="fas fa-folder">
                                     </i>查看</a>
-                                <a class="btn btn-info btn-sm" href="#">
+                                <a class="btn btn-info btn-sm" href="javascript:void(0);">
                                     <i class="fas fa-pencil-alt">
                                     </i>编辑</a>
-                                <a class="btn btn-danger btn-sm" href="#">
-                                    <i class="fas fa-trash">
-                                    </i>删除</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                #
-                            </td>
-                            <td>
-                                <a href="#">文章标题文章标题文章标题文章标题</a>
-                                <br/>
-                                <small class="greyFont">2019.01.01</small>
-                            </td>
-                            <td>文章作者</td>
-                            <td>100</td>
-
-                            <td class="project-state">
-                                <span class="badge badge-success" ref="state">Success</span>
-                            </td>
-                            <td class="project-actions text-right">
-                                <a class="btn btn-primary btn-sm" href="#">
-                                    <i class="fas fa-folder">
-                                    </i>查看</a>
-                                <a class="btn btn-info btn-sm" href="#">
-                                    <i class="fas fa-pencil-alt">
-                                    </i>编辑</a>
-                                <a class="btn btn-danger btn-sm" href="#">
+                                <a class="btn btn-danger btn-sm" href="javascript:void(0);">
                                     <i class="fas fa-trash">
                                     </i>删除</a>
                             </td>
@@ -137,21 +105,74 @@
                 <!-- /.card-body -->
             </div>
             <!-- /.card -->
-
         </section>
         <!-- /.content -->
-
-
 <!-- ./wrapper -->
 
-<!-- Script -->
+
 <th:block th:insert="~{includes/script::script}" />
 
 <!--告知浏览器按照js来执行解释-->
 <script type="text/javascript">
 
+    var vmPosts = new Vue({
+        el: "#posts",
+        data() {
+            return {
+                posts: {},
+            }
+        },
+        mounted() {
+            axios.post("http://localhost:8080/posts")
+                .then(response => this.posts = response.data);
+        },
+        methods:{
+            goPost(guid){
+                window.location.href="/post/"+guid;
+            },
+        },
 
+        /*updated：vue数据渲染后*/
+        updated(){
+            function dateChange() {
+                var datetimeList = document.getElementsByName('datetime');/*name会获取出list，需要遍历*/
+                /*i=0 1 2 3 ...*/
+                for (var i in datetimeList) {
+                    /*toLocaleDateString：格式2011/11/11*/
+                    datetimeList[i].innerHTML = new Date(new Number(datetimeList[i].innerHTML)).toLocaleDateString();
+                }
+            }
+            dateChange();
 
+            function stateAnalyse() {
+                var states = document.getElementsByName('state');
+                for (var i in states) {
+                    var state = states[i].innerHTML;
+                    /*js的switch*/
+                    switch (state) {
+                        /*文章状态（0草稿 1已发布的文章 2待审核的文章 3被拒绝文章 4定时发布的文章）*/
+                        case '0':
+                            states[i].innerHTML = "草稿";
+                            break;
+                        case '1':
+                            states[i].innerHTML = "已发布";
+                            break;
+                        case '2':
+                            states[i].innerHTML = "待审核";
+                            break;
+                        case '3':
+                            states[i].innerHTML = "审核失败";
+                            break;
+                        case '4':
+                            states[i].innerHTML = "定时发布";
+                            break;
+
+                    }
+                }
+            }
+            stateAnalyse();
+        }
+    });
 </script>
 
 

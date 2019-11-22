@@ -1,0 +1,85 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang = "en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 3 | Invoice</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <th:block th:insert="~{includes/head::head}" />
+
+</head>
+<div class="wrapper">
+
+    <!-- Content Wrapper. Contains page content -->
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>文章列表</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">主页</li>
+                        <li class="breadcrumb-item ">文章列表</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-primary card-outline">
+                        <!-- /.card-header -->
+                        <div class="card-body p-0">
+                            <div class="mailbox-read-info">
+                                <h4 th:text="${title}">文章标题</h4>
+                                <h6><span class="mailbox-read-time float-right" th:text="${timePublished}"></span></h6><br>
+                            </div>
+
+                            <!-- /.mailbox-controls -->
+                            <div class="mailbox-read-message" th:text="${main}">
+
+                            </div>
+                            <!-- /.mailbox-read-message -->
+                        </div>
+
+                        <!-- /.card-footer -->
+                        <div class="card-footer">
+                            <div class="float-right">
+                                <button onclick="back();" type="button" class="btn btn-default"><i class="fas fa-reply"></i> 返回</button>
+                            </div>
+                            <button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> 删除</button>
+                            <button type="button" class="btn btn-default"><i class="fas fa-edit"></i> 修改</button>
+                        </div>
+                        <!-- /.card-footer -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+                <!-- /.col -->
+        </div>
+            <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+<th:block th:insert="~{includes/script::script}" />
+
+<!--告知浏览器按照js来执行解释-->
+<script type="text/javascript">
+    var back = function () {
+        window.history.go(-1);
+    }
+</script>
+
+
+</body>
+</html>

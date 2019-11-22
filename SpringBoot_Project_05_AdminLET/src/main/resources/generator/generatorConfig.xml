@@ -46,5 +46,11 @@
             <generatedKey column="UUID" sqlStatement="Mysql" identity="false"/>
             <!--关于sqlStatement,后期修改可参考: https://mybatis.org/generator/configreference/generatedKey.html-->
         </table>
+
+        <table tableName="posts_table">
+            <!-- mysql 配置 -->   <!--依据主键生成代码-->
+            <generatedKey column="UUID" sqlStatement="Mysql" identity="false"/>
+            <!--关于sqlStatement,后期修改可参考: https://mybatis.org/generator/configreference/generatedKey.html-->
+        </table>
     </context>
 </generatorConfiguration>

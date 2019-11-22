@@ -1,11 +1,13 @@
 package com.example.AdminLET.controller;
 
 import com.example.AdminLET.domain.*;
+import com.example.AdminLET.service.PostService;
 import com.example.AdminLET.service.UserService;
 import com.example.AdminLET.utils.MapperUtils;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -76,9 +78,13 @@ public class MainController {
         return userNotification;
     }
 
+    @Autowired
+    private UserService userService;
+
+    /*获取管理员列表*/
     @ResponseBody
-    @PostMapping({"/accounts"})
-    public String accounts(){
+    @PostMapping({"/admins"})
+    public String admins(){
         UserTable userTable = null;
         PageInfo<UserTable> page = userService.page(1, 10, userTable);
         List<UserTable> userTables = page.getList();
@@ -92,16 +98,43 @@ public class MainController {
         return "bad answer";
     }
 
+    @Autowired
+    private PostService postService;
+
+    /*获取文章列表*/
+    @ResponseBody
+    @PostMapping({"/posts"})
+    public String posts(){
+        PostsTable postsTable = null;
+        PageInfo<PostsTable> page = postService.page(1, 10, postsTable);
+        List<PostsTable> postsTables = page.getList();
+//        List<UserTable> userTables = userService.selectAll(); /*已替换为使用pageHelper获取list*/
+        try {
+            String result = MapperUtils.obj2json(postsTables);
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "bad answer";
+    }
+
+    /*进入文章单页*/
+    @GetMapping({"/post/{guid}"})
+    public String post(@PathVariable String guid, Model model) {
+        PostsTable postsTable = postService.selectOne(guid);
+        model.addAttribute("title",postsTable.getTitle());
+        model.addAttribute("main",postsTable.getMain());
+        model.addAttribute("timePublished",postsTable.getTimePublished());
+        return "post";
+    }
+
+
     /* for test! */
     @GetMapping({"/500"})
     public String fiveZeroZero() {
         return "/error/500";
     }
 
-
-
-    @Autowired
-    private UserService userService;
 
 
     @GetMapping({"/test"})

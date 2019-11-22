@@ -29,18 +29,20 @@
                     <img src="/static/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">用户名</a>
+                    <a href="javascript:void(0);" class="d-block">用户名</a>
                 </div>
             </div>
 
             <!-- Sidebar Menu -->
             <nav class="mt-2">
+
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" id="sidebar">
+
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <!-- menu-open:打开下拉；建议第>5个后的项目选择关闭下拉-->
                     <li class="nav-item has-treeview menu-open" ref="adminMenu">
-                        <a href="#" class="nav-link" ref="adminLi">
+                        <a href="javascript:void(0);" class="nav-link" ref="adminLi">
                             <i class="nav-icon fas fa-user "></i>
                             <p>
                                     管理员
@@ -50,13 +52,13 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
 <!--                                <a href="/adminList" class="nav-link" ref="adminLi1" >-->
-                                <a href="javascript:void(0);" v-on:onclick="alertM()" class="nav-link" ref="adminLi1" >
+                                <a href="javascript:void(0);" v-on:click="goAdmin()" class="nav-link" ref="adminLi1" >
                                     <i class="far fa-circle nav-icon "></i>
                                     <p>管理员信息</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link" ref="adminLi2">
+                                <a href="javascript:void(0);" class="nav-link" ref="adminLi2">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>占位</p>
                                 </a>
@@ -64,7 +66,7 @@
                         </ul>
                     </li>
                     <li class="nav-item has-treeview menu-open" ref="postMenu">
-                        <a href="#" class="nav-link" ref="postLi">
+                        <a href="javascript:void(0);" class="nav-link" ref="postLi">
                             <i class="nav-icon fas fa-book"></i>
                             <p>
                                 文章列表
@@ -76,13 +78,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="/postList" class="nav-link" ref="postLi1">
+                                <a href="javascript:void(0);" v-on:click="goPost()" class="nav-link" ref="postLi1">
                                     <i class="far fa-circle nav-icon "></i>
                                     <p>查看文章</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link" ref="postLli2">
+                                <a href="javascript:void(0);" class="nav-link" ref="postLli2">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>占位</p>
                                 </a>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.AdminLET.mapper.PostsTableMapper">
+  <resultMap id="BaseResultMap" type="com.example.AdminLET.domain.PostsTable">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="post_guid" jdbcType="VARCHAR" property="postGuid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="time_published" jdbcType="TIMESTAMP" property="timePublished" />
+    <result column="STATUS" jdbcType="CHAR" property="status" />
+    <result column="alias" jdbcType="VARCHAR" property="alias" />
+    <result column="score" jdbcType="DECIMAL" property="score" />
+    <result column="summary" jdbcType="LONGVARCHAR" property="summary" />
+    <result column="main" jdbcType="LONGVARCHAR" property="main" />
+    <result column="AUTHORS" jdbcType="LONGVARCHAR" property="authors" />
+  </resultMap>
+</mapper>

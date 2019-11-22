@@ -14,7 +14,6 @@
 <!--<iframe src="/welcome" id="iframe" name="iframe" onclick="show(this.id)" frameborder="0" style="width: 100%; heigh = 768px;"></iframe>-->
 
 <div class="wrapper" id="app">
-
     <!-- Navbar -->
     <th:block th:insert="~{includes/navbar::navbar}" />
     <!-- Navbar End -->
@@ -27,7 +26,7 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper" >
-        <iframe src="/adminList" onclick="show(this.id)" frameborder="0" style="width: 100%; height: 600px;"></iframe>
+        <iframe src="/adminList" id="iframe" frameborder="0" style="width: 100%; height: 680px;"></iframe>
     </div>
     <!-- /.content-wrapper -->
 
@@ -83,26 +82,26 @@
     var vmSidebar = new Vue({
         el: "#sidebar",
         methods:{
-            // show(){
-            //     var iframe = document.getElementById("iframe"");
-            //     if (id ==="btnPostsIndex") {
-            //         iframe.src = "/index";
-            //     }
-            //     else if(id ==="btnPostsForm") {
-            //         iframe.src = "/form";
-            //     }
-            // },
 
-            alearM(){
-                alert("hello");
-            }
-
-
-
+            goAdmin:function () {
+                document.getElementById("iframe").src ="/adminList";
+                this.$refs.adminLi.classList.add('active');
+                this.$refs.adminLi1.classList.add('active');
+                this.$refs.postLi.classList.remove('active');
+                this.$refs.postLi1.classList.remove('active');
+            },
+            goPost: function () {
+                // window.location.href="/postList"
+                document.getElementById("iframe").src ="/postList";
+                this.$refs.postLi.classList.add('active');
+                this.$refs.postLi1.classList.add('active');
+                this.$refs.adminLi.classList.remove('active');
+                this.$refs.adminLi1.classList.remove('active');
+            },
         },
         mounted() {
-            /*使用vue的选择元素的方法$refs*/
-            /*ref标签内不可使用-,例如admin-li!!!*/
+            /*初始化，进入页面打开admin的下拉*/
+            /*使用vue的选择元素的方法$refs*//*ref标签内不可使用-,例如admin-li!!!*/
             this.$refs.adminLi.classList.add('active');
             this.$refs.adminLi1.classList.add('active');
             // this.$refs.adminMenu.classList.add('menu-open'); /*控制sidebar的下拉显示，效果不佳暂时禁用*/
@@ -111,18 +110,6 @@
     });
 
 
-    /*
-脚本的写法：
-    var iframe = document.getElementById("iframe"");
-    if (id ==="btnPostsIndex") {
-        iframe.src = "/index";
-    }
-    else if(id ==="btnPostsForm") {
-        iframe.src = "/form";
-    }
-    *
-    *
-    * */
 </script>
 
 
