@@ -32,7 +32,7 @@ public class MainController {
 
     @GetMapping({"/index"})
     public String index() {
-        return "adminList";
+        return "index";
     }
 
     @GetMapping({"/adminList"})

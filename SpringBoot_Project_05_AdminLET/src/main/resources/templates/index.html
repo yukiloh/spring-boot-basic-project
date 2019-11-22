@@ -1,0 +1,130 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang = "en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 3 | Invoice</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <th:block th:insert="~{includes/head::head}" />
+
+</head>
+<body class="hold-transition sidebar-mini">
+<!--<iframe src="/welcome" id="iframe" name="iframe" onclick="show(this.id)" frameborder="0" style="width: 100%; heigh = 768px;"></iframe>-->
+
+<div class="wrapper" id="app">
+
+    <!-- Navbar -->
+    <th:block th:insert="~{includes/navbar::navbar}" />
+    <!-- Navbar End -->
+
+
+    <!-- Main Sidebar Container -->
+    <th:block th:insert="~{includes/sidebar::sidebar}" />
+    <!-- Main Sidebar Container End -->
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" >
+        <iframe src="/adminList" onclick="show(this.id)" frameborder="0" style="width: 100%; height: 600px;"></iframe>
+    </div>
+    <!-- /.content-wrapper -->
+
+
+    <!-- Footer Copyright -->
+    <th:block th:insert="~{includes/footer::footer}" />
+    <!-- Footer Copyright End -->
+
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+</div>
+<!-- ./wrapper -->
+
+<!-- Script -->
+<th:block th:insert="~{includes/script::script}" />
+
+
+
+<!--告知浏览器按照js来执行解释-->
+<script type="text/javascript" >
+
+    var vmMessages = new Vue({
+        el: "#messages",
+        data() {
+            return {
+                messages: {},
+            }
+        },
+        mounted() {
+            axios.post("http://localhost:8080/"+114514+"/messages")
+                .then(response => this.messages = response.data);
+        },
+    });
+
+    var vmNotif = new Vue({
+        el: "#notifications",
+        data() {
+            return {
+                notifications: {},
+            }
+        },
+        mounted() {
+            axios.post("http://localhost:8080/"+114514+"/notifications")
+                .then(response => this.notifications = response.data);
+        },
+    });
+
+    var vmSidebar = new Vue({
+        el: "#sidebar",
+        methods:{
+            // show(){
+            //     var iframe = document.getElementById("iframe"");
+            //     if (id ==="btnPostsIndex") {
+            //         iframe.src = "/index";
+            //     }
+            //     else if(id ==="btnPostsForm") {
+            //         iframe.src = "/form";
+            //     }
+            // },
+
+            alearM(){
+                alert("hello");
+            }
+
+
+
+        },
+        mounted() {
+            /*使用vue的选择元素的方法$refs*/
+            /*ref标签内不可使用-,例如admin-li!!!*/
+            this.$refs.adminLi.classList.add('active');
+            this.$refs.adminLi1.classList.add('active');
+            // this.$refs.adminMenu.classList.add('menu-open'); /*控制sidebar的下拉显示，效果不佳暂时禁用*/
+
+        },
+    });
+
+
+    /*
+脚本的写法：
+    var iframe = document.getElementById("iframe"");
+    if (id ==="btnPostsIndex") {
+        iframe.src = "/index";
+    }
+    else if(id ==="btnPostsForm") {
+        iframe.src = "/form";
+    }
+    *
+    *
+    * */
+</script>
+
+
+</body>
+</html>

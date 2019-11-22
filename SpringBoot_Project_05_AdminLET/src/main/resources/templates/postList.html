@@ -13,20 +13,10 @@
 <body class="hold-transition sidebar-mini">
 <!--<iframe src="/welcome" id="iframe" name="iframe" onclick="show(this.id)" frameborder="0" style="width: 100%; heigh = 768px;"></iframe>-->
 
-<div class="wrapper" id="app">
-
-    <!-- Navbar -->
-    <th:block th:insert="~{includes/navbar::navbar}" />
-    <!-- Navbar End -->
 
 
-    <!-- Main Sidebar Container -->
-    <th:block th:insert="~{includes/sidebar::sidebar}" />
-    <!-- Main Sidebar Container End -->
 
-
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper" >
+        <!-- Content Wrapper. Contains page content -->
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
@@ -44,107 +34,124 @@
             </div><!-- /.container-fluid -->
         </section>
 
-    </div>
-    <!-- /.content-wrapper -->
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Projects</h3>
+
+                    <div class="card-tools">
+
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                            <i class="fas fa-minus"></i></button>
+                        <!--关闭按钮-->
+<!--                        <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">-->
+<!--                            <i class="fas fa-times"></i></button>-->
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-striped projects">
+                        <thead>
+                        <tr>
+                            <th style="width: 1%">
+                                #
+                            </th>
+                            <th style="width: 31%">
+                                标题
+                            </th>
+                            <th style="width: 15%" >
+                                作者
+                            </th>
+                            <th style="width: 10%" >
+                                积分
+                            </th>
+                            <th style="width: 15%" class="text-center">
+                                文章状态
+                            </th>
+                            <th style="width: 20%" class="text-center">
+                                编辑
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr>
+                            <td>
+                                #
+                            </td>
+                            <td>
+                                <a href="#">文章标题文章标题文章标题文章标题</a>
+                                <br/>
+                                <small class="greyFont">2019.01.01</small>
+                            </td>
+                            <td>文章作者</td>
+                            <td>100</td>
+
+                            <td class="project-state">
+                                <span class="badge badge-success" ref="state">Success</span>
+                            </td>
+                            <td class="project-actions text-right">
+                                <a class="btn btn-primary btn-sm" href="#">
+                                    <i class="fas fa-folder">
+                                    </i>查看</a>
+                                <a class="btn btn-info btn-sm" href="#">
+                                    <i class="fas fa-pencil-alt">
+                                    </i>编辑</a>
+                                <a class="btn btn-danger btn-sm" href="#">
+                                    <i class="fas fa-trash">
+                                    </i>删除</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                #
+                            </td>
+                            <td>
+                                <a href="#">文章标题文章标题文章标题文章标题</a>
+                                <br/>
+                                <small class="greyFont">2019.01.01</small>
+                            </td>
+                            <td>文章作者</td>
+                            <td>100</td>
+
+                            <td class="project-state">
+                                <span class="badge badge-success" ref="state">Success</span>
+                            </td>
+                            <td class="project-actions text-right">
+                                <a class="btn btn-primary btn-sm" href="#">
+                                    <i class="fas fa-folder">
+                                    </i>查看</a>
+                                <a class="btn btn-info btn-sm" href="#">
+                                    <i class="fas fa-pencil-alt">
+                                    </i>编辑</a>
+                                <a class="btn btn-danger btn-sm" href="#">
+                                    <i class="fas fa-trash">
+                                    </i>删除</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+        </section>
+        <!-- /.content -->
 
 
-    <!-- Footer Copyright -->
-    <th:block th:insert="~{includes/footer::footer}" />
-    <!-- Footer Copyright End -->
-
-
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
-
-</div>
 <!-- ./wrapper -->
 
 <!-- Script -->
 <th:block th:insert="~{includes/script::script}" />
 
-
-
 <!--告知浏览器按照js来执行解释-->
 <script type="text/javascript">
 
-    // var vmMain = new Vue({
-    //     el: "#message",
-    //     data() {
-    //         return {
-    //             msg: {
-    //                 message: "none",
-    //             },
-    //         }
-    //     },
-    //     mounted() {
-    //         // axios.get("/static/data.json")
-    //         axios.post("http://localhost:8080/"+114514+"/msg")
-    //             .then(response => this.msg = response.data);
-    //     },
-    // });
-
-    // var vmDate = new Vue({
-    //     el: "#date",
-    //     data: {
-    //         <!--获取今日日期-->
-    //         date: new Date().getFullYear() + "/" + ("0" + (new Date().getMonth() + 1)).slice(-2) + "/" + ("0" + new Date().getDate()).slice(-2),
-    //     }
-    //
-    // });
 
 
-    var vmMessages = new Vue({
-        el: "#messages",
-        data() {
-            return {
-                messages: {},
-            }
-        },
-        mounted() {
-            axios.post("http://localhost:8080/"+114514+"/messages")
-                .then(response => this.messages = response.data);
-        },
-    });
-
-    var vmNotif = new Vue({
-        el: "#notifications",
-        data() {
-            return {
-                notifications: {},
-            }
-        },
-        mounted() {
-            axios.post("http://localhost:8080/"+114514+"/notifications")
-                .then(response => this.notifications = response.data);
-        },
-    });
-
-    // var vmAccounts = new Vue({
-    //     el: "#accounts",
-    //     data() {
-    //         return {
-    //             accounts: {},
-    //         }
-    //     },
-    //     mounted() {
-    //         axios.post("http://localhost:8080/accounts")
-    //             .then(response => this.accounts = response.data);
-    //     },
-    // });
-
-
-    var vmSidebar = new Vue({
-        el: "#sidebar",
-        mounted() {
-            /*使用vue的选择元素的方法$refs*/
-            /*ref标签内不可使用-,例如admin-li!!!*/
-            this.$refs.postLi.classList.add('active');
-            this.$refs.postLi1.classList.add('active');
-        },
-    });
 </script>
 
 

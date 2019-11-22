@@ -11,8 +11,22 @@
 
 </head>
 <body class="hold-transition sidebar-mini">
+<!--<iframe src="/welcome" id="iframe" name="iframe" onclick="show(this.id)" frameborder="0" style="width: 100%; heigh = 768px;"></iframe>-->
+
+<div class="wrapper" id="app">
+
+    <!-- Navbar -->
+    <th:block th:insert="~{includes/navbar::navbar}" />
+    <!-- Navbar End -->
+
+
+    <!-- Main Sidebar Container -->
+    <th:block th:insert="~{includes/sidebar::sidebar}" />
+    <!-- Main Sidebar Container End -->
+
 
     <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" >
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
@@ -90,9 +104,25 @@
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->
+    </div>
     <!-- /.content-wrapper -->
 
 
+    <!-- Footer Copyright -->
+    <th:block th:insert="~{includes/footer::footer}" />
+    <!-- Footer Copyright End -->
+
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+</div>
+<!-- ./wrapper -->
+
+<!-- Script -->
 <th:block th:insert="~{includes/script::script}" />
 
 
@@ -125,6 +155,33 @@
 
     });
 
+
+    var vmMessages = new Vue({
+        el: "#messages",
+        data() {
+            return {
+                messages: {},
+            }
+        },
+        mounted() {
+            axios.post("http://localhost:8080/"+114514+"/messages")
+                .then(response => this.messages = response.data);
+        },
+    });
+
+    var vmNotif = new Vue({
+        el: "#notifications",
+        data() {
+            return {
+                notifications: {},
+            }
+        },
+        mounted() {
+            axios.post("http://localhost:8080/"+114514+"/notifications")
+                .then(response => this.notifications = response.data);
+        },
+    });
+
     var vmAccounts = new Vue({
         el: "#accounts",
         data() {
@@ -137,6 +194,21 @@
                 .then(response => this.accounts = response.data);
         },
     });
-</script>
-</body>
 
+
+    var vmSidebar = new Vue({
+        el: "#sidebar",
+        mounted() {
+            /*使用vue的选择元素的方法$refs*/
+            /*ref标签内不可使用-,例如admin-li!!!*/
+            this.$refs.adminLi.classList.add('active');
+            this.$refs.adminLi1.classList.add('active');
+            // this.$refs.adminMenu.classList.add('menu-open'); /*控制sidebar的下拉显示，效果不佳暂时禁用*/
+
+        },
+    });
+</script>
+
+
+</body>
+</html>
