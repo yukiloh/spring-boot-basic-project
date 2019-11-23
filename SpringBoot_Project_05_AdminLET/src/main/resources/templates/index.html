@@ -61,6 +61,7 @@
             }
         },
         mounted() {
+            /*需要更改为用户的id*/
             axios.post("http://localhost:8080/"+114514+"/messages")
                 .then(response => this.messages = response.data);
         },
@@ -74,6 +75,7 @@
             }
         },
         mounted() {
+            /*需要更改为用户的id*/
             axios.post("http://localhost:8080/"+114514+"/notifications")
                 .then(response => this.notifications = response.data);
         },

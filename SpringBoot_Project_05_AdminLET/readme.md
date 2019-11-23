@@ -1,5 +1,5 @@
-- 使用iframe创建admin和post的页面，通过vue完成导航栏跳转页面
-- 完成post页面
+本项目用于测试展示adminLET模板，iframe标签，vue等工具整合的使用
+
 
 
 

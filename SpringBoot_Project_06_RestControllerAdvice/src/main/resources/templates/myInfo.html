@@ -1,0 +1,12 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang = "en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset = "UTF-8">
+    <title>my info</title>
+</head>
+<body>
+当ExceptionHandler返回obj类型的结果时,会回到原controller指向(return)的路径
+<!--/*@thymesVar id="msg" type="com.example.demo.exception.UnionExceptionHandler"*/-->
+<div th:text="${msg}"></div>
+</body>
+</html>

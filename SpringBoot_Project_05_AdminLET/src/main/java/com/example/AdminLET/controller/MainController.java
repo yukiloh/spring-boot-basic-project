@@ -136,14 +136,4 @@ public class MainController {
     }
 
 
-
-    @GetMapping({"/test"})
-    public String test() {
-        return "test";
-    }
-
-    @GetMapping({"/sidebar"})
-    public String sidebar() {
-        return "/sidebar";
-    }
 }
