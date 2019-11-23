@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  *的时候，可以用注解@Slf4j*/
 //@RestControllerAdvice /*类似于controller和restController的区别*/
 @ControllerAdvice
-public class UnionExceptionHandler {
+public class GlobalExceptionHandle {
 
 
 
