@@ -16,6 +16,7 @@
         <option value="$PROJECT_DIR$/SpringBoot_Project_05_AdminLET/pom.xml" />
         <option value="$PROJECT_DIR$/SpringBoot_Project_02_RedisAndTransaction/pom.xml" />
         <option value="$PROJECT_DIR$/SpringBoot_Project_06_RestControllerAdvice/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringBoot_Project_07_SSO/pom.xml" />
       </list>
     </option>
   </component>

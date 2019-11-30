@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--标记又*的需要重新处-->
+    <!-- *引入数据库连接配置 -->
+    <properties resource="jdbc.properties"/>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!-- *配置 tk.mybatis 插件 -->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.mapper.MyMapper"/>
+        </plugin>
+
+        <!-- 配置数据库连接 -->
+        <jdbcConnection
+                driverClass="${jdbc.driverClass}"
+                connectionURL="${jdbc.connectionURL}"
+                userId="${jdbc.username}"
+                password="${jdbc.password}">
+        </jdbcConnection>
+
+        <!-- *配置实体类存放路径 -->
+        <javaModelGenerator targetPackage="com.example.demo.domain" targetProject="src/main/java"/>
+
+        <!-- 配置 XML 存放路径 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+
+        <!-- *配置 DAO 存放路径 -->
+        <javaClientGenerator
+                targetPackage="com.example.demo.mapper"
+                targetProject="src/main/java"
+                type="XMLMAPPER"/>
+
+
+        <!-- *配置需要指定生成的数据库和表，tableName ="%" 代表所有表 -->
+        <!--当存在多张表可以多次复制,注意修改tableName和catalog-->
+        <!--注意:catalog="service-admin" 需要根据config指定的数据库路径,有选择的填写!!(错误点:错误的填写了catalog,导致查询时找不到对应的表)-->
+        <table tableName="tb_sys_user">
+            <!-- mysql 配置 -->   <!--依据主键生成代码-->
+            <generatedKey column="user_code" sqlStatement="Mysql" identity="false"/>
+            <!--关于sqlStatement,后期修改可参考: https://mybatis.org/generator/configreference/generatedKey.html-->
+        </table>
+    </context>
+</generatorConfiguration>

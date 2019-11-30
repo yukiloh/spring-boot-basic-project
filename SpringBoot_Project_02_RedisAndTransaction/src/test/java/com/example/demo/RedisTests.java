@@ -45,7 +45,7 @@ public class RedisTests {
                     redisTemplate.opsForValue().set("userList",userList);        /*存储redis的key=userList*/
                 }
             }
-        }else System.out.println("find in redis!");
+        }else System.out.println("find in redisUtils!");
         if (userListByRedis != null) {
             for (User u:userListByRedis) {
                 System.out.println(u);

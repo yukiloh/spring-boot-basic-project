@@ -65,4 +65,9 @@ public class MainController {
     public String context04(){
         return "login";
     }
+
+    @GetMapping("/video")
+    public String context05() {
+        return "video";
+    }
 }

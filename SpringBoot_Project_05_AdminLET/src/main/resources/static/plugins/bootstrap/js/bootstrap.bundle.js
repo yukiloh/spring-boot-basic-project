@@ -2804,7 +2804,7 @@
     // may happen that the popper gets misplaced because of the new content
     // overflowing its reference element
     // To avoid this problem, we provide two options (x and y), which allow
-    // the consumer to define the offset origin.
+    // the redisUtils to define the offset origin.
     // If we position a popper on top of a reference element, we can set
     // `x` to `top` to make the popper grow towards its top instead of
     // its bottom.

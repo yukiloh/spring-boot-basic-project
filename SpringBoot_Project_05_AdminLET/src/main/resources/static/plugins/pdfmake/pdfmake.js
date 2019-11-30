@@ -8571,7 +8571,7 @@ function afterWrite(stream, state, finished, cb) {
 }
 
 // Must force callback to be called on nextTick, so that we don't
-// emit 'drain' before the write() consumer gets the 'false' return
+// emit 'drain' before the write() redisUtils gets the 'false' return
 // value, and has a chance to attach a 'drain' listener.
 function onwriteDrain(stream, state) {
   if (state.length === 0 && state.needDrain) {
@@ -9729,7 +9729,7 @@ exports.promisify.custom = kCustomPromisifiedSymbol
 function callbackifyOnRejected(reason, cb) {
   // `!reason` guard inspired by bluebird (Ref: https://goo.gl/t5IS6M).
   // Because `null` is a special error value in callbacks which means "no error
-  // occurred", we error-wrap so the callback consumer can distinguish between
+  // occurred", we error-wrap so the callback redisUtils can distinguish between
   // "the promise rejected with null" or "the promise fulfilled with undefined".
   if (!reason) {
     var newReason = new Error('Promise was rejected with a falsy value');
@@ -14711,7 +14711,7 @@ Zlib.prototype._processChunk = function (chunk, flushFlag, cb) {
     if (have > 0) {
       var out = self._buffer.slice(self._offset, self._offset + have);
       self._offset += have;
-      // serve some output to the consumer.
+      // serve some output to the redisUtils.
       if (async) {
         self.push(out);
       } else {
@@ -57569,7 +57569,7 @@ module.exports = StateMachine;
           // thrown back into the generator function, as is the case
           // when an awaited Promise is rejected. This difference in
           // behavior between yield and await is important, because it
-          // allows the consumer to decide what to do with the yielded
+          // allows the redisUtils to decide what to do with the yielded
           // rejection (swallow it and continue, manually .throw it back
           // into the generator, abandon iteration, whatever). With
           // await, by contrast, there is no opportunity to examine the

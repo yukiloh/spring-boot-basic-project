@@ -1,0 +1,46 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang = "en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device width,user scalable-no,initial scale=1.0,maximum-scale=l.0,minimum scale=l.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>VIDEO</title>
+
+
+
+
+    <!-- unpkg : use the latest version of Video.js -->
+<!--    <link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet">-->
+<!--    <script src="https://unpkg.com/video.js/dist/video.min.js"></script>-->
+    <link href="https://cdn.bootcss.com/video.js/7.6.5/alt/video-js-cdn.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/video.js/7.6.5/video.min.js"></script>
+</head>
+
+<body>
+
+videojs的语法，替换封面和src，chrome对MP4格式有限制，无法进行拖曳，Firefox则无问题
+<video
+        id="my-video"
+        class="video-js"
+        controls
+        preload="auto"
+        width="640"
+        height="264"
+        poster="poster.jpg"
+        data-setup="{}"
+>
+    <source src="video.mp4" type="video/mp4" />
+<!--    <source src="MY_VIDEO.webm" type="video/webm" />-->
+    <p class="vjs-no-js">
+        To view this video please enable JavaScript, and consider upgrading to a
+        web browser that
+        <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    </p>
+</video>
+
+
+</body>
+</html>
