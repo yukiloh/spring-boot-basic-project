@@ -40,3 +40,5 @@ spring:
       username: root
       password: zou9RYdAGW2MKoBY
       driver-class-name: org.mariadb.jdbc.Driver
+
+

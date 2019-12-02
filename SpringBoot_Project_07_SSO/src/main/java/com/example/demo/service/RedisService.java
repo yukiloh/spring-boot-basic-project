@@ -12,5 +12,10 @@ public interface RedisService {
     String get(String key);
 
 
+    Boolean delete(String key);
+
+    void refresh(String key);
+
+
 
 }

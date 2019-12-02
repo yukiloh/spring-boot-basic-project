@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.constants.WebConstants;
 import com.example.demo.service.RedisService;
 import com.example.demo.utils.MapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,13 @@ public class RedisServiceImpl implements RedisService {
 
 
     @Autowired
-    private RedisTemplate<Object,Object> redisTemplate;
+    private RedisTemplate<String,String> redisTemplate;
 
     @Override
     public void put(String key, String value, long seconds) {
         /*序列化key，使得key不为乱码*/
         redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setValueSerializer(new StringRedisSerializer());
         redisTemplate.opsForValue().set(key, value,seconds, TimeUnit.SECONDS);
     }
 
@@ -44,4 +46,16 @@ public class RedisServiceImpl implements RedisService {
         /*当重试后依然获取不到时返回null*/
         return null;
     }
+
+    @Override
+    public Boolean delete(String key) {
+        return redisTemplate.delete(key);
+    }
+
+    @Override
+    public void refresh(String key) {
+        redisTemplate.expire(key, WebConstants.QUATER_DAY,TimeUnit.SECONDS);
+    }
+
+
 }

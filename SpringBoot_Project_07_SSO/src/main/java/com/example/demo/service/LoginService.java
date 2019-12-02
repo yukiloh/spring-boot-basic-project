@@ -22,4 +22,5 @@ public interface LoginService {
     String login(String loginCode, String plantPassword);
 
 
+    String loginByToken(String token);
 }

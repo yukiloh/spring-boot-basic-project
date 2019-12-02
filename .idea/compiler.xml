@@ -8,11 +8,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="SpringBoot_Project_03_Thymeleaf" />
         <module name="SpringBoot_Project_05_AdminLET" />
+        <module name="SpringBoot_Project_04_Shiro" />
         <module name="SpringBoot_Project_01_QuickStart" />
         <module name="SpringBoot_Project_02_RedisAndTransaction" />
         <module name="Spring_SecurityOAuth" />
         <module name="SpringBoot_Project_06_RestControllerAdvice" />
-        <module name="SpringBoot_Project_04_Shiro" />
         <module name="SpringBoot_Project_07_SSO" />
       </profile>
     </annotationProcessing>
