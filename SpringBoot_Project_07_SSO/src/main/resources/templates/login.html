@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-CN" >
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,62 +8,39 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <script th:src="@{${staticJS}+'jquery.min.js'}"></script>
 
-    <!--/*@thymesVar id="staticImages" type="com.test.spring.cloud.common.web.interceptor"*/-->
-    <link rel="icon" th:href="@{${staticImages}+'favicon.ico'}">
-
-<!--    <link rel="icon" th:href="@{{staticImages}favicon.ico(staticImages=${staticImages})}">-->
-
-    <title>登陆</title>
-
-    <!-- Bootstrap core CSS -->
-    <!--/*@thymesVar id="staticCSS" type="com.test.spring.cloud.common.web.interceptor"*/-->
-    <link th:href="@{${staticCSS}+'bootstrap.min.css'}" rel="stylesheet">
-
-    <!--/*@thymesVar id="staticJS" type="com.test.spring.cloud.common.interceptor.StaticSourcesInterceptor"*/-->
-    <!--thymeleaf的2种通过@{}引入资源的方式-->
-    <script th:src="@{${staticJS}+'jquery.min.js'}"></script>
-    <script th:src="@{${staticJS}+'bootstrap.min.js'}"></script>
-    <script th:src="@{${staticJS}+'html5shiv.min.js'}"></script>
-    <script th:src="@{${staticJS}+'respond.min.js'}"></script>
-    <!--nginx路径参考：http://192.168.2.110:28080/static/bootstrap.min.js-->
-
-
-<!--    <script th:src="@{{staticJS}jquery.min.js(staticJS=${staticJS})}"></script>-->
-<!--    <script th:src="@{{staticJS}bootstrap.min.js(staticJS=${staticJS})}"></script>-->
-<!--    <script th:src="@{{staticJS}html5shiv.min.js(staticJS=${staticJS})}"></script>-->
-<!--    <script th:src="@{{staticJS}respond.min.js(staticJS=${staticJS})}"></script>-->
+    <title>登 陆</title>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
 </head>
 
-
-
+<body>
 <div class="container-fluid mainCss">
-    <div class="row">
+    <h3>页面仅用于测试，未启用thymeleaf，post的地址已锁死</h3>
+
+    <div class="row ">
         <div class="col-md-push-4 col-md-4" >
             <h3>用户登陆</h3><hr>
             <div class="container-fluid">
                 <div class="center-block">
-                    <form action="/login" method="post">
+                    <form action="http://localhost:8080/login.do" method="post">
                         <table border="0">
                             <tr>
-                                <td style="text-align:center"><font size="3" >用户名</font></td>
+                                <td style="text-align:center;font-size:14px">用户名</td>
                                 <td>&nbsp;&nbsp;</td>
                                 <td ><input type="text" class="form-control" name="loginCode" value="test@test.com"></td>
                             </tr>
                             <tr>
-                                <td style="text-align:center" > <font size="3" >密码</font></td>
+                                <td style="text-align:center;font-size:14px" >密码</td>
                                 <td>&nbsp;&nbsp;</td>
                                 <td ><input type="password" class="form-control " name="password" value="111111"></td>
-                                <td><input type="hidden" name="url" th:value="${url}"></td>
                             </tr>
 
                         </table>
                         <br>
                         <div><button type="submit" class="btn btn-info" id= "submit" >提交</button></div>
-                        <div th:if="${message} != null"><span th:text="${message}"></span></div>
-                        <div th:if="${admin} != null"><span th:text="${admin.getLoginCode()}"></span></div>
-
                     </form>
                 </div><br>
             </div>

@@ -1,4 +1,12 @@
 spring:
+  thymeleaf:
+    cache: false
+    prefix: /templates/
+    suffix: .html
+    mode: HTML
+  mvc:
+    static-path-pattern: /static/**
+
 
   redis:
     host: 192.168.1.90

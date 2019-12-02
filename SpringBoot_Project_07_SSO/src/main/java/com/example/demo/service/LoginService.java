@@ -19,8 +19,8 @@ public interface LoginService {
      * @param plantPassword 明文密码
      * @return
      */
-    String login(String loginCode, String plantPassword);
+    TbSysUser login(String loginCode, String plantPassword);
 
 
-    String loginByToken(String token);
+    TbSysUser loginByToken(String token);
 }

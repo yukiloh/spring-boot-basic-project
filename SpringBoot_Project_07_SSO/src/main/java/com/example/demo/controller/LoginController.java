@@ -2,15 +2,15 @@ package com.example.demo.controller;
 
 
 import com.example.demo.constants.WebConstants;
+import com.example.demo.domain.TbSysUser;
 import com.example.demo.dto.BaseResult;
 import com.example.demo.service.LoginService;
 import com.example.demo.service.RedisService;
 import com.example.demo.utils.CookieUtils;
+import com.example.demo.utils.MapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,20 +48,17 @@ public class LoginController {
                             , HttpServletRequest request
                             , HttpServletResponse response
                             ){
-        String userJson;
-
         /*有token*/
         if (token != null) {
-            userJson = loginService.loginByToken(token);
-            if (userJson != null) return BaseResult.ok(userJson);
+            TbSysUser tbSysUser = loginService.loginByToken(token);
+            if (tbSysUser != null) return BaseResult.ok(tbSysUser);
             else CookieUtils.deleteCookie(request,response,"token");
         }
 
-        /*无token*/
-        userJson = loginService.login(loginCode, password);
-
+        /*无token,通过用户名密码登录*/
+        TbSysUser tbSysUser = loginService.login(loginCode, password);
         /*登陆失败*/
-        if (userJson == null) {
+        if (tbSysUser == null) {
             BaseResult.Error error = new BaseResult.Error("login","用户名或密码错误");
             List<BaseResult.Error> errors = new ArrayList<>();
             errors.add(error);
@@ -70,12 +67,15 @@ public class LoginController {
 
         /*登录成功,在cookie中存放token的值,并存入token:loginCode*/
         token = UUID.randomUUID().toString();
-        redisService.put(token, loginCode, WebConstants.QUATER_DAY);
-        /*设置loginCode的Token*/
-        redisService.put(loginCode+"Token",token,WebConstants.QUATER_DAY);
+        try {
+            redisService.put(token, MapperUtils.obj2json(tbSysUser), WebConstants.QUATER_DAY);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         /*设置cookie*/
         CookieUtils.setCookie(request,response, WebConstants.SESSION_TOKEN,token,(int)WebConstants.QUATER_DAY);
         /*提供json数据(带token)给前端，而不是自己去set cookie*/
-        return BaseResult.ok(userJson);
+        return BaseResult.ok(tbSysUser);
     }
+
 }
