@@ -17,7 +17,7 @@
              并可设置拦截后的跳转登陆页面setLoginUrl("/login");     
          1.1.3最后将配置内容传入过滤器
               shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
-    1.2创建defaultWebSecurityManger
+    1.2创建defaultWebSecurityManger，主要用于设置密码加密
         new DefaultWebSecurityManager();
     1.3创建getRealm（需要自定义）
         new UserRealm()
