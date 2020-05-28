@@ -1,14 +1,9 @@
-本项目用于测试展示adminLET模板，iframe标签，vue等工具整合的使用
-
-
-
-
-
-
+# 本项目用于测试展示adminLET模板，iframe标签，vue等工具整合的使用
 
 
 #### 关于mybatis-generator(MBG)的使用
-1.添加依赖依赖:(注意修改generatorConfig.xml的位置和依赖的sql依赖,此处是maria)
+1. 添加依赖依赖:(注意修改generatorConfig.xml的位置和依赖的sql依赖,此处是maria)
+```xml
 <build>
     <plugins>
         <!--mybatis代码生成-->
@@ -39,17 +34,23 @@
     </plugins>
 </build>
 
-2.添加generatorConfig.xml,配置其中的自定义属性
-3.通过maven的plugins生成
+```
+
+2. 添加generatorConfig.xml,配置其中的自定义属性
+
+3. 通过maven的plugins生成
 
 #### 关于tk.mybatis
 国人制作的一款,提供通用单表增删改查的工具(不支持通用多表联合查询!)
 
-1.创建自定义Mapper类(需要指定泛型),可以继承Mapper等
+1. 创建自定义Mapper类(需要指定泛型),可以继承Mapper等
+
 例如:public interface MyMapper<T> extends Mapper<T>, MySqlMapper<T> {
+
 详细接口文档:https://mapperhelper.github.io/all/
 
-2.在入口类添加@MapperScan,并指定mapper的路径(可以添加多个)
+2. 在入口类添加@MapperScan,并指定mapper的路径(可以添加多个)
+
 例如:@MapperScan("com.example.AdminLET.mapper")
 
 

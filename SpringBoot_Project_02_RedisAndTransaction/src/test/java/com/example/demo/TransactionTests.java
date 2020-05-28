@@ -35,13 +35,5 @@ public class TransactionTests {
         int a = 10/0;       /*主动添加异常*/
         /*如果byZero写在transact内，即使没有@Transactional也会进行异常回滚，写在外面则不会*/
 
-
-
-
-
-
     }
-
-
-
 }
