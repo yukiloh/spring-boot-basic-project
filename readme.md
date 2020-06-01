@@ -1,21 +1,21 @@
 # 个人的spring boot相关学习笔记
 
-- quickstart
+- quickstart  
 一些springboot基础用法
 
--redis and transaction
+- redis and transaction  
 springboot 结合 redis 和 spring 中有关事务 transaction 的用法
 
-- thymeleaf
+- thymeleaf  
 springboot 结合 thymeleaf 的用法
 
-- shiro
+- shiro  
 springboot 结合 shiro 的用法
 
--adminLET
+- adminLET  
 springboot 结合 adminLET 模板, iframe标签, vue构建的web项目
 
--restControllerAdvice
+- restControllerAdvice  
 springboot 中异常捕获的用法
 
 - sso
