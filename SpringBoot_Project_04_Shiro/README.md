@@ -1,101 +1,107 @@
 # 本项目用于演示shiro在springboot中的用法
 
-### shiro的核心
-获取subject用户主体，交由securityManger安全管理器去关联realm（shiro连接数据的桥梁）
+## 项目的演示
 
-### shiro的基础创建步骤
-1. 编写shiro的配置类ShiroConfig,在其中:
+shiro本身比较复杂,不是一篇md能说清楚的,这里只能略微指教一二  
+本项目是借助thymeleaf来完成演示效果  
+在配置完数据库后,可以进行登录账号  
+不同的账号有不同的权限/角色,以此来实现shiro的权限管理
 
-1.1 创建shiroFilterFactoryBean
+## shiro的核心运作方式
 
-```new ShiroFilterFactoryBean();```
+开发者通过shiro提供的subject来获取用户，并交由安全管理器securityManger,再去关联realm实现权限认证  
+realm可以理解为进行验证的地方,是shiro连接数据(数据库)的桥梁  
+如果有多套规则需要验证(比如支付宝登录,微信登陆,微博登录,手机号登录...)则需要创建多个realm  
+全局搜索`securityManager.setRealms`可以看到在那里如何设置多个realm
 
-通过设置shiroFilterFactoryBean完成shiroFilter的自定义
+## 依赖和sql
 
-1.1.1 设置安全管理器setSecurityManager
+```xml
+<!-- shiro-spring -->
+<dependency>
+    <groupId>org.apache.shiro</groupId>
+    <artifactId>shiro-spring</artifactId>
+    <version>1.4.1</version>
+</dependency>
+```
 
-1.1.2 设置过滤规则(map);shiro包含了四个内置的过滤器来实现权限相关拦截：
+sql语句在/resources/sql 中,需要自行配置yml中的sql
 
-- authc：所有已登陆用户可访问
-- roles：有指定角色的用户可访问，通过[ ]指定具体角色，这里的角色名称与数据库中配置一致
-- perms：有指定权限的用户可访问，通过[ ]指定具体权限，这里的权限名称与数据库中配置一致
-- anon：所有用户可访问，通常作为指定页面的静态资源时使用
+## shiro的基础创建步骤
 
-可设置拦截后的跳转登陆页面setLoginUrl("/login");     
-1.1.3 最后将配置内容传入过滤器
-```shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);```
+1. 首先,编写shiro的配置类ShiroConfig,分三步:
 
-1.2创建defaultWebSecurityManger，主要用于设置密码加密
-```new DefaultWebSecurityManager();```
+   1.1 创建shiroFilterFactoryBean
+   `new ShiroFilterFactoryBean()`  
+   通过设置shiroFilterFactoryBean完成shiroFilter的自定义  
+     - 设置安全管理器setSecurityManager  
+     - 设置过滤规则(map);shiro包含了四个内置的过滤器来实现权限相关拦截：  
+       - authc：所有已登陆用户可访问  
+       - roles：有指定角色的用户可访问，通过[ ]指定具体角色，这里的角色名称与数据库中配置一致  
+       - perms：有指定权限的用户可访问，通过[ ]指定具体权限，这里的权限名称与数据库中配置一致  
+       - anon：所有用户可访问，通常作为指定页面的静态资源时使用  
 
-1.3创建getRealm（需要自定义）
-```new UserRealm()```
+       例如,设置拦截,并在拦截后跳转至登陆页面setLoginUrl("/login");     
+
+     - 最后将配置内容传入过滤器  
+   `shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);`
+
+    1.2 创建defaultWebSecurityManger，主要用于设置密码加密
+    `new DefaultWebSecurityManager();`
+
+    1.3 创建一个realm,并在config中创建一个getRealm的方法
+    - 创建一个自定义的realm,需要继承`AuthorizingRealm`
+    - 在config中创建`getUserRealm()`
     
-2.创建一个自定义的realm，需要继承AuthorizingRealm，并重写认证和授权方法
+2. 之后,创建一个自定义的realm，需要继承AuthorizingRealm，并重写认证和授权方法  
 
+至此,shiro基础配置完成
 
-至此,shiro基础配置完成。
+---
 
+## 关于认证和授权的
 
-
-### 关于认证和授权的
-认证后会赋予用户user的权限（最基础的）,之后再进行授权赋予不同等级的权限
-
+认证后会赋予用户user基础的访问权限,再进行授权赋予不同等级的权限
 
 ### 认证 Authentication 
-进行用户名密码的认证,认证后可以访问authc下的所有路径
 
-controller中获取username&password
-
-通过subject.login(token)将代有username&password的token传入getAuth中
-
-再将token通过强转类型获取其中的username&password，并进行匹配
-
-判断username，错误直接返回null，controller会接收到UnknownAccountException
-
-再判断password，通过new SimpleAuthenticationInfo传入3个参数（最重要的是password）并进行判断
-
-错误密码将会返回IncorrectCredentialsException
-
+在realm中通过doGetAuthenticationInfo进行认证,详细参见项目内
 
 ### 授权 Authorization
-进行用户名的授权,授权后可以访问需要perms（permission）、或符合角色roles的路径
 
-创建授权信息```new SimpleAuthorizationInfo();```
+在realm中通过doGetAuthorizationInfo进行授权,详细参见项目内  
 
-通过info.add...为用户(完成认证的user)赋予权限
+---  
 
-shiroConfig会最终进行auth&author的校验,满足条件进行放行
+## 关于shiro中注解的使用
+### 一共5个重要注解
+注解优先级:当一个类/方法/变量存在复数个下列注解时  
+会按照下列注解的顺序依次进行验证(而非开发者进行注解的顺序),返回false则停止
 
-    
-
-### 关于shiro中注解的使用
-#### 5个注解
-注解优先级:当一个类/方法/变量存在复数个下列注解时,会按照下列注解的顺序依次进行验证(而非开发者进行注解的顺序),返回false则停止
-
-- @RequiresRoles
+- `@RequiresRoles`
 当前Subject需拥有指定的角色,如无则方法不会执行并抛出UnauthorizedException异常
 
-- @RequiresPermissions
+- `@RequiresPermissions`
 当前Subject需拥有某些指定权限,如无则方法不会被执行并抛出UnauthorizedException异常
 
->1. ↑为资源权限控制的主要方案(主要注解)
->2. ↑注解的value可以为多个,可以通过logical=Logical.OR 或者AND(默认)的方式来使角色/权限为与/或的条件
->
->   例如:```@RequiresPermissions(value={"perm:admin","perm:manger"},logical=Logical.OR)```  
->
->   只要权限perm满足其中一个便可放行
+  1. ↑为资源权限控制的主要方案(主要注解)
+  2. ↑注解的value可以为多个,可以通过logical=Logical.OR 或者AND(默认)的方式来使角色/权限为与/或的条件
+  例如:```@RequiresPermissions(value={"perm:admin","perm:manger"},logical=Logical.OR)```    
+  只要权限perm满足其中一个便可放行  
     
-- @RequiresAuthentication
+- `@RequiresAuthentication`  
 验证用户是否登录，等同于方法subject.isAuthenticated() 结果为true时
 
-- @RequiresUser
-验证用户是否被记忆，user有两种含义：
-一种是成功登录的（subject.isAuthenticated() 结果为true）
-另外一种是被记忆的（subject.isRemembered()结果为true）
+- `@RequiresUser`
+验证用户是否登录，此处有2种成功访问的方式:  
+1. 成功登录（subject.isAuthenticated() 结果为true）  
+2. 是被记忆的（subject.isRemembered()结果为true）  
 
-- @RequiresGuest 验证是否是一个guest的请求
-与@RequiresUser完全相反,RequiresUser  == !RequiresGuest,且此时subject.getPrincipal() 结果为null.
+- `@RequiresGuest` 
+验证是否是一个guest的请求  
+与@RequiresUser完全相反,RequiresUser  == !RequiresGuest    
+如果@RequiresUser中的规则被允许,则这里会被拒绝  
+此时subject.getPrincipal() 结果为null  
 
 验证顺序(由上往下):
 - RequiresRoles 
@@ -105,7 +111,9 @@ shiroConfig会最终进行auth&author的校验,满足条件进行放行
 - RequiresGuest
 
 ### 开启shiro注解的步骤
-1. ShiroConfig类中添加下列bean:
+
+1. ShiroConfig类中添加下列bean:  
+ 
 ```java
 //Shiro生命周期处理器
 @Bean(name = "lifecycleBeanPostProcessor")
@@ -136,7 +144,15 @@ public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(D
 }
 ```
 
-2. 创建一个异常捕获器ExceptionHandleController
+2. 在controller的类/方法上添加相应注解即可使用
+
+---
+
+## 关于未授权的异常捕获
+
+可以创建一个异常捕获器ExceptionHandleController来进行异常捕获  
+出现授权错误时会跳转至相应页面  
+
 ```java
 @ControllerAdvice
 public class ExceptionHandleController {
@@ -153,5 +169,3 @@ public class ExceptionHandleController {
 }
 
 ```
-
-3. 在controller的类/方法上添加相应注解

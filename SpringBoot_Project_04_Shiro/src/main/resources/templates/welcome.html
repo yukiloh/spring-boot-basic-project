@@ -6,14 +6,15 @@
 </head>
 <body>
 
-<div th:text="${userName}+',你好'" style="color: chocolate"></div>
-<hr>
+<!--/*@thymesVar id="username" type=""*/-->
+<div>
+    用于演示shiro,首先需要登录账号,然后进入各个页面,执行相应的权限操作
+</div>
 <div><a href="/login">登陆</a></div>
-
 <div><a href="/user/add">添加用户(需要add权限)</a></div>
 <div><a href="/user/update">更新用户(需要update权限)</a></div>
 <div><a href="/user/admin">admin(需要admin角色)</a></div>
-<div><a href="/user/bothPerm">add&update(需要a&u权限)</a></div>
+<div><a href="/user/bothPerm">add&update(需要add和update权限)</a></div>
 <div><a href="/user/forgetPassword">忘记密码(不需要登陆)</a></div>
 
 

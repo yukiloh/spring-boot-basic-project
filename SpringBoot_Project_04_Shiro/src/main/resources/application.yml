@@ -8,6 +8,6 @@ spring:
       password: zou9RYdAGW2MKoBY
       driver-class-name: org.mariadb.jdbc.Driver
 
-# 未知用途;原用于开启shiro注解
-#  aop:
-#    proxy-target-class: true
+  # 用于代理shiro中的配置文件
+  aop:
+    proxy-target-class: true

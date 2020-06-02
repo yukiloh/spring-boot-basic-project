@@ -4,6 +4,14 @@ public class Role {
     private int rid;
     private String roleName;
 
+    @Override
+    public String toString() {
+        return "Role{" +
+                "rid=" + rid +
+                ", roleName='" + roleName + '\'' +
+                '}';
+    }
+
     public int getRid() {
         return rid;
     }

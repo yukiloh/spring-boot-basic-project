@@ -65,6 +65,7 @@
             <artifactId>mariadb-java-client</artifactId>
         </dependency>
 
+        <!--springboot的apo模块,因为shiro的配置只能依赖于xml,通过aop使用java的形式对shiro进行配置-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>

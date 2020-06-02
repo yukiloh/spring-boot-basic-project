@@ -10,54 +10,32 @@
 <div>
     <h4>用户登陆</h4>
     <form action="/toLogin">
-        <table border="0">
+        <table>
             <tr>
                 <td>用户名</td>
-                <td><input type="text" name="username"><br></td>
-                <td>user1:111111=update</td>
+                <td><input type="text" name="username" value="admin"><br></td>
             </tr>
             <tr>
                 <td>密码</td>
-                <td><input type="password" name="password"></td>
-                <td>user2:111111=add</td>
-            </tr>
-            <tr>
-                <td><p id="question" th:text="${question}"></p></td>
-                <td><input id="input" value=""></td>
-                <td><span id="hint" style="color: darkred"></span></td>
+                <td><input type="password" name="password" value="admin"></td>
             </tr>
         </table>
-        <input type="submit" value="提交" id="sbmt" disabled>
+        <input type="submit" value="提交" id="submit" >
+        <div th:text="${msg}" style="color: salmon">msg</div>
+        <hr>
 
     </form>
-    <span th:text="${msg}" style="color: darkred"></span>
+    <div>
+        <div>用户列表一栏</div>
+        <div>admin,pw:admin,perm:add and perm:update</div>
+        <div>user1,pw:111111,perm:update</div>
+        <div>user2,pw:111111,perm:add</div>
+    </div>
+
 </div>
 
-
-
-<p hidden id="correct_answer" th:text="${answer}"></p>
-
-
-
-
 <script>
-    $(function () {
-        $("#input").focusout(function () {
-            $(function () {
-                var answer = $("#input").val();
-                var correct_answer = $("#correct_answer").html();
-                // alert(correct_answer);           /*验证获取到correct_answer(从p标签)*/
-                var result = answer == correct_answer ? true : false;
-                if (result == true) {
-                    // alert(result == true ? '答对啦!':'再来一次');
-                    $("#hint").html("回答正确");
-                    $("#sbmt").removeAttr("disabled");
-                }else $("#hint").html("&nbsp你是猪吧¿");
 
-            });
-
-        })
-    })
 </script>
 </body>
 </html>

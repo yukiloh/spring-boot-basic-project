@@ -4,6 +4,13 @@ public class Permission {
     private int pid;
     private String permName;
 
+    @Override
+    public String toString() {
+        return "Permission{" +
+                "pid=" + pid +
+                ", permName='" + permName + '\'' +
+                '}';
+    }
 
     public int getPid() {
         return pid;

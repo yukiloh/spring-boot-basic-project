@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @RequiresAuthentication
 @SpringBootApplication
-public class SpringBootProject04ShiroApplication {
+public class ShiroApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootProject04ShiroApplication.class, args);
+        SpringApplication.run(ShiroApplication.class, args);
     }
 
 }
