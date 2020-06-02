@@ -51,7 +51,7 @@
 
 2. 在入口类添加@MapperScan,并指定mapper的路径(可以添加多个)
 
-例如:@MapperScan("com.example.AdminLET.mapper")
+例如:@MapperScan("com.example.adminLET.mapper")
 
 
 

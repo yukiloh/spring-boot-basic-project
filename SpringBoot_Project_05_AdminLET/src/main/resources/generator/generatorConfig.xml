@@ -26,14 +26,14 @@
         </jdbcConnection>
 
         <!-- *配置实体类存放路径 -->
-        <javaModelGenerator targetPackage="com.example.AdminLET.domain" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="com.example.adminLET.domain" targetProject="src/main/java"/>
 
         <!-- 配置 XML 存放路径 -->
         <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
 
         <!-- *配置 DAO 存放路径 -->
         <javaClientGenerator
-                targetPackage="com.example.AdminLET.mapper"
+                targetPackage="com.example.adminLET.mapper"
                 targetProject="src/main/java"
                 type="XMLMAPPER"/>
 

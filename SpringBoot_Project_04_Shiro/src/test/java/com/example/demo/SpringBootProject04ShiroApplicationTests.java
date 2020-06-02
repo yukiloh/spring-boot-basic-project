@@ -1,7 +1,7 @@
 package com.example.demo;
 
-import com.example.demo.mapper.IVerificationQuestionMapper;
-import com.example.demo.model.VerificationQuestion;
+import com.example.shiro.mapper.IVerificationQuestionMapper;
+import com.example.shiro.model.VerificationQuestion;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -53,7 +53,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.example.demo.ServiceSSOApplication</mainClass>
+                    <mainClass>com.example.sso.ServiceSSOApplication</mainClass>
                 </configuration>
             </plugin>
 

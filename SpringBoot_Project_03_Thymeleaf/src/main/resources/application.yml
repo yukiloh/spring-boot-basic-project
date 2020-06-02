@@ -1,7 +1,19 @@
 spring:
   thymeleaf:
-#    关闭缓存
+#    关闭缓存,不利于开发.生产环境可以开启
     cache: false
+
+#    设置thymeleaf的5模式
+#    mode: LEGACYHTML5  #设置为传统thml模式,语法可以不那么严格.已被废弃,不推荐使用
     mode: HTML
-#    使用过往HTML5模式；正常的html5对语法较为严格，必须存在结束标签;已弃用
-#    mode: LEGACYHTML5
+    encoding: UTF-8  #也可以在html页面设置<meta charset="UTF-8"/>
+
+    # thymeleaf读取页面的默认路径,默认设置为 classpath:/templates/
+    prefix: classpath:/templates/
+    # 匹配页面后缀
+    suffix: .html
+
+  resources:
+    # 用于描述静态资源的存放位置，下为springboot默认配置(list)，会**按照顺序**依次查找
+    static-locations: classpath:/public,classpath:/static,classpath:/resources,classpath:/META-INF/resources
+

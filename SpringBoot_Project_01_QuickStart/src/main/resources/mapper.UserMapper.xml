@@ -4,9 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<!--yml中配置-->
-<mapper namespace="boot.dao.IUserDao">
-    <select id="findAll" resultType="boot.domain.User">
+<!--当通过xml来配置mybatis时.另外需要在yml中开启读取本xml的配置-->
+<mapper namespace="com.example.quickstart.dao.IUserDao">
+    <select id="findAll" resultType="com.example.quickstart.domain.User">
         select * from account
     </select>
 </mapper>

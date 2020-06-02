@@ -4,12 +4,13 @@
 #<include>**/application*.yml</include>
 #<include>**/application*.yaml</include>
 #<include>**/application*.properties</include>
+#本案例只使用yml
 
+# 设定运行的端口
 server:
   port: 8080
 
-#=======================================================================================================================
-#此配置包会自动注入spring容器,因此Controller类可以通过@Value调用配置文件中的数据
+# 用于供@Value调用配置文件中的数据
 name: goudan
 
 #配置字符串集合的示例
@@ -22,14 +23,28 @@ area:
   name: area1
   location: location
 
-#=======================================================================================================================
-#数据库配置信息
 spring:
+
+  # mvc的配置
+  mvc:
+    view:
+      # spring默认访问/resources/static/ 下的页面.thymeleaf则默认为/resource/templates下
+      prefix: /templates/
+      suffix: .html
+
+#  resources:
+#   # spring.resources.static-locations 用于描述静态资源的存放位置，下为springboot默认配置(list)，会依次查找
+#    static-locations: classpath:/static,classpath:/public,classpath:/resources,classpath:/META-INF/resources
+
+  # 数据库配置信息
+  # mysql的配置
 #  datasource:
 #    driver-class-name: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql://localhost:3306/ssm?serverTimezone=UTC
 #    username: root
 #    password: 111111
+
+  # maria的配置
   datasource:
     url: jdbc:mariadb://192.168.1.90:3306/springbootProject
     hikari:
@@ -37,10 +52,9 @@ spring:
       password: zou9RYdAGW2MKoBY
       driver-class-name: org.mariadb.jdbc.Driver
 
-#配置mybatis信息
-#加载映射文件Mapper.xml
+# # 当使用xml来配置mybatis时(加载映射文件Mapper.xml)
 #mybatis:
 #  mapper-locations: classpath:*Mapper.xml
-  #pojo别名扫描
+#  # pojo别名扫描
 #  type-aliases-package: boot.domain
 
