@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class PostServiceImpl implements PostService {
 
     @Autowired
-    private PostsTableMapper postsTableMapper;
+    private PostsTableMapper postsTableMapper;  //因为使用tk.mybatis,此处会报错
 
     @Override
     public PostsTable selectOne(String guid) {

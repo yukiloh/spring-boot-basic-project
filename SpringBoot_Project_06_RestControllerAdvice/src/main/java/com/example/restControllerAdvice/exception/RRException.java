@@ -1,8 +1,11 @@
 package com.example.restControllerAdvice.exception;
 
+/**
+ * 自定义异常
+ */
 public class RRException extends RuntimeException {
-    /*serialVersionUID:主要用于版本控制
-    * 序列化和反序列化依赖于SUID，如果数值不一会出现无法序/反序列化*/
+    //serialVersionUID:主要用于版本控制
+    //序列化和反序列化依赖于SUID，如果数值不一会出现无法序/反序列化
     private static final long serialVersionUID = 1L;
 
     private String msg;

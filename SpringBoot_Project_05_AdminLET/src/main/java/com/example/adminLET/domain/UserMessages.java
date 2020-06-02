@@ -4,6 +4,10 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * 用户的消息
+ */
+
 @Data
 public class UserMessages implements Serializable {
     private Integer total;

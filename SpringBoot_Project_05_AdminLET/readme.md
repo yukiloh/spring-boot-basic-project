@@ -1,7 +1,15 @@
-# 本项目用于测试展示adminLET模板，iframe标签，vue等工具整合的使用
+# 本项目用于展示基于adminLET模板而生成的页面
+期间会使用到MBG,TKMybatis,adminLET模板，iframe标签，vue等工具整合的使用  
+该项目是我在学习js(系统的),vue(完整的),jpa之前所做的项目,现在看起来非常简陋  
 
+## 关于mybatis-generator(MBG)的使用
 
-#### 关于mybatis-generator(MBG)的使用
+可以根据model自动生成表格,可以和tk.mybatis合用来实现jpa的效果  
+与jpa不同的是,mbg根据数据库表来生成实体类,jpa则是根据实体类生成数据库表        
+虽然在学习了jpa后我觉得这有点脱裤子放屁.而且分页还需要依赖GitHubPage这样的插件,jps是可以自动生成分页信息的  
+
+### 使用步骤
+
 1. 添加依赖依赖:(注意修改generatorConfig.xml的位置和依赖的sql依赖,此处是maria)
 ```xml
 <build>
@@ -17,7 +25,7 @@
                 <verbose>true</verbose>
             </configuration>
             <dependencies>
-                <!--此处不是mysql的依赖-->
+                <!--数据库为maria-->
                 <dependency>
                     <groupId>org.mariadb.jdbc</groupId>
                     <artifactId>mariadb-java-client</artifactId>
@@ -36,80 +44,24 @@
 
 ```
 
-2. 添加generatorConfig.xml,配置其中的自定义属性
+2. 添加generatorConfig.xml,配置其中的自定义属性(在xml中查看详细)
 
-3. 通过maven的plugins生成
+3. 通过maven的plugins生成相关数据
 
-#### 关于tk.mybatis
-国人制作的一款,提供通用单表增删改查的工具(不支持通用多表联合查询!)
 
-1. 创建自定义Mapper类(需要指定泛型),可以继承Mapper等
+## 关于tk.mybatis
 
-例如:public interface MyMapper<T> extends Mapper<T>, MySqlMapper<T> {
+国人制作的一款,提供通用单表增删改查的工具(不支持通用多表联合查询,我提了issue了)
 
+1. 创建自定义Mapper类(需要指定泛型),选择需要继承Mapper(来实现不同的sql语句,类似于jps的repository)  
+例如:
+```java
+public interface MyMapper<T> extends Mapper<T>, MySqlMapper<T> {
+//...
+}
+```
 详细接口文档:https://mapperhelper.github.io/all/
 
 2. 在入口类添加@MapperScan,并指定mapper的路径(可以添加多个)
-
-例如:@MapperScan("com.example.adminLET.mapper")
-
-
-
-
-
-
-
-
-
-
-
-#### 备份数据
-
-var vmMessages = new Vue({
-        el: "#messages",
-        data: {
-            messages: [
-                {
-                    message: [
-                        {username: "Tom"},
-                        {message: "我下面有人"},
-                        {time: "1小时以前"},
-                        {avatar: "/static/img/user1-128x128.jpg"},
-
-                    ]
-                },
-                {
-                    message: [
-                        {username: "Jerry"},
-                        {message: "我上面有人"},
-                        {time: "1小时以前"},
-                        {avatar: "/static/img/user8-128x128.jpg"},
-                    ]
-                },
-                {
-                    message: [
-                        {username: "Spark"},
-                        {message: "你们俩等着"},
-                        {time: "1小时以前"},
-                        {avatar: "/static/img/user6-128x128.jpg"},
-                    ]
-                },
-            ],
-        }
-    });
-    
-    
-    
-{[{"account": {"uuid": 114514,"account": "admin@admin.com","perm": "admin","info": "管理员账号","lastLoginGMT": "今日"}"account": {"uuid": 1919}]"account": "admin@admin.com","perm": "admin","info": "管理员账号","lastLoginGMT": "今日"}}]}
-
-
-
-
-
-
-
-
-
-
-
+例如:`@MapperScan("com.example.adminLET.mapper")`
 

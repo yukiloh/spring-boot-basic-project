@@ -2,11 +2,11 @@
 <html lang = "en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset = "UTF-8">
-    <title>my info</title>
+    <title>index</title>
 </head>
 <body>
-当ExceptionHandler返回obj类型的结果时,会回到原controller指向(return)的路径
+
 <!--/*@thymesVar id="msg" type="com.example.restControllerAdvice.exception.GlobalExceptionHandle"*/-->
-<div th:text="${msg}"></div>
+<div>你输入的id是: <span th:text="${msg}"></span></div>
 </body>
 </html>

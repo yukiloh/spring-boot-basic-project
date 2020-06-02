@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * 用户的通知
+ */
 @Data
 public class UserNotification implements Serializable {
     private Messages messages;
