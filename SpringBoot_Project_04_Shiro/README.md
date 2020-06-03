@@ -25,7 +25,7 @@ realm可以理解为进行验证的地方,**是shiro连接数据(数据库)的�
 </dependency>
 ```
 
-sql语句在/resources/sql 中,需要自行配置yml中的sql
+sql语句在/resources/sql 中,另外需要自行配置yml中的数据库信息
 
 ## shiro的基础创建步骤
 

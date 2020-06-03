@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+
+    url: jdbc:mysql://192.168.1.90:3306/jwt-test
+    username: root
+    password: zou9RYdAGW2MKoBY
+
+mybatis:
+  config-location: classpath:mybatis.xml
+
