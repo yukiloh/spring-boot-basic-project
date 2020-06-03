@@ -24,12 +24,12 @@ springboot继承jwt进行用户认证的演示,原博文:https://www.jianshu.com
 }
 ```
 
-2. 进行登陆(POST) http://localhost:8080/api/login?张三=123456  
+2. 进行登陆(POST) localhost:8080/api/login?username=zhangsan&password=123456  
 返回结果: 
 ```json
 {
     "user": {
-        "username": "张三",
+        "username": "zhangsan",
         "password": "123456",
         "id": "1"
     },
