@@ -45,7 +45,6 @@ public class ShiroConfig {
 
         //设置anon,指定不拦截的页面
         filterChainDefinitionMap.put("/user/forgetPassword","anon");
-        filterChainDefinitionMap.put("/static/libs/jquery-3.4.1.js","anon");
         //--路径过滤设置完毕--
 
         //设置登陆页面,进入需认证的authc页面失败后会跳转至登陆页面
