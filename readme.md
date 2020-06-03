@@ -1,20 +1,20 @@
 # 个人的spring boot相关学习笔记
 
 - quickstart  
-一些springboot基础用法
+包含一些springboot基础用法  
 
-- redis and transaction  
-springboot 结合 redis 和 spring 中有关事务 transaction 的用法
+- redis
+springboot中使用redis(spring-boot-starter-data-redis)
 
 - thymeleaf  
-springboot 结合 thymeleaf 的用法
+springboot中使用thymeleaf
 
 - shiro  
-springboot 结合 shiro 的用法
+springboot中使用shiro
 
 - easy mybatis  
-springboot 中使用 mybatis-generator 和 tk.mybatis(通用mapper)  
+springboot中使用mybatis-generator和tk.mybatis(通用mapper)  
 
 - restControllerAdvice  
-springboot 中异常捕获的用法  
+springboot中异常捕获的方式  
 
