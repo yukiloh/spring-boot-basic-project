@@ -16,5 +16,8 @@ springboot中使用shiro
 springboot中使用mybatis-generator和tk.mybatis(通用mapper)  
 
 - restControllerAdvice  
-springboot中异常捕获的方式  
+springboot中异常捕获的方式
+
+- jwt 
+springboot结合jwt的案例  
 
