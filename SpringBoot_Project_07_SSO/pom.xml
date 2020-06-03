@@ -10,7 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>spring-cloud-service-sso</artifactId>
+    <artifactId>SpringBoot_Project_07_SSO</artifactId>
     <groupId>com.example</groupId>
     <packaging>jar</packaging>
 

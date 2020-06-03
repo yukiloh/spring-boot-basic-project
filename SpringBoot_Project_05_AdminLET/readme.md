@@ -1,6 +1,7 @@
 # 本项目用于展示基于adminLET模板而生成的页面
 期间会使用到MBG,TKMybatis,adminLET模板，iframe标签，vue等工具整合的使用  
 该项目是我在学习js(系统的),vue(完整的),jpa之前所做的项目,现在看起来非常简陋  
+todo 需要整理的东西非常多...
 
 ## 关于mybatis-generator(MBG)的使用
 

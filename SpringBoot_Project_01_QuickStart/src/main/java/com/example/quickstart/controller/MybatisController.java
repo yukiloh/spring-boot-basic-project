@@ -1,6 +1,5 @@
 package com.example.quickstart.controller;
 
-import com.example.quickstart.dao.IUserDao;
 import com.example.quickstart.domain.User;
 import com.example.quickstart.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +19,21 @@ public class MybatisController {
 
     @GetMapping("/check-database")
     public List<User> quickQuery(){
+
+        /*
+         * springboot中事务开启的方法:
+         * 1.在入口Application中开启@EnableTransactionManagement
+         * 2.在@Service下的方法上添加@Transactional
+         * ※注意：
+         * @Transactional只能注解至public上
+         *
+         * 关于回滚失败：
+         * 对于空指针、byZero之类的checked异常可以被回滚
+         * 网络失败、文件读写失败等是无法进行回滚的
+         *
+         * 事务会增加线程开销
+         * */
+
         System.out.println("checking database");
         return userService.findAll();
     }

@@ -58,3 +58,8 @@ spring:
 #  # pojo别名扫描
 #  type-aliases-package: boot.domain
 
+
+# 用于给TestProperties提供数据
+test:
+  var1: test
+  var2: 114514

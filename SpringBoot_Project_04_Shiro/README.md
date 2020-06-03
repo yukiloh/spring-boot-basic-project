@@ -10,8 +10,8 @@ shiro本身比较复杂,不是一篇md能说清楚的,这里只能略微指教�
 ## shiro的核心运作方式
 
 开发者通过shiro提供的subject来获取用户，并交由安全管理器securityManger,再去关联realm实现权限认证  
-realm可以理解为进行验证的地方,是shiro连接数据(数据库)的桥梁  
-如果有多套规则需要验证(比如支付宝登录,微信登陆,微博登录,手机号登录...)则需要创建多个realm  
+realm可以理解为进行验证的地方,**是shiro连接数据(数据库)的桥梁**  
+如果有多套规则(比如支付宝登录,微信登陆...)则需要创建多个realm  
 全局搜索`securityManager.setRealms`可以看到在那里如何设置多个realm
 
 ## 依赖和sql
