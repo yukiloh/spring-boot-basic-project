@@ -4,9 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>SpringBoot_Project</groupId>
-    <artifactId>SpringBoot_Project_01_QuickStart</artifactId>
+    <groupId>com.example</groupId>
+    <artifactId>quickstart</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>SpringBoot_Project_01_Quickstart</name>
 
     <!--parent标签：继承；springboot要求项目必须继承起步依赖spring-boot-start-parent-->
     <parent>

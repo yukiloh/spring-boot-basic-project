@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!-- mbg配置文件,根据下述配置来完成实体类的创建.需要先编写jdbc.properties设置数据库连接信息 -->
+<!-- 注释中标记有*的地方需要重写-->
+
+<generatorConfiguration>
+    <!-- *引入数据库连接配置 -->
+    <properties resource="jdbc.properties"/>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!-- *设置 tk.mybatis 的路径.通过tk.mybatis来生成实体类 -->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.mapper.MyMapper"/>
+        </plugin>
+
+        <!-- 配置数据库连接 -->
+        <jdbcConnection
+                driverClass="${jdbc.driverClass}"
+                connectionURL="${jdbc.connectionURL}"
+                userId="${jdbc.username}"
+                password="${jdbc.password}">
+        </jdbcConnection>
+
+        <!-- *配置实体类存放路径 -->
+        <javaModelGenerator targetPackage="com.example.easymybatis.domain" targetProject="src/main/java"/>
+
+        <!-- 配置 mapper.xml 存放路径 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+
+        <!-- *配置 DAO 存放路径 -->
+        <javaClientGenerator
+                targetPackage="com.example.easymybatis.mapper"
+                targetProject="src/main/java"
+                type="XMLMAPPER"/>
+
+
+        <!-- *配置需要指定生成的数据库和表，tableName ="%" 代表所配置的数据库下的所有表 -->
+        <!--注意:catalog="service-admin" 需要根据config指定的数据库路径,有选择的填写!!(错误点:错误的填写了catalog,导致查询时找不到对应的表)-->
+        <table tableName="user_table">
+            <!-- 设置主键等参数-->
+            <!--关于sqlStatement,后期修改可参考: https://mybatis.org/generator/configreference/generatedKey.html-->
+            <generatedKey column="uid" sqlStatement="Mysql" identity="false"/>
+        </table>
+
+        <!-- 如果存在多张表,则继续添加table标签,注意修改tableName和catalog-->
+
+    </context>
+</generatorConfiguration>

@@ -11,7 +11,7 @@
     <groupId>com.example</groupId>
     <artifactId>SpringBoot_Project_10_oAuth</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>SpringBoot_Project_10_oAuth</name>
+    <name>oAuth</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

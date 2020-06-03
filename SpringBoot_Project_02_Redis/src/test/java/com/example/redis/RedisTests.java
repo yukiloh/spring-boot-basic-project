@@ -185,5 +185,6 @@ public class RedisTests {
     //补充: redis也存在集群中的哨兵模式，只需要在配置文件中添加sentinel配置项即可（已写入yml中）
 
     //关于redis的事务: https://www.runoob.com/redis/redis-transactions.html
+    //https://www.cnblogs.com/DeepInThought/p/10720132.html
 
 }

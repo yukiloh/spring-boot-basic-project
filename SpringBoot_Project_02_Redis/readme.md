@@ -31,6 +31,4 @@ idea的话可以点入artifactId查看到
 - `RedisTests` springboot中redis相关的使用(基于spring-boot-starter-data-redis依赖)
 - `LombokTest` Lombok的使用展示(实体类在/model/UserWithLombok.java中)
 
-todo: 底层原理以及
-
 
