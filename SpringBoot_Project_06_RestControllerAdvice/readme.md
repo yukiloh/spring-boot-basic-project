@@ -19,12 +19,4 @@
 
 主要用于版本控制,序列化和反序列化依赖于SUID，如果数值不固定会出现无法序/反序列化的情况
 
-## 拓展补充关于@InitBinder(我也忘记这个干啥用的了,相关代码已经删除)
-
-一般用于input标签中(表单),使用ognl表达式向后端发送数据(user.name,user.id; addr.name,addr.id)  
-遇到后缀相同的时候springMVC无法进行解析,因此需要使用@InitBinder来区分各自的后缀  
-
->参考:https://blog.csdn.net/qq_24505127/article/details/54236583
-
-
 

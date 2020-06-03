@@ -69,7 +69,7 @@ public interface MyMapper<T> extends Mapper<T>, MySqlMapper<T> {
 }
 ```
 
-参考地址:  https://mapperhelper.github.io/all/  
+使用参考:  https://mapperhelper.github.io/all/  
 
 2. 在入口类添加@MapperScan,并指定mapper的路径(如需要多个可以添加数组)
 例如:`@MapperScan("com.example.easymybatis.mapper")`

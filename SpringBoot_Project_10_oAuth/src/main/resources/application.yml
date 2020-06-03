@@ -1,6 +1,0 @@
-spring:
-  application:
-    name: oauth2
-
-server:
-  port: 8080

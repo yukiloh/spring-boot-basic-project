@@ -12,11 +12,9 @@ springboot 结合 thymeleaf 的用法
 - shiro  
 springboot 结合 shiro 的用法
 
-- adminLET  
-springboot 结合 adminLET 模板, iframe标签, vue构建的web项目
+- easy mybatis  
+springboot 中使用 mybatis-generator 和 tk.mybatis(通用mapper)  
 
 - restControllerAdvice  
 springboot 中异常捕获的用法
 
-- sso
-通过 springboot 实现 单点登录sso 的案例

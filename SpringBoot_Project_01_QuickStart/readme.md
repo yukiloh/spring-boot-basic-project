@@ -14,3 +14,9 @@
 - `MybatisController` 演示了如何mybatis与springboot如何结合,以及事务的开启
 
 
+## 拓展补充:关于@InitBinder(项目中未使用)
+
+一般用于input标签中(表单),使用ognl表达式向后端发送数据(user.name,user.id; addr.name,addr.id)  
+遇到后缀相同的时候springMVC无法进行解析,因此需要使用@InitBinder来区分各自的后缀  
+
+>参考:https://blog.csdn.net/qq_24505127/article/details/54236583
