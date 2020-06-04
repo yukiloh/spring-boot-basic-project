@@ -1,7 +1,8 @@
 # springboot-jwt
 
-springboot继承jwt进行用户认证的演示,原博文:https://www.jianshu.com/p/e88d3f8151db  
-本人在他项目基础上实现了jwt的其他操作,并补充了其他的细节  
+springboot继承jwt进行用户认证的演示
+参考博文:https://www.jianshu.com/p/e88d3f8151db  
+  
 
 ## 主要依赖
 ```xml
@@ -14,8 +15,8 @@ springboot继承jwt进行用户认证的演示,原博文:https://www.jianshu.com
 
 ## 使用介绍
 
-在yml中配置数据库  
-.sql在/resources下,自行生成表格
+在yml中配置数据库,表格`user.sql`在/resources下  
+生成玩数据库后启动项目
 
 1. 第一次访问(GET) localhost:808/api/getMessage 时会显示
 ```json
@@ -37,7 +38,7 @@ springboot继承jwt进行用户认证的演示,原博文:https://www.jianshu.com
 }
 ```
 
-3. 复制其中的`token`至header中(key:token,value:↑的token值),再次访问 localhost:808/api/getMessage  
+3. 复制其中的`token`至header中(key:token,value:↑的token值),再次访问 localhost:8080/api/getMessage  
 你可以看到`你已通过验证`(我设置jwt过期时间为5分钟)
 
 详细关于jwt的配置可以在`JwtService`中看到

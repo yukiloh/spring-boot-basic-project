@@ -115,7 +115,7 @@ public class RedisTests {
         };
 
         //设置线程池,执行多线程
-        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        ExecutorService executorService = Executors.newFixedThreadPool(4);
         for (int i = 0; i < 50; i++) {
             executorService.submit(runnable);
         }

@@ -1,0 +1,7 @@
+spring:
+  # 配置rabbitmq服务器信息
+  rabbitmq:
+    host: 192.168.1.90
+    port: 5672
+    username: rabbit
+    password: dhnB0v42aAVs
