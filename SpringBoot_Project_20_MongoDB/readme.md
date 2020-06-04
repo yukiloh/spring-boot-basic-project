@@ -30,3 +30,36 @@
     "name":"一个优秀的废人"
 }
 ```
+
+### 创建docker-mongodb
+
+官方推荐通过docker-compose来创建  
+由于官方在某个古老版本后停止了对arm32的支持,本人表示很无奈...
+
+```yaml
+version: '3.1'
+
+services:
+  # MongoDB 数据库
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+  
+  # 图形化的 MongoDB web 客户端管理工具,可以选择不开启
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+
+```
+
+官方地址: https://hub.docker.com/_/mongo
