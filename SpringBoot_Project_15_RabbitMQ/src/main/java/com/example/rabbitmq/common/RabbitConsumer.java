@@ -15,7 +15,6 @@ public class RabbitConsumer {
     //接受消息
     @RabbitHandler
     public void process(String content){
-
         System.out.println("consumer:" + content);
     }
 }

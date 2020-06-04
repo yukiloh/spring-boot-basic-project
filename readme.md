@@ -1,5 +1,7 @@
 # 个人的spring boot相关学习笔记
 
+每一个模块分别包含相应内容
+
 - quickstart  
 包含一些springboot基础用法  
 
@@ -21,3 +23,5 @@ springboot中异常捕获的方式
 - jwt 
 springboot结合jwt的案例  
 
+- rabbitmq 
+springboot使用rabbitmq的简单  

@@ -28,10 +28,11 @@ RMQ可将消息设置为持久化、临时、或自动删除
 RMQ中的交换机exchange类似于数据通信中的交换机  
 
 - 生产者在传递消息时会附带一个ROUTING_KEY,exchange根据key指定给专用的消费者(即路由器中arp协议)  
-  (而arp伪装即伪装自己的ip地址欺骗交换机)
+  (补充,arp伪装即伪装自己的ip地址欺骗交换机)
 
-- 而RMQ Server会创建多各虚拟的Massage Broker(即VirtualHosts)
+- 而RMQ Server会创建多个虚拟的Massage Broker(即VirtualHosts)
   也即小型的MQ Server,保证边界隔离相互之间不会干扰
+  
 - 因此生产者和消费者连接RMQ Server时,需要指定一个virtual host
 
 RMQ类似于网络组网,总RMQServer即三层交换机,MiniRMQServer即下层的交换机,消费者则为最下层的各主机
