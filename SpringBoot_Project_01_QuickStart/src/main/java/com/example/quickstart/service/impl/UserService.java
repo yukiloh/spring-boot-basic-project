@@ -14,8 +14,12 @@ public class UserService {
     @Autowired
     private IUserDao userDao;
 
-    @Transactional  //启用事务
     public List<User> findAll() {
         return userDao.findAll();
+    }
+
+    @Transactional  //启用事务
+    public void saveUser(User user) {
+        userDao.saveUserById(user);
     }
 }

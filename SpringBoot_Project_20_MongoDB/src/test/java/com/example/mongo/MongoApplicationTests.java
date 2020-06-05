@@ -8,7 +8,7 @@ class MongoApplicationTests {
 
     @Test
     void contextLoads() {
-        System.out.println(13&17);
+
     }
 
 }

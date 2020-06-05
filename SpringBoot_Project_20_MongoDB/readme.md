@@ -1,8 +1,8 @@
 # 在springboot中使用mongodb的案例
 
-使用spring提供的spring-data-mongodb来操作数据库,非常类似于spring-data-jpa
-参考: https://www.jianshu.com/p/0d49aa4ffc75
-原文非常完善,在此基础上补充一些建表时的注解以及其他查询方式
+使用spring提供的spring-data-mongodb来操作数据库,使用方法极其类似于spring-data-jpa
+本项目参考: https://www.jianshu.com/p/0d49aa4ffc75
+原文非常完善,本项目在此基础上补充一些建表时的注解以及其他查询方式
 
 ## 依赖
 ```xml
@@ -88,3 +88,59 @@ mongod --dbpath d:\mongodb\data\db
 需要关闭时可以ctrl + c
 
 参考:  https://www.runoob.com/mongodb/mongodb-window-install.html
+
+## mongodb的概念
+
+- mongodb通过BSON(Binary JSON)进行数据存储/交换
+- 对比mysql,mongodb作为非关系型数据库数据结构更灵活
+- 善于处理文档型数据,查询有索引的字段时速度不亚于mysql,对于非索引字段可能会快于mysql
+- mongodb并非直接持久化,获取数据后会先存入内存(并存入defer队列),再通过专门的线程来处理负责处理defer队列实现持久化
+- 4.0后支持了事务
+- 当空间不足时会申请空间,但往往预分配空间很大
+- 删除数据时并只会标记该数据为"已删除"
+- gui工具不如mysql那样成熟
+
+### 与mysql中的名词对比
+
+| Mysql  | MongoDB    |
+|--------|------------|
+| Table  | Collection |
+| Row    | Document   |
+| Column | Field      |
+
+### crud语句对比
+
+**插入数据**
+
+- MySQL  
+  `INSERT INTO user_table (username, age) VALUES("user01", 20)`
+ 
+- MongoDB  
+  ```mongodb
+  db.users.insert({  
+      username: "user01", 
+      age: 20, 
+  })
+  ```
+
+**查询数据**
+
+- MySQL  
+  `SELECT * FROM user_table` 
+ 
+- MongoDB  
+  `db.users.find()`
+ 
+**修改数据**
+
+MySQL  
+  `UPDATE user_table SET username = "user02" WHERE age > 19`
+ 
+MongoDB(gt:great than)  
+  ```mongodb
+  db.users.update(  
+      { age: { $gt: 19 } },
+      { $set: { username: "user02" } },
+      { multi: true }
+  )
+  ```
