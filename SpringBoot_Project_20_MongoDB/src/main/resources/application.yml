@@ -2,6 +2,6 @@ spring:
   data:
     mongodb:
       # 无密模式
-      uri: mongodb://192.168.1.90:27017/my_test
+      uri: mongodb://localhost:27017/my_test
       # 如果设置了密码
 #      uri: mongodb://name:password@localhost:27017/test

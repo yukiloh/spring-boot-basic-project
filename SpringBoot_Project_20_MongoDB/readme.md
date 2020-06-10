@@ -25,18 +25,24 @@
 
 ```json
 {
-    "studentId": "201311611405",
+    "studentId": "1145141919",
     "age":24,
     "gender":"男",
-    "name":"一个优秀的废人"
+    "name":"野兽先辈"
 }
 ```
+
+成功添加后可以在mongo中看到: 
+
+| _id                      | studentId  | age | name     | gender | _class                           |
+| ------------------------ | ---------- | --- | -------- | ------ | -------------------------------- |
+| 5ee06f5336b60a7d52d2129f | 1145141919 | 24  | 野兽先辈 | 男    | com.example.mongo.entity.Student |
 
 ## mongodb的安装
 
 ###创建docker-mongodb
 
-官方推荐通过docker-compose来创建,如果win10为企业版推荐使用此方法  
+官方推荐通过docker-compose来创建  
 
 ```yaml
 version: '3.1'
@@ -62,6 +68,12 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
 
+```
+
+docker运行的命令: 
+
+```vb
+docker run --name my-mongo -p 27017:27017 -d mongo:latest
 ```
 
 官方的docker镜像地址: https://hub.docker.com/_/mongo
