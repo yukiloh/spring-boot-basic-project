@@ -2,6 +2,9 @@ package com.example.redis.model;
 
 import java.io.Serializable;
 
+/**
+ * 用于演示的实体类,必须要序列化
+ */
 public class User implements Serializable {
     private Integer id;
     private String username;
