@@ -9,9 +9,9 @@
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>com.example</groupId>
-  <artifactId>jackson</artifactId>
+  <artifactId>security</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>SpringBoot_Project_07_Jackson</name>
+  <name>SpringBoot_Project_04_Security</name>
   <description>Demo project for Spring Boot</description>
 
   <properties>
@@ -21,7 +21,12 @@
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
     <dependency>
@@ -35,19 +40,14 @@
         </exclusion>
       </exclusions>
     </dependency>
-
-    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
     <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <!--由springboot管理版本-->
-<!--      <version>2.11.0</version>-->
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-test</artifactId>
+      <scope>test</scope>
     </dependency>
-
-    <!-- 让jackson对yml格式的支持 -->
     <dependency>
-      <groupId>com.fasterxml.jackson.dataformat</groupId>
-      <artifactId>jackson-dataformat-yaml</artifactId>
+      <groupId>org.apache.tomcat.embed</groupId>
+      <artifactId>tomcat-embed-core</artifactId>
     </dependency>
   </dependencies>
 

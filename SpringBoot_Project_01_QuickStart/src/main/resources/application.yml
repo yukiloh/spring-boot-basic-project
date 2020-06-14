@@ -24,13 +24,14 @@ area:
   location: location
 
 spring:
-
   # mvc的配置
   mvc:
     view:
-      # spring默认访问/resources/static/ 下的页面.thymeleaf则默认为/resource/templates下
-      prefix: /templates/
+#       spring默认访问/resources/static/templates下的web页面.而thymeleaf则默认为/resources/templates下
+#       prefix会强制默认添加/resources/static/的前缀,可能和static-locations有关,没有仔细研究.据说5.0后默认路径又改了
+      prefix: /templates/test/
       suffix: .html
+
 
 #  resources:
 #   # spring.resources.static-locations 用于描述静态资源的存放位置，下为springboot默认配置(list)，会依次查找

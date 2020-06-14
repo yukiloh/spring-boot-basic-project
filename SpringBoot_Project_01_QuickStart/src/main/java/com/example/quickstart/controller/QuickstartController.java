@@ -12,7 +12,7 @@ public class QuickstartController {
     /**
      * 基础演示.通过@RequestParam接受地址中名为word的变量(如果没有则使用默认值"world",在jvm中打印,并返回字符串至前端)
      */
-    @GetMapping("/quickstart")
+    @GetMapping({"/quickstart"})
     public String quickQuery(@RequestParam(value = "word", required=false, defaultValue = "world") String word){
         String msg = "hello "+word;
         System.out.println(msg);

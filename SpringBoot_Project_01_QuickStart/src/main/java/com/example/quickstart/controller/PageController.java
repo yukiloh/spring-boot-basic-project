@@ -13,20 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class PageController {
 
-    @RequestMapping("/")
-    public String quickStart() {
+    @GetMapping("/")
+    public String index() {
         System.out.println("hello spring boot");
         return "index";
     }
 
-    /**
-     * springboot提供的标准greeting演示
-     */
-    @GetMapping("/greeting")
-    public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-
-        //返回一个greeting.html页面,会默认从resources/下查找,本案例已在yml中设置默认路径为/templates/
-        return "greeting";
-    }
 }

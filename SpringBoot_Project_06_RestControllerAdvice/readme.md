@@ -13,7 +13,7 @@
   - return可以返回一个ResponseBody(前端接受json文件)  
     或者返回String(进行html前缀匹配)  
     或者直接返回Object(Exception),此时会继续前往原controller指向的地址  
-    ※如果filter抛出异常则不会进行捕获
+    ※如果filter抛出异常则不会进行捕获(在spring-security中得到验证...)
 
 ## 关于exception中的serialVersionUID
 
