@@ -128,12 +128,13 @@ mongod --dbpath d:\mongodb\data\db
   `INSERT INTO user_table (username, age) VALUES("user01", 20)`
  
 - MongoDB  
-  ```mongodb
-  db.users.insert({  
-      username: "user01", 
-      age: 20, 
-  })
-  ```
+
+```mongodb
+db.users.insert({  
+  username: "user01", 
+  age: 20, 
+})
+```
 
 **查询数据**
 

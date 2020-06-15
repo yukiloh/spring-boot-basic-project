@@ -6,16 +6,22 @@
 
 - redis,springboot中使用redis(spring-boot-starter-data-redis)
 
-- thymeleaf,springboot中使用thymeleaf
+- thymeleaf
 
-- shiro,springboot中使用shiro
+- shiro
+
+- security,演示了如何使用spring-security,分4种方式,循序渐进的介绍配置方法
 
 - easy mybatis,springboot中使用mybatis-generator和tk.mybatis(通用mapper)  
+  以此来简化mybatis的配置  
 
-- restControllerAdvice,springboot中异常捕获的方式
+- restControllerAdvice,springboot中异常捕获的方式.演示了全局异常的捕获
 
-- jwt,springboot结合jwt的案例  
+- jackson,和springboot无关,方便查询因此放在这里
 
-- rabbitmq,springboot使用rabbitmq的简单案例  
+- jwt,演示了在springboot中,通过java-jwt来使用jwt的案例  
 
-- mongodb,springboot使用mongodb的一个案例  
+- rabbitmq,只演示了基础用法
+  todo:进行进阶用法的补充  
+
+- mongodb  
