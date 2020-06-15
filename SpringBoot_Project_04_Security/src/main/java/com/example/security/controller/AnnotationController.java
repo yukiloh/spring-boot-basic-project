@@ -14,6 +14,7 @@ import java.util.List;
  * @author yukiloh
  * @version 0.1
  * @date 2020/6/15 15:23
+ * 这里提供了一些,使用注解来进行权限限制接口
  */
 @RestController
 @RequestMapping("/annotation/")             //添加了路径前缀
@@ -43,7 +44,6 @@ public class AnnotationController {
         boolean isOk = supportForAnnotationService.deleteUser(id);
         return "成功删除用户: "+isOk;
     }
-
 
     /**
      * ====================================
@@ -85,7 +85,7 @@ public class AnnotationController {
 
     /**
      * ====================================
-     * jsr250相关的注解
+     * jsr250相关的注解.也是比较简单的注解,好处是可以允许全部和拒绝全部
      * @DenyAll      :拒绝所有访问
      * @RolesAllowed :参数中只要包含其中一个便放行.可以省略前缀ROLE_,程序会自动添加"ROLE_"
      * @PermitAll    :允许所有访问
