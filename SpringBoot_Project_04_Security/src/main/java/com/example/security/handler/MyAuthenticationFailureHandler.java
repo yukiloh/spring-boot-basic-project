@@ -26,7 +26,7 @@ public class MyAuthenticationFailureHandler implements AuthenticationFailureHand
             ,HttpServletResponse httpServletResponse
             ,AuthenticationException e
     ) throws IOException, ServletException {
-        //todo 实际业务需要对每个异常进行不同的操作
+        //todo 实际开发中,可以对每个异常进行不同的操作
         if (e instanceof BadCredentialsException ||
                 e instanceof UsernameNotFoundException) {
             throw new UsernameNotFoundException("账户名未找到或密码错误!");

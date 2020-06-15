@@ -19,7 +19,7 @@ public class GlobalExceptionHandle {
     @ExceptionHandler(RRException.class)
     public String apiExceptionHandler(RRException ex,Model model) {
         //log日志打印
-        log.error("ApiException 异常抛出:", ex);
+        log.error("ApiException 异常抛出:",ex);
 
         /*向前端发送异常信息*/
         model.addAttribute("msg",ex);

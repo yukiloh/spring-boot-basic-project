@@ -24,6 +24,7 @@ import java.util.Collection;
 @Component
 public class MyFilterInvocationSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
 
+    //添加角色的前缀,认证时spring会自动在前面添加"ROLE_"前缀
     private final String ROLE_PREFIX = "ROLE_";
 
     /**

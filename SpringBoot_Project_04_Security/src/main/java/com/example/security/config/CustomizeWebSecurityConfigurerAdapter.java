@@ -19,25 +19,41 @@ import org.springframework.security.web.access.intercept.FilterSecurityIntercept
  * WebSecurityConfigurerAdapter 权限管理的核心配置
  * 进行进阶的自定义配置
  */
-@Configuration
-//@EnableGlobalMethodSecurity     //代表开启注解,详细: https://www.jianshu.com/p/41b7c3fb00e0
+//@Configuration
 public class CustomizeWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 
+    //提供用户的数据源,service内会接入dao
     @Autowired
     private MyUserDetailsService myUserDetailsService;
 
+    //提供权限鉴定的数据源(访问对应路径需要何种角色)
     @Autowired
     private MyFilterInvocationSecurityMetadataSource myFilterInvocationSecurityMetadataSource;
 
+    //权限鉴定管理器,决定是否允许访问请求的路径
     @Autowired
     private MyAccessDecisionManager myAccessDecisionManager;
 
+    //拒绝访问控制器,当没有权限后会进行拒绝访问的操作,在这里重写业务逻辑
     @Autowired
     private MyAccessDeniedHandler myAccessDeniedHandler;
 
+    //认证失败控制器,当认证失败后会抛出各种异常(AuthenticationException)
+    //本案例中选择继续抛出,交给AuthenticationEntryPoint来处理
+    @Autowired
+    private MyAuthenticationFailureHandler myAuthenticationFailureHandler;
+
+    //用于处理认证异常AuthenticationException(用户名密码错误等)
     @Autowired
     private MyAuthenticationEntryPoint myAuthenticationEntryPoint;
 
+    //认证成功控制器.在内部编写完成认证后的逻辑
+    @Autowired
+    private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
+
+    //登出成功控制器
+    @Autowired
+    private MyLogoutSuccessHandler myLogoutSuccessHandler;
 
     /**
      * 通过定义withObjectPostProcessor方法来实现自定义认证
@@ -64,13 +80,13 @@ public class CustomizeWebSecurityConfigurerAdapter extends WebSecurityConfigurer
 //                .loginPage("/login")                                        //定义登陆页面路径(因为没有设置所以注释)
 //                .loginProcessingUrl("/login.do")                            //定义发起登陆的路径
                 .usernameParameter("username").passwordParameter("password")
-                .failureHandler(new MyAuthenticationFailureHandler())       //登陆成功时的处理
-                .successHandler(new MyAuthenticationSuccessHandler())       //登陆失败时的处理
+                .failureHandler(myAuthenticationFailureHandler)             //登陆成功时的处理
+                .successHandler(myAuthenticationSuccessHandler)             //登陆失败时的处理
                 .permitAll()
 
                 .and()
                 .logout()
-                .logoutSuccessHandler(new MyLogoutSuccessHandler())         //登出成功时的处理
+                .logoutSuccessHandler(myLogoutSuccessHandler)               //登出成功时的处理
                 .permitAll()
 
                 .and()
@@ -86,7 +102,7 @@ public class CustomizeWebSecurityConfigurerAdapter extends WebSecurityConfigurer
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(myUserDetailsService)
-                //指定加密方式,并在内部指定加密方式: password("{noop}user")
+                //指定加密方式,并在内部添加前缀,指定加密方式: password("{bcrypt}xxx")
 //                .passwordEncoder(new BCryptPasswordEncoder())
         ;
     }
