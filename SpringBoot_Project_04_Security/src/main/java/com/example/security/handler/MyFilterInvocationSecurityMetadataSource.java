@@ -49,8 +49,11 @@ public class MyFilterInvocationSecurityMetadataSource implements FilterInvocatio
     }
 
     /**
-     * 方法返回类对象是否支持校验(?)
-     * web项目一般使用FilterInvocation来判断，或者直接返回true
+     * 判断传入的数据类型是否被支持
+     * 本类中的方法getAttributes传入的对象是Object
+     * 在方法中会进行强转为FilterInvocation
+     * 因此在此通过supports方法预校验是否匹配
+     * web项目常用FilterInvocation来做判断
      */
     @Override
     public boolean supports(Class<?> aClass) {

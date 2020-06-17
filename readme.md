@@ -19,7 +19,7 @@
 
 - jackson,和springboot无关,方便查询因此放在这里
 
-- jwt,演示了在springboot中,通过java-jwt来使用jwt的案例  
+- jwt,通过java-jwt来使用jwt的案例  
 
 - rabbitmq,只演示了基础用法
   todo:进行进阶用法的补充  

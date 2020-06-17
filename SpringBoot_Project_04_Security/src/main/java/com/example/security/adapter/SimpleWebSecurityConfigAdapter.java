@@ -1,4 +1,4 @@
-package com.example.security.config;
+package com.example.security.adapter;
 
 import com.example.security.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class SimpleWebSecurityConfigAdapter extends WebSecurityConfigurerAdapter
 
     /**
      * 进行配置http相关的数据(拦截请求地址,并进行认证)
-     **/
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()                        //使用spring-security提供的表单登陆页面
@@ -32,7 +32,8 @@ public class SimpleWebSecurityConfigAdapter extends WebSecurityConfigurerAdapter
                 .anyRequest()                   //拦截任何请求
                 .authenticated()                //并需要身份认证
 
-        //你可以在源码中看到,WebSecurityConfigurerAdapter下的configure方法中,spring已经为你写上了最简配置
+        //你可以在源码中看到,WebSecurityConfigurerAdapter下的configure方法中
+        //即使你什么都不写也能进行登陆,因为spring已经为你写上了最简配置
         ;
     }
 
@@ -45,7 +46,7 @@ public class SimpleWebSecurityConfigAdapter extends WebSecurityConfigurerAdapter
         auth.inMemoryAuthentication()
             .withUser("admin")
             .password("{noop}admin")
-            .roles("ADMIN")
+            .roles("ADMIN","USER")
         ;
     }
 

@@ -1,8 +1,9 @@
-package com.example.security.config;
+package com.example.security.adapter;
 
 import com.example.security.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -27,7 +28,7 @@ public class AnnotationWebSecurityConfigAdapter extends WebSecurityConfigurerAda
 
     /**
      * 进行配置http相关的数据(拦截请求地址,并进行认证)
-     **/
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http

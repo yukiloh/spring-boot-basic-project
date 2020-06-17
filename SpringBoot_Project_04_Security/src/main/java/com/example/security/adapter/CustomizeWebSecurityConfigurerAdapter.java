@@ -1,10 +1,9 @@
-package com.example.security.config;
+package com.example.security.adapter;
 
 import com.example.security.handler.MyFilterInvocationSecurityMetadataSource;
 import com.example.security.handler.*;
 import com.example.security.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -61,7 +60,7 @@ public class CustomizeWebSecurityConfigurerAdapter extends WebSecurityConfigurer
      * 再传给 FilterInvocationSecurityMetadataSource 过滤器数据源,从中获取对应路径的权限
      * 然后传给 AccessDecisionManager 权限决策管理器,进行权限匹配
      * 如果匹配则传给 AccessDeniedHandler,执行登陆成功的操作
-     **/
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -80,8 +79,8 @@ public class CustomizeWebSecurityConfigurerAdapter extends WebSecurityConfigurer
 //                .loginPage("/login")                                        //可以自定义登陆页面路径(因为没有设置所以注释)
 //                .loginProcessingUrl("/login.do")                            //定义发起登陆的路径
                 .usernameParameter("username").passwordParameter("password")
-                .failureHandler(myAuthenticationFailureHandler)             //登陆成功时的处理
-                .successHandler(myAuthenticationSuccessHandler)             //登陆失败时的处理
+                .failureHandler(myAuthenticationFailureHandler)             //登陆失败时的处理
+                .successHandler(myAuthenticationSuccessHandler)             //登陆成功时的处理
                 .permitAll()
 
                 .and()

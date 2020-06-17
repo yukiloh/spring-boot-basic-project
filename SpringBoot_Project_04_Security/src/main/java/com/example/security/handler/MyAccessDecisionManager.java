@@ -30,7 +30,7 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
      * authentication:      包含了当前的用户信息(即UserDetailsService时获取的用户对象)
      * object:              FilterInvocation对象,可获取的例如request的web资源
      * configAttributes:    本次访问所需的权限,即FilterInvocationSecurityMetadataSource中查询到的权限(或列表)
-     **/
+     */
     @Override
     public void decide(Authentication auth, Object object, Collection<ConfigAttribute> configAttributes) {
         if (auth == null) {
@@ -59,6 +59,10 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
         throw new AccessDeniedException("权限不足!");
     }
 
+    /**
+     * 下面2个supports用来判断 decide 中的参数是否被支持
+     *
+     */
     @Override
     public boolean supports(ConfigAttribute configAttribute) {
         return true;

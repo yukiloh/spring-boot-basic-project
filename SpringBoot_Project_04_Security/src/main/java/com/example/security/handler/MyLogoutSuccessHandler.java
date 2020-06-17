@@ -13,7 +13,7 @@ import java.io.IOException;
  * @author yukiloh
  * @version 0.1
  * @date 2020/6/14 15:01
- * 账户注销处理器
+ * 账户注销成功处理器
  */
 @Component
 public class MyLogoutSuccessHandler implements LogoutSuccessHandler {

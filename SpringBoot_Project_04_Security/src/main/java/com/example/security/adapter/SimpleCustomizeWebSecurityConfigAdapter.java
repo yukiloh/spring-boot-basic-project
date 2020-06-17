@@ -1,4 +1,4 @@
-package com.example.security.config;
+package com.example.security.adapter;
 
 import com.example.security.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
