@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.thymeleaf;
 
 import org.junit.Test;
 
