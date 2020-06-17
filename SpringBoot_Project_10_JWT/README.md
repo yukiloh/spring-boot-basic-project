@@ -1,8 +1,9 @@
 # springboot-jwt
 
-springboot继承jwt进行用户认证的演示
+springboot中通过jwt进行用户认证的演示
 参考博文:https://www.jianshu.com/p/e88d3f8151db  
-  
+
+## todo 据说有spring-security-jwt 有空研究下
 
 ## 主要依赖
 ```xml

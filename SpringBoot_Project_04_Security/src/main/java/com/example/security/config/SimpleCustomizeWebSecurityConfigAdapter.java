@@ -1,18 +1,13 @@
 package com.example.security.config;
 
-import com.example.security.handler.MyAccessDecisionManager;
 import com.example.security.service.MyUserDetailsService;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 /**
  * @author yukiloh
@@ -21,7 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * WebSecurityConfigurerAdapter: 权限管理的核心配置
  * 对adapter进行一些简单的路径和角色权限配置
  */
-//@Configuration          //可以通过开启或关闭来启用adapter
+@Configuration
 public class SimpleCustomizeWebSecurityConfigAdapter extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -29,20 +24,32 @@ public class SimpleCustomizeWebSecurityConfigAdapter extends WebSecurityConfigur
 
     /**
      * 进行配置http相关的数据(拦截请求地址,并进行认证)
-     **/
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .formLogin()                    //使用spring-security提供的表单登陆页面
+
                 .and()
-                .authorizeRequests()                                //进行认证相关配置:
-                .antMatchers("/","/index","/test")      //配置不拦截的页面
-                .permitAll()                                        //代表放行
+                .authorizeRequests()                                //进行认证相关配置
+                .antMatchers("/","/index","/test")      //对此类路径,
+                .permitAll()                                        //全部放行
 
                 .antMatchers("/user").hasRole("USER")   //指定/user路径需要role:USER
+//                .anyRequest().authenticated()                       //①其余的请求则需要认证
+
+                //②如果需要自定义请求,可以进行重写requestMatcher.像下面,对访问hello的路径需要进行认证
+                .requestMatchers(
+                        (RequestMatcher) request -> "/hello".startsWith(request.getServletPath())
+                        //"1".equals(request.getParameter("type"))
+                ).authenticated()
+    ;
+
+
+        http.authorizeRequests()                                    //也可以使用多个http
                 .antMatchers("/admin").hasRole("ADMIN") //再指定admin
-                .anyRequest()                                       //其余的请求则需要认证
-                .authenticated()
+        ;
+
 
 //                //使用jwt时需要禁用session,设置以下2项(未测试)
 //                //详细参考: https://qtdebug.com/html/spring-boot/Security.html
@@ -52,7 +59,6 @@ public class SimpleCustomizeWebSecurityConfigAdapter extends WebSecurityConfigur
 //                .csrf().disable()
 //                //选择插入在哪个filter前,JwtAuthenticationFilter需要自定义,并继承OncePerRequestFilter
 //                .addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-        ;
     }
 
     /**

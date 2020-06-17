@@ -31,6 +31,8 @@ public class SimpleWebSecurityConfigAdapter extends WebSecurityConfigurerAdapter
                 .authorizeRequests()            //进行认证相关配置:
                 .anyRequest()                   //拦截任何请求
                 .authenticated()                //并需要身份认证
+
+        //你可以在源码中看到,WebSecurityConfigurerAdapter下的configure方法中,spring已经为你写上了最简配置
         ;
     }
 

@@ -77,7 +77,7 @@ public class CustomizeWebSecurityConfigurerAdapter extends WebSecurityConfigurer
 
                 .and()
                 .formLogin()
-//                .loginPage("/login")                                        //定义登陆页面路径(因为没有设置所以注释)
+//                .loginPage("/login")                                        //可以自定义登陆页面路径(因为没有设置所以注释)
 //                .loginProcessingUrl("/login.do")                            //定义发起登陆的路径
                 .usernameParameter("username").passwordParameter("password")
                 .failureHandler(myAuthenticationFailureHandler)             //登陆成功时的处理
@@ -87,7 +87,7 @@ public class CustomizeWebSecurityConfigurerAdapter extends WebSecurityConfigurer
                 .and()
                 .logout()
                 .logoutSuccessHandler(myLogoutSuccessHandler)               //登出成功时的处理
-                .permitAll()
+                .permitAll()                                                //允许所有请求(与authorizeRequests相反)
 
                 .and()
                 .exceptionHandling()                                        //异常处理相关

@@ -25,22 +25,25 @@ security主要通过核心适配器`WebSecurityConfigurerAdapter`来实现认证
 
 ## 使用
 
-通过切换不同的`WebSecurityConfigurerAdapter`可以实现不同的权限认证效果  
-因此采用循序渐进的方式来说明spring-security如何使用  
+spring-security的核心配置即`WebSecurityConfigurerAdapter`,通过继承并配置该类可以实现不同的权限认证效果  
+因此本案例会通过从简到繁的配置adapter,循序渐进的来说明spring-security如何使用  
+
 注意,这里有2个概念需要**事先理解**  
-本案例中,所有登陆的操作一般称为**认证(Authentication前缀)**  
-是否有资格访问一个页面一般称为**权限鉴定/鉴权(Access前缀)**
+本案例中,所有登陆的操作一般称为**认证**(spring-security中多以Authentication前缀)  
+是否有资格访问一个页面一般称为**权限鉴定/鉴权**(Authorization-授权,spring-security中多以Access前缀)
 
 ### 1. 最简配置 SimpleWebSecurityConfigAdapter
 
 案例在`SimpleWebSecurityConfigAdapter`下的configure方法内  
-进行最简配置便可以开启spring-security
+开启表单登陆`formLogin()`
+即可进行最简配置便可以开启spring-security
 
 ### 2. 进行简单的路径和角色权限配置 SimpleCustomizeWebSecurityConfigAdapter
 
 案例在`SimpleCustomizeWebSecurityConfigAdapter`中  
-借用spring提供的接口,来对路径进行简单的权限分配  
+通过spring提供的接口,来对路径进行简单的权限分配  
 比如通过`antMatchers("/user").hasRole("USER")`来为user路径设置角色
+关于匹配线管的参考: https://www.jianshu.com/p/e3a9a8c4876c
 
 ### 3. 实现自定义配置
 

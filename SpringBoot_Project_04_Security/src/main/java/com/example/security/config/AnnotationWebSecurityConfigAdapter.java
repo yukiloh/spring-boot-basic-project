@@ -2,12 +2,9 @@ package com.example.security.config;
 
 import com.example.security.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
@@ -17,12 +14,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * WebSecurityConfigurerAdapter: 权限管理的核心配置
  * 通过注解@EnableGlobalMethodSecurity,进行权限的限制
  */
-@Configuration
-@EnableGlobalMethodSecurity(        //启用的注解类型可以开启多个,但所应用的方法只有1个会生效
-        securedEnabled = true       //启用@Secured
-        ,prePostEnabled = true      //启用前置注解,@PreAuthorize,@PostAuthorize等
-        ,jsr250Enabled = true       //启用JSR-250相关的注解,@RolesAllowed等
-)
+//@Configuration
+//@EnableGlobalMethodSecurity(        //启用的注解类型可以开启多个,但所应用的方法只有1个会生效
+//        securedEnabled = true       //启用@Secured
+//        ,prePostEnabled = true      //启用前置注解,@PreAuthorize,@PostAuthorize等
+//        ,jsr250Enabled = true       //启用JSR-250相关的注解,@RolesAllowed等
+//)
 public class AnnotationWebSecurityConfigAdapter extends WebSecurityConfigurerAdapter {
 
     @Autowired
