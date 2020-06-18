@@ -16,10 +16,11 @@
 
 - 过滤器和拦截器的使用
   关于filter和interceptor的区别:
-  1. filter是输入servlet,而interceptor属于springMVC.两者所在层次不一样
-  2. filter可以拦截所有访问服务器的请求,而interceptor只能拦截访问controller的请求  
-    
-
+  1. filter是输servlet提供的,而interceptor属于springMVC.两者所在层次不一样
+  2. 因此在spring的框架中,使用interceptor更容易些,且能可操作精细度更大
+  3. 因为是filter属于servlet,因此会优先于interceptor
+  2. filter可以拦截所有访问服务器的请求,而interceptor只能拦截访问controller的请求
+    事实上当请求会先到达DispatcherServlet(前端控制器controller),然后再发送至interceptor  
 
 ## 拓展补充:关于@InitBinder(项目中未使用)
 
