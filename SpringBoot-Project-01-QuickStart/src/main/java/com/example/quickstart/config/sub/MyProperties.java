@@ -1,18 +1,20 @@
-package com.example.quickstart.domain;
+package com.example.quickstart.config.sub;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * 用于读取配置文件(yml)中的配置.比如一个项目,需要设定他的初始值时,可以通过此方法,从配置文件中获取到javabean
+ * 用于读取配置文件(yml)中的配置
+ * 比如一个项目,需要设定他的初始值时
+ * 可以通过这种方式从配置文件中获取数据到 bean 中
  */
 @ConfigurationProperties(prefix = "test")
-public class TestProperties {
+public class MyProperties {
     private String var1;
     private Integer var2;
 
     @Override
     public String toString() {
-        return "TestProperties{" +
+        return "MyProperties{" +
                 "var1='" + var1 + '\'' +
                 ", var2=" + var2 +
                 '}';

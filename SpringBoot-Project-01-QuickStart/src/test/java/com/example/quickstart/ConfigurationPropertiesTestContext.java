@@ -1,6 +1,6 @@
 package com.example.quickstart;
 
-import com.example.quickstart.domain.TestProperties;
+import com.example.quickstart.config.sub.MyProperties;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +20,11 @@ public class ConfigurationPropertiesTestContext {
      */
 
     @Autowired
-    private TestProperties testProperties;
+    private MyProperties myProperties;
 
     @Test
     public void testContext() {
-        System.out.println(testProperties.getVar1());
-        System.out.println(testProperties.getVar2());
+        System.out.println(myProperties.getVar1());
+        System.out.println(myProperties.getVar2());
     }
 }
