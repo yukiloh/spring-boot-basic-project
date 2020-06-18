@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>quickstart</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>SpringBoot-Project-01-QuickStart</name>
+
+    <!--parent标签：继承；springboot要求项目必须继承起步依赖spring-boot-start-parent-->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <!--进入↓后会发现指向的还是个pom文件，内置了所有需要用到的环境坐标、和配置文件（application*.properties等）-->
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.6.RELEASE</version>
+    </parent>
+
+
+    <dependencies>
+
+        <!--添加springboot web功能的起步依赖-->
+        <!--不再需要导入spring、springMvc等的坐标，springboot中以功能为一个单位，底层会进行查找相关坐标-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+
+        <!--启用热部署功能-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <!--启用热部署还需要idea开启：
+                1.setting → compiler → 开启build project automatically
+                2.C+S+A+/ → registry → 开启compiler.auto make.allow:when.app.running-->
+        </dependency>
+
+        <!--用于开启指定@ConfigurationProperties与配置文件的映射关系。添加后可先配置控制器中的属性，再配置yml中的数据-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional> true </optional>
+        </dependency>
+
+        <!--数据库相关-->
+
+        <!--mybatis起步依赖，由mybatis提供-->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+
+        <!--Mysql连接驱动,parent会指定版本-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <!--            <version>2.2.6</version>-->
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
