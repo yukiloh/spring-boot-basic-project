@@ -72,6 +72,7 @@ class JacksonTests {
 
     /**
      * 3. 通过传入Reader类型(多用于读取文件配置),来解析object
+     * 会在根目录生成userJson.json文件
      */
     @Test
     void readValueTest() throws IOException {
@@ -118,6 +119,7 @@ class JacksonTests {
 
     /**
      * 5. 通过添加新依赖(jackson-dataformat-yaml)后,jackson还可以读取yaml文件
+     * 会在模块的根目录生成 user.yml 文件
      */
     @Test
     void parseYaml() throws IOException {
