@@ -25,7 +25,7 @@ import java.util.Arrays;
  * WebSecurityConfigurerAdapter: 权限管理的核心配置
  * 通过JWT实现登陆
  */
-//@Configuration
+@Configuration
 public class JWTWebSecurityConfigAdapter extends WebSecurityConfigurerAdapter {
 
 

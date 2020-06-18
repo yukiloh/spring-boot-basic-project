@@ -2,6 +2,7 @@ package com.example.security.filter;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -23,11 +24,17 @@ import java.util.Map;
  * @version 0.1
  * @date 2020/6/17 18:29
  */
+@Component
 public class MyUsernamePasswordAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
     public MyUsernamePasswordAuthenticationFilter() {
         //拦截url为 "/login" 的POST请求
         super(new AntPathRequestMatcher("/login", "POST"));
+    }
+
+    @Override
+    public void setAuthenticationManager(AuthenticationManager authenticationManager) {
+        super.setAuthenticationManager(authenticationManager);
     }
 
     @Override
@@ -43,6 +50,7 @@ public class MyUsernamePasswordAuthenticationFilter extends AbstractAuthenticati
             username = jsonObj.get("username");
             password = jsonObj.get("password");
         }
+        System.out.println(username+password);
 
         if (username == null)
             username = "";

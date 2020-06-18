@@ -16,7 +16,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
  * WebSecurityConfigurerAdapter: 权限管理的核心配置
  * 对adapter进行一些简单的路径和角色权限配置
  */
-@Configuration
+//@Configuration
 public class SimpleCustomizeWebSecurityConfigAdapter extends WebSecurityConfigurerAdapter {
 
     @Autowired
