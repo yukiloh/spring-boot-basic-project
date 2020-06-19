@@ -64,7 +64,7 @@ public class MyUsernamePasswordAuthenticationFilter extends AbstractAuthenticati
 		username = username == null ? "":username.trim();
 		password = password == null ? "":password.trim();
 
-		//最后封装为token,传入AuthenticationManager(如果不知道为什么要传入可以参考/resources下的流程图)
+        //所有的请求经过filter后都会封装为(Authentication)token,再交给AuthenticationManager
 		UsernamePasswordAuthenticationToken token =
                 new UsernamePasswordAuthenticationToken(username, password);
 		return this.getAuthenticationManager().authenticate(token);

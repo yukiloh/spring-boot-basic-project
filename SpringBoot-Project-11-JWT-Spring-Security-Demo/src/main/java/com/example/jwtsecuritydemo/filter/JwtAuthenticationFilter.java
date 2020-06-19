@@ -2,7 +2,7 @@ package com.example.jwtsecuritydemo.filter;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTDecodeException;
-import com.example.jwtsecuritydemo.configuration.JwtAuthenticationToken;
+import com.example.jwtsecuritydemo.model.JwtAuthenticationToken;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.InsufficientAuthenticationException;

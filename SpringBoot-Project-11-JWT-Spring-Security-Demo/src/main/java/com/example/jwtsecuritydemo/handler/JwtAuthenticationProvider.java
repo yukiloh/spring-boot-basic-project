@@ -1,10 +1,11 @@
-package com.example.jwtsecuritydemo.service;
+package com.example.jwtsecuritydemo.handler;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.example.jwtsecuritydemo.configuration.JwtAuthenticationToken;
+import com.example.jwtsecuritydemo.model.JwtAuthenticationToken;
+import com.example.jwtsecuritydemo.service.JwtUserService;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;

@@ -1,4 +1,4 @@
-package com.example.jwtsecuritydemo.configuration;
+package com.example.jwtsecuritydemo.model;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -9,12 +9,11 @@ import java.util.Collection;
 import java.util.Collections;
 
 /**
- * 自定义的token实体类
- * 会解析jwt中的user和token
+ * 所有的认证请求都会被封装为token,再传入AuthenticationManager
  * 需要继承 AbstractAuthenticationToken
  */
 public class JwtAuthenticationToken extends AbstractAuthenticationToken {
-	private static final long serialVersionUID = 3981518947978158945L;
+	// private static final long serialVersionUID = 3981518947978158945L;       //需要序列化时再使用
 
 	private UserDetails principal;
 	private String credentials;

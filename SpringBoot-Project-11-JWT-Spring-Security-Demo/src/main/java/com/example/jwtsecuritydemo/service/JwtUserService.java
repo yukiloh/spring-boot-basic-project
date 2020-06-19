@@ -27,7 +27,7 @@ public class JwtUserService implements UserDetailsService {
      * 获取用户登陆信息
      */
 	public UserDetails getUserLoginInfo(String username) {
-	    //
+	    //根据username,从数据库中获取user
         UserDetails user = loadUserByUsername(username);
 
         //todo 正式开发时应该从缓存或数据库中获取salt,例如:
@@ -60,11 +60,10 @@ public class JwtUserService implements UserDetailsService {
 
 	//todo 获取用户信息.正式开发应该从数据库中获取
 	@Override
-
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		return User.builder()
                 .username("user")
-                .password(passwordEncoder.encode("user"))       //
+                .password(passwordEncoder.encode("user"))
                 .roles("USER")
                 .build();
 	}

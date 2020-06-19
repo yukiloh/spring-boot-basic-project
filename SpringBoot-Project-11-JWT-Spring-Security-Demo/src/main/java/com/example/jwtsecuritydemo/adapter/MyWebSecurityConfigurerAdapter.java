@@ -6,7 +6,7 @@ import com.example.jwtsecuritydemo.filter.OptionsRequestFilter;
 import com.example.jwtsecuritydemo.handler.JsonLoginSuccessHandler;
 import com.example.jwtsecuritydemo.handler.JwtRefreshSuccessHandler;
 import com.example.jwtsecuritydemo.handler.TokenClearLogoutHandler;
-import com.example.jwtsecuritydemo.service.JwtAuthenticationProvider;
+import com.example.jwtsecuritydemo.handler.JwtAuthenticationProvider;
 import com.example.jwtsecuritydemo.service.JwtUserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
