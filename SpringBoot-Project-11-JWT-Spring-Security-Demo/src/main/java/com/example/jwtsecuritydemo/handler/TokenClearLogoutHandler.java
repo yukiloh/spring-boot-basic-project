@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * ?
+ * 登出的处理器
  */
 public class TokenClearLogoutHandler implements LogoutHandler {
 
@@ -31,6 +31,7 @@ public class TokenClearLogoutHandler implements LogoutHandler {
 			return;
 		UserDetails user = (UserDetails)authentication.getPrincipal();
 		if(user!=null && user.getUsername()!=null)
+		    //调用service来清除登陆状态(deleteUserLoginInfo内部方法未写)
 		    jwtUserService.deleteUserLoginInfo(user.getUsername());
 	}
 

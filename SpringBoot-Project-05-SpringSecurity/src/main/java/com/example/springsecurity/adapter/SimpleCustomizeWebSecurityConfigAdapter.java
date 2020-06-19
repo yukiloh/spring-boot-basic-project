@@ -48,16 +48,6 @@ public class SimpleCustomizeWebSecurityConfigAdapter extends WebSecurityConfigur
         http.authorizeRequests()                                    //也可以使用多个http
                 .antMatchers("/admin").hasRole("ADMIN") //再指定admin
         ;
-
-
-//                //使用jwt时需要禁用session,设置以下2项(未测试)
-//                //详细参考: https://qtdebug.com/html/spring-boot/Security.html
-//                .and()
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
-//                .csrf().disable()
-//                //选择插入在哪个filter前,JwtAuthenticationFilter需要自定义,并继承OncePerRequestFilter
-//                .addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
     }
 
     /**

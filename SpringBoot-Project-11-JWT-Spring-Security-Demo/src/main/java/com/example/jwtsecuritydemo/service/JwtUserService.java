@@ -12,56 +12,66 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Date;
 
 /**
- *
+ * 从数据库获取用户信息,提供给provider进行验证
+ * 虽然尾缀是service,但更像是dao
  */
 public class JwtUserService implements UserDetailsService {
 
-    //默认使用 bcrypt， strength=10
+    /**
+     * 通过属性创建一个encoder
+     * spring默认使用 BCryptPasswordEncoder (PasswordEncoder的实现类)
+     */
 	private PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
+    /**
+     * 获取用户登陆信息
+     */
 	public UserDetails getUserLoginInfo(String username) {
+	    //
+        UserDetails user = loadUserByUsername(username);
+
+        //todo 正式开发时应该从缓存或数据库中获取salt,例如:
+        //String salt = redisTemplate.opsForValue().get("token:"+username);
 		String salt = "123456ef";
-    	/**
-    	 * todo 从数据库或者缓存中取出jwt token生成时用的salt
-    	 * salt = redisTemplate.opsForValue().get("token:"+username);
-    	 */   	
-    	UserDetails user = loadUserByUsername(username);
+
     	//将salt放到password字段返回
     	return User.builder().username(user.getUsername()).password(salt).authorities(user.getAuthorities()).build();
 	}
-	
-	public String saveUserLoginInfo(UserDetails user) {
-		String salt = "123456ef";   //BCrypt.gensalt();  正式开发时可以调用该方法实时生成加密的salt
 
-		/**
-    	 * todo 将salt保存到数据库或者缓存中
-    	 * redisTemplate.opsForValue().set("token:"+username, salt, 3600, TimeUnit.SECONDS);
-    	 */
+    /**
+     * 设置用户登陆信息,返回jwt
+     */
+	public String saveUserLoginInfo(UserDetails user) {
+	    //todo 正式开发时可以调用该方法实时生成加密的salt,例如:
+        //BCrypt.gensalt();
+		String salt = "123456ef";
+		//然后将salt保存到数据库或缓存,例如:
+        //redisTemplate.opsForValue().set("token:"+username, salt, 3600, TimeUnit.SECONDS);
 
 		Algorithm algorithm = Algorithm.HMAC256(salt);
-		Date date = new Date(System.currentTimeMillis()+3600*1000);  //设置1小时后过期
+		Date expired = new Date(System.currentTimeMillis()+3600*1000);     //设置1小时后过期
+
         return JWT.create()
         		.withSubject(user.getUsername())
-                .withExpiresAt(date)
+                .withExpiresAt(expired)
                 .withIssuedAt(new Date())
                 .sign(algorithm);
 	}
 
+	//todo 获取用户信息.正式开发应该从数据库中获取
 	@Override
+
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		return User.builder().username("Jack").password(passwordEncoder.encode("jack-password")).roles("USER").build();
+		return User.builder()
+                .username("user")
+                .password(passwordEncoder.encode("user"))       //
+                .roles("USER")
+                .build();
 	}
-	
-	public void createUser(String username, String password) {
-		String encryptPwd = passwordEncoder.encode(password);
-		/**
-		 * todo 保存用户名和加密后密码到数据库
-		 */
-	}
-	
+
+    /**
+     * todo 删除用户登陆信息
+     */
 	public void deleteUserLoginInfo(String username) {
-		/**
-		 * todo 清除数据库或者缓存中登录salt
-		 */
 	}
 }

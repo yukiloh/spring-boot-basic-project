@@ -9,7 +9,9 @@ import java.util.Collection;
 import java.util.Collections;
 
 /**
- *
+ * 自定义的token实体类
+ * 会解析jwt中的user和token
+ * 需要继承 AbstractAuthenticationToken
  */
 public class JwtAuthenticationToken extends AbstractAuthenticationToken {
 	private static final long serialVersionUID = 3981518947978158945L;

@@ -10,13 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * ?
+ * 认证失败处理器
+ * 登陆失败和jwt解析/认证失败都是调用本处理器
  */
-public class HttpStatusLoginFailureHandler implements AuthenticationFailureHandler {
+public class LoginFailureHandler implements AuthenticationFailureHandler {
 
 	@Override
-	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
-                                        AuthenticationException exception) throws IOException, ServletException {
+	public void onAuthenticationFailure(
+	        HttpServletRequest request
+            , HttpServletResponse response
+            , AuthenticationException exception
+    ) throws IOException, ServletException {
+	    //返回401未认证
 		response.setStatus(HttpStatus.UNAUTHORIZED.value());
 	}
 	
