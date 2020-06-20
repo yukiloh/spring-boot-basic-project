@@ -52,14 +52,18 @@ public class AnnotationController {
      * @PreAuthorize: 在方法 被调用前 拦截
      * @PostAuthoriz: 在方法 被调用后 拦截,可以通过returnObject来对返回的结果进行逻辑处理
      * 这2个方法可以在内部使用spring el表达式
-     * 可以通过 hasRole("ROLE") 来指定允许的角色.IDEA提示可以使用hasPermission,没有仔细研究
-     * 表达式参考地址: https://docs.spring.io/spring-security/site/docs/5.2.2.RELEASE/reference/htmlsingle/#el-common-built-in
+     * 可以通过 hasRole("ROLE") 来指定允许的角色
+     * 而且还需要permission"PERM_USER",只有user用户才有,admin账号是无法查看本页的
+     * 关于 hasPermission ,他的实现类是 MyPermissionEvaluator 可通过全局搜素找到
+     * 顺便测试了下SpEl,从path中获取user参数,如果是'iamadmin'则驳回
+     * SpEl表达式参考地址:
+     * https://docs.spring.io/spring-security/site/docs/5.2.2.RELEASE/reference/htmlsingle/#el-common-built-in
      * 测试路径: http://localhost:8080/annotation/preAuthorize
      */
     @GetMapping("/preAuthorize")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER') and hasPermission('user','PERM_USER') and #user != 'iamadmin'")
 //    @PreAuthorize("hasRole('USER') AND hasRole('ADMIN')")     //可以通过and来实现需要2个权限的效果
-    public String  preAuthorize(){
+    public String  preAuthorize(String user){
         return "访问了: @PreAuthorize(\"hasRole('USER')\")\n";
     }
 
