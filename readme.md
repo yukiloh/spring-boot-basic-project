@@ -1,12 +1,15 @@
 # 个人的spring boot相关学习笔记
 
-每一个模块分别包含相应内容
+每一个模块分别包含相应内容  
+clone后通过maven导入相应模块即可
+翻新后基本每个模块都添加了readme,方便查阅学习
 
 - quickstart  
   包含一些springboot基础用法  
 
 - redis  
-  springboot中redis的使用(spring-boot-starter-data-redis)
+  springboot中redis的使用(spring-boot-starter-data-redis)  
+  因为历史原因,其中也有lombok的一些用法展示
 
 - thymeleaf  
   一些基础的`thymeleaf`语法,都写在index.html中
