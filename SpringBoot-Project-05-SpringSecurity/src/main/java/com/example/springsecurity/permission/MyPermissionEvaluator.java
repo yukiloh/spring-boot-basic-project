@@ -19,7 +19,6 @@ import java.io.Serializable;
 public class MyPermissionEvaluator implements PermissionEvaluator{
 
     /**
-     *
      * 参数中,authentication会在使用SpEl表达式 hasPermission() 时自动注入
      * 而o和o1可以自定义,这里约定俗成让o为target,o1为permission
      * @param authentication 认证器
@@ -31,8 +30,8 @@ public class MyPermissionEvaluator implements PermissionEvaluator{
     public boolean hasPermission(Authentication authentication, Object o, Object o1) {
 
         //防止SpEl写入时是null
-        Assert.notNull(o,"in SpEl : hasPermission(target,permission) target is null");
-        Assert.notNull(o1,"in SpEl : hasPermission(target,permission) permission is null");
+        Assert.notNull(o,"SpEl: hasPermission(target,permission) target is null");
+        Assert.notNull(o1,"SpEl: hasPermission(target,permission) permission is null");
 
         //最终返回结果
         boolean result = false;
@@ -51,7 +50,7 @@ public class MyPermissionEvaluator implements PermissionEvaluator{
 
     /**
      * 对于4个参数的,多了一个序列化接口
-     * 可能用于鉴定实体类,没仔细研究.本案例不演示
+     * 可能用于鉴定实体类,没仔细研究.本案例不进行演示
      * @param authentication
      * @param serializable      需要实现serializable的对象
      * @param s                 targetType,所要匹配的对象类型

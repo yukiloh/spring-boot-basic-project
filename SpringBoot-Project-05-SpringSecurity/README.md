@@ -1,9 +1,15 @@
 # Spring Security 的使用
 
 比shiro复杂,但完全不配置也可以直接使用  
-spring-security主要通过核心适配器`WebSecurityConfigurerAdapter`来实现认证/鉴权(在项目的adapter文件夹下)  
-本案例有4个适配器adapter,通过循序渐进的方式来演示如何配置spring-security  
-通过`@Configuration`来选择启用哪个adapter来实现(一次只能开启一个)  
+spring-security主要通过核心适配器`WebSecurityConfigurerAdapter`来实现认证/鉴权  
+(在项目的adapter文件夹下)  
+本案例有4个适配器adapter  
+- `SimpleWebSecurityConfigAdapter`,最简配置
+- `SimpleCustomizeWebSecurityConfigAdapter`,简易自定义配置
+- `CustomizeWebSecurityConfigurerAdapter`,进阶自定义配置
+- `AnnotationWebSecurityConfigAdapter`,注解配置
+通过循序渐进的方式来演示如何配置spring-security  
+通过`@Configuration`来选择启用哪个adapter来实现(注意,一次只能开启一个)  
 
 ## 依赖
 
