@@ -9,7 +9,7 @@ clone后通过maven导入相应模块即可
 
 - redis  
   springboot中redis的使用(spring-boot-starter-data-redis)  
-  因为历史原因,其中也有lombok的一些用法展示
+  ~~因为历史原因,其中也有lombok的一些用法展示~~已移动至utils项目中
 
 - thymeleaf  
   一些基础的`thymeleaf`语法,都写在index.html中
@@ -27,8 +27,8 @@ clone后通过maven导入相应模块即可
 - restControllerAdvice  
   springboot中异常捕获的方式,主要演示了全局异常的捕获
 
-- jackson  
-  虽然和springboot无关,方便查询因此放在这里
+- ~~jackson~~  
+  已被移至utils项目中
 
 - jwt  
   通过java-jwt来使用jwt的案例  
